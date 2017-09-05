@@ -20,36 +20,36 @@ class CustomConnectionFactory extends ConnectionFactory {
         /*
           if ($_SERVER["REMOTE_ADDR"] == '127.0.0.1') {
 
-          $params['dbname'] = 'partsbox_symfony';
+          $params['dbname'] = 'servicebook_symfony';
           $params['user'] = 'root';
           $params['password'] = '123456';
 
           } else {
-          $params['dbname'] = 'partsbox_db2';
-          $params['user'] = 'partsbox';
+          $params['dbname'] = 'servicebook_db2';
+          $params['user'] = 'servicebook';
           $params['password'] = ')7uT[LJOPyX$';
           }
          */
         $databale = @explode(".", $_SERVER["HTTP_HOST"]);
         if (@$_SERVER["COMPUTERNAME"] == 'ALEXANDERDIMEAS') {
-            $params['dbname'] = 'partsbox_symfony6';
+            $params['dbname'] = 'servicebook_symfony6';
             $params['user'] = 'root';
             $params['password'] = '123456';
         } elseif ($databale[0]) {
-            $params['dbname'] = 'partsbox_'.$databale[0];
-            $params['user'] = 'partsbox';
+            $params['dbname'] = 'servicebook_'.$databale[0];
+            $params['user'] = 'servicebook';
             $params['password'] = ')7uT[LJOPyX$';     
         } else {
-            $params['dbname'] = 'partsbox_symfony6';
+            $params['dbname'] = 'servicebook_symfony6';
             $params['user'] = 'root';
             $params['password'] = '123456';
             
-            $params['dbname'] = 'partsbox_partsbox5';
-            $params['user'] = 'partsbox';
+            $params['dbname'] = 'servicebook_servicebook5';
+            $params['user'] = 'servicebook';
             $params['password'] = ')7uT[LJOPyX$';   
             //            
-           // $params['dbname'] = 'partsbox_gratsias';
-           // $params['user'] = 'partsbox';
+           // $params['dbname'] = 'servicebook_gratsias';
+           // $params['user'] = 'servicebook';
             //$params['password'] = ')7uT[LJOPyX$';               
         }             
 
