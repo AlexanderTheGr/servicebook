@@ -1,0 +1,216 @@
+.gui-controls > button > span.title {
+    margin-left: 25px;
+}
+.gui-controls > button > .gui-icon {
+    position: absolute;
+    left: 2px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    color: #565853;
+    font-size: 18px;
+    overflow: hidden;
+    border-radius: 999px;
+    -webkit-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    transition: all 0.15s linear;
+}
+.gui-controls > button > .gui-icon .fa:first-child, .gui-controls > button > .gui-icon .md:first-child, .gui-controls > button > .gui-icon .glyphicon:first-child {
+    line-height: 30px;
+}
+.gui-controls > button.btn-danger > .gui-icon {
+    color:#fff;
+}
+.gui-controls > button.btn-success > .gui-icon {
+    color:#fff;
+}
+.gui-controls > button.btn-primary > .gui-icon {
+    color:#fff;
+}
+.right {
+    float: right;    
+}
+.left {
+    float: left;    
+}
+.bold {
+    font-weight: bold;
+}
+#orderitem_wrapper .dataTables_length, #orderitem_wrapper .dataTables_filter {
+    display: none;   
+}
+
+.chosen-container-single .chosen-single {
+    border:0px;
+    border-bottom-color: rgba(12, 12, 12, 0.12);
+    background: transparent;
+    color: #333531;    
+    border-radius: 0px;
+    height: 30px;
+    line-height: 30px;
+}
+.chosen-container-active.chosen-with-drop .chosen-single {
+    border: 0px solid #aaa;
+    -moz-border-radius-bottomright: 0;
+    border-bottom-right-radius: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-bottom-left-radius: 0;
+    background: #ddefc9;
+    /* background-image: linear-gradient(#eeeeee 20%, #ffffff 80%); */
+    box-shadow: 0 1px 0 #fff inset;
+}
+.chosen-container-single .chosen-single div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 18px;
+    height: 100%;
+    margin-top: 4px;
+}
+.form-group .form-control ~ label {
+    top: 0;
+    margin-bottom: 0;
+    font-size: 15px;
+    opacity: 0.5;
+    margin-top: -4px;
+}
+.form-group div {
+    width:100%;
+    flaot:left;
+}
+table.dataTable tbody tr {
+    background-color: transparent;
+    cursor: pointer;
+}
+.form-control {
+    padding: 0px 5px;
+}
+.list-chats .chat-body strong {
+    display: block;
+}
+.alexander {
+    display: none;    
+}
+.tab-pane {
+    padding-top: 15px;    
+}
+.dataTables_wrapper {
+    position: relative;
+    clear: both;
+    zoom: 1;
+    background: #fff;
+    border: 1px #ccc solid;
+    padding: 5px;
+}
+.orderitemstable {
+    width: 400px;   
+    border: 1px #888 solid;
+    position:absolute;
+    display: none;
+    left:0;
+}
+.orderitemstable table{
+    width: 100%;
+}
+.dataTable input {
+    width: 100%;
+}
+.ui-dialog { z-index: 100000 !important ;}
+
+
+
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 }
+    to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+    from{ bottom:-100px; opacity:0 }
+    to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+    display: none;
+    text-align: center;
+}
+.modal {
+    color: #333531;
+    background: #111111;
+    opacity: 0.5;
+}
+.instock  {
+    color:green;
+}
+.outofstock  {
+    color:red;
+}
+
+
+
+
+.offcanvas-body  table.dataTable thead .sorting, 
+.offcanvas-body  table.dataTable thead .sorting_asc, 
+.offcanvas-body  table.dataTable thead .sorting_asc_disabled, 
+.offcanvas-body  table.dataTable thead .sorting_desc, 
+.offcanvas-body  table.dataTable thead .sorting_desc_disabled {
+    position: relative;
+    cursor: pointer;
+    display: none;
+}
+.productcategory {
+    list-style: none;
+}
+.parentcategoryli {
+    font-weight: bold;
+    cursor:pointer;
+}
+.categoryul {
+    font-weight: normal;
+    display:none;
+}
+.productInfoTabs {
+    height:500px;    
+}
+
+.ediiteqty1, .edistore {
+    width: 120px !important;
+    height: 30px;
+    margin-left: 3px;
+}

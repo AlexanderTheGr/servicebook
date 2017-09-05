@@ -1,0 +1,25 @@
+<a href="javascript:void(0);" class="btn btn-icon-toggle btn-default" data-toggle="dropdown" aria-expanded="false">
+    <i class="fa fa-bell"></i>
+    <sup class="badge style-danger" style='background:{{orderscntbkg}}; position: relative;font-size: 20px; top: -15px; right: 111px; margin: -1px;'>{{orderscnt}}</sup>
+    <sup class="badge style-danger" style='background:#2196f3; position: relative;font-size: 20px; top: -15px; right: 105px; margin: -1px;'>{{edicnt}}</sup>
+</a>
+<ul class="dropdown-menu animation-expand" style='width:500px;'>
+    <li class="dropdown-header"><h2>Today's messages</h2></li>
+    <li>
+        <a class="alert alert-callout alert-warning" href="javascript:void(0);">
+            <!--img class="pull-right img-circle dropdown-avatar" src="../../assets/img/avatar2.jpg?1404026449" alt=""-->
+            <strong>New Orders</strong><br>
+        </a>
+        {{orders | raw}}
+    </li>
+    <li>
+        <a class="alert alert-callout alert-info" href="javascript:void(0);">
+            <!--img class="pull-right img-circle dropdown-avatar" src="../../assets/img/avatar3.jpg?1404026799" alt=""-->
+            <strong>Edi Orders</strong><br>
+        </a>
+         {{ediorders | raw}}
+    </li>
+    <!--li class="dropdown-header">Options</li>
+    <li><a href="../../html/pages/login.html">View all messages <span class="pull-right"><i class="fa fa-arrow-right"></i></span></a></li>
+    <li><a href="../../html/pages/login.html">Mark as read <span class="pull-right"><i class="fa fa-arrow-right"></i></span></a></li-->
+</ul><!--end .dropdown-menu -->

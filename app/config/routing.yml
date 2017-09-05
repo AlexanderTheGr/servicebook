@@ -1,0 +1,17 @@
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+access:
+    resource: "@AccessBundle/Resources/config/routing.yml"
+    prefix:   /
+
+attribute:
+    resource: "@EavBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
