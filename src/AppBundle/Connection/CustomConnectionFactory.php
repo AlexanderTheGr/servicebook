@@ -36,9 +36,9 @@ class CustomConnectionFactory extends ConnectionFactory {
             $params['user'] = 'root';
             $params['password'] = '123456';
         } elseif ($databale[0]) {
-            $params['dbname'] = 'servicebook_'.$databale[0];
+            $params['dbname'] = 'serviceb_'.$databale[0];
             $params['user'] = 'servicebook';
-            $params['password'] = ')7uT[LJOPyX$';     
+            $params['password'] = '[qTAAK(6TfR!';     
         } else {
             $params['dbname'] = 'servicebook_symfony6';
             $params['user'] = 'root';
