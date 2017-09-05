@@ -44,9 +44,9 @@ class CustomConnectionFactory extends ConnectionFactory {
             $params['user'] = 'root';
             $params['password'] = '123456';
             
-            $params['dbname'] = 'servicebook_servicebook5';
+            $params['dbname'] = 'servicebook_servicebook';
             $params['user'] = 'servicebook';
-            $params['password'] = ')7uT[LJOPyX$';   
+            $params['password'] = '[qTAAK(6TfR!';   
             //            
            // $params['dbname'] = 'servicebook_gratsias';
            // $params['user'] = 'servicebook';
