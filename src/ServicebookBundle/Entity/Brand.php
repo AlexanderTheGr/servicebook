@@ -5,8 +5,8 @@ namespace ServicebookBundle\Entity;
 /**
  * Brand
  */
-class Brand
-{
+class Brand {
+
     /**
      * @var string
      */
@@ -27,7 +27,6 @@ class Brand
      */
     private $id;
 
-
     /**
      * Set brand
      *
@@ -35,8 +34,7 @@ class Brand
      *
      * @return Brand
      */
-    public function setBrand($brand)
-    {
+    public function setBrand($brand) {
         $this->brand = $brand;
 
         return $this;
@@ -47,8 +45,7 @@ class Brand
      *
      * @return string
      */
-    public function getBrand()
-    {
+    public function getBrand() {
         return $this->brand;
     }
 
@@ -59,8 +56,7 @@ class Brand
      *
      * @return Brand
      */
-    public function setEnable($enable)
-    {
+    public function setEnable($enable) {
         $this->enable = $enable;
 
         return $this;
@@ -71,8 +67,7 @@ class Brand
      *
      * @return boolean
      */
-    public function getEnable()
-    {
+    public function getEnable() {
         return $this->enable;
     }
 
@@ -83,8 +78,7 @@ class Brand
      *
      * @return Brand
      */
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
         $this->status = $status;
 
         return $this;
@@ -95,8 +89,7 @@ class Brand
      *
      * @return boolean
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -105,9 +98,66 @@ class Brand
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
-}
 
+    /**
+     * @var integer
+     */
+    private $reference = '0';
+
+    /**
+     * @var string
+     */
+    private $brandStr;
+
+
+    /**
+     * Set reference
+     *
+     * @param integer $reference
+     *
+     * @return Brand
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return integer
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * Set brandStr
+     *
+     * @param string $brandStr
+     *
+     * @return Brand
+     */
+    public function setBrandStr($brandStr)
+    {
+        $this->brandStr = $brandStr;
+
+        return $this;
+    }
+
+    /**
+     * Get brandStr
+     *
+     * @return string
+     */
+    public function getBrandStr()
+    {
+        return $this->brandStr;
+    }
+}
