@@ -32,7 +32,7 @@ class CustomConnectionFactory extends ConnectionFactory {
          */
         $databale = @explode(".", $_SERVER["HTTP_HOST"]);
         if (@$_SERVER["COMPUTERNAME"] == 'ALEXANDERDIMEAS') {
-            $params['dbname'] = 'servicebook_symfony6';
+            $params['dbname'] = 'servicebook';
             $params['user'] = 'root';
             $params['password'] = '123456';
         } elseif ($databale[0]) {
