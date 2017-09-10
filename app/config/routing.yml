@@ -1,6 +1,6 @@
 servivebook:
-    resource: "@ServicebookBundle/Resources/config/routing.xml"
-    prefix:   /
+    resource: "@ServivebookBundle/Controller/"
+    type:     annotation
 
 admin:
     resource: "@AdminBundle/Controller/"
