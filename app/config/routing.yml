@@ -1,5 +1,5 @@
 servivebook:
-    resource: "@ServivebookBundle/Controller/"
+    resource: "@ServicebookBundle/Controller/"
     type:     annotation
 
 admin:
