@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\Main as Main;
 
-class ApiController extends Controller {
+class ApiController extends Main {
 
     public function indexAction($name) {
         return $this->render('ServicebookBundle:Default:index.html.twig', array('name' => $name));
