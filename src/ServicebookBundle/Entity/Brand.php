@@ -26,6 +26,7 @@ class Brand {
      * @var integer
      */
     private $id;
+    
 
     /**
      * Set brand
