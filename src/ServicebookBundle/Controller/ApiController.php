@@ -23,7 +23,7 @@ class ApiController extends Main {
         //$allowedips = $this->getSetting("ServicebookBundle:Api:Allowedips");
         // $allowedipsArr = explode(",", $allowedips);
         //if (in_array($_SERVER["REMOTE_ADDR"], $allowedipsArr)) {
-        $sql = "SELECT * FROM  `servicebook_brand` where enable = 1";
+        $sql = "SELECT * FROM  `servicebook_brand` where enable = 1 and reference > 0";
         $connection = $this->getDoctrine()->getConnection();
         $statement = $connection->prepare($sql);
         $statement->execute();
