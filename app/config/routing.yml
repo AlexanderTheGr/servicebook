@@ -1,5 +1,5 @@
 servivebook:
-    resource: "@ServivebookBundle/Resources/config/routing.xml"
+    resource: "@ServicebookBundle/Resources/config/routing.xml"
     prefix:   /
 
 admin:
