@@ -18,6 +18,7 @@ class AppKernel extends Kernel {
             new AppBundle\AppBundle(),
             new AccessBundle\AccessBundle(),
             new AdminBundle\AdminBundle(),
+            new ServivebookBundle\ServivebookBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
