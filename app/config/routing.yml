@@ -1,7 +1,7 @@
 servivebook:
     resource: "@ServicebookBundle/Controller/"
     type:     annotation
-
+    prefix:   /
 admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation
