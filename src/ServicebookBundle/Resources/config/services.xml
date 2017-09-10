@@ -6,7 +6,7 @@
 
     <!--
     <services>
-        <service id="servivebook.example" class="ServivebookBundle\Example">
+        <service id="servicebook.example" class="ServicebookBundle\Example">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

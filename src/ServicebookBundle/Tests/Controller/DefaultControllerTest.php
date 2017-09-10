@@ -1,6 +1,6 @@
 <?php
 
-namespace ServivebookBundle\Tests\Controller;
+namespace ServicebookBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
