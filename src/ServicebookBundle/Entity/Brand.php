@@ -26,7 +26,6 @@ class Brand {
      * @var integer
      */
     private $id;
-    
 
     /**
      * Set brand
@@ -113,7 +112,6 @@ class Brand {
      */
     private $brandStr;
 
-
     /**
      * Set reference
      *
@@ -121,8 +119,7 @@ class Brand {
      *
      * @return Brand
      */
-    public function setReference($reference)
-    {
+    public function setReference($reference) {
         $this->reference = $reference;
 
         return $this;
@@ -133,8 +130,7 @@ class Brand {
      *
      * @return integer
      */
-    public function getReference()
-    {
+    public function getReference() {
         return $this->reference;
     }
 
@@ -145,8 +141,7 @@ class Brand {
      *
      * @return Brand
      */
-    public function setBrandStr($brandStr)
-    {
+    public function setBrandStr($brandStr) {
         $this->brandStr = $brandStr;
 
         return $this;
@@ -157,8 +152,8 @@ class Brand {
      *
      * @return string
      */
-    public function getBrandStr()
-    {
+    public function getBrandStr() {
         return $this->brandStr;
     }
+
 }

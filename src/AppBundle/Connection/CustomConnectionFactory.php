@@ -31,15 +31,12 @@ class CustomConnectionFactory extends ConnectionFactory {
           }
          */
         $databale = @explode(".", $_SERVER["HTTP_HOST"]);
-        if (@$_SERVER["COMPUTERNAME"] == 'ALEXANDERDIMEAS') {
+        //print_r($_SERVER);
+        if (@$_SERVER["HOMEDRIVE"] == 'C:') {
             $params['dbname'] = 'servicebook';
             $params['user'] = 'root';
             $params['password'] = '123456';
-        } elseif ($databale[0]) {
-            $params['dbname'] = 'serviceb_'.$databale[0];
-            $params['user'] = 'servicebook';
-            $params['password'] = '[qTAAK(6TfR!';     
-        } else {
+        }  else {
             $params['dbname'] = 'servicebook_symfony6';
             $params['user'] = 'root';
             $params['password'] = '123456';
