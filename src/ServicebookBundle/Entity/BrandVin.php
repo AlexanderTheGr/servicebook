@@ -4,6 +4,7 @@ namespace ServicebookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Entity;
+
 /**
  * BrandVin
  */
@@ -368,7 +369,6 @@ class BrandVin extends Entity {
      */
     private $year = '';
 
-
     /**
      * Set year
      *
@@ -376,8 +376,7 @@ class BrandVin extends Entity {
      *
      * @return BrandVin
      */
-    public function setYear($year)
-    {
+    public function setYear($year) {
         $this->year = $year;
 
         return $this;
@@ -388,8 +387,8 @@ class BrandVin extends Entity {
      *
      * @return string
      */
-    public function getYear()
-    {
+    public function getYear() {
         return $this->year;
     }
+
 }
