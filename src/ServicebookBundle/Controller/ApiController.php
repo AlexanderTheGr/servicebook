@@ -32,7 +32,7 @@ class ApiController extends Main {
         foreach ($results as $data) {
             $arr[] = $data;
         }
-
+        $data = array();
         $data["status"] = "OK";
         $data["data"] = $arr;
         $json = json_encode($data);
