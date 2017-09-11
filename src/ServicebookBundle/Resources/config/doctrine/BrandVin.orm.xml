@@ -5,6 +5,9 @@
             <index name="user" columns="user"/>
             <index name="brand" columns="brand"/>
         </indexes>
+        <unique-constraints>
+            <unique-constraint name="vin" columns="vin"/>
+        </unique-constraints>        
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
