@@ -364,4 +364,3 @@ class BrandVin extends Entity {
     }
 
 }
-
