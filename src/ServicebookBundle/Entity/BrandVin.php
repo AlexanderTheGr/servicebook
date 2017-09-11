@@ -2,11 +2,56 @@
 
 namespace ServicebookBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Entity;
 /**
  * BrandVin
  */
-class BrandVin
-{
+class BrandVin extends Entity {
+
+    private $repository = 'ServicebookBundle:BrandVin';
+    private $types = array();
+    var $repositories = array();
+    var $uniques = array();
+
+    public function __construct() {
+        $this->repositories['brand'] = 'ServicebookBundle:Brand';
+        $this->repositories['user'] = 'ServicebookBundle:User';
+        $this->types['route'] = 'object';
+        $this->route = new \SoftoneBundle\Entity\Route;
+        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getField($field) {
+        return $this->$field;
+    }
+
+    public function setField($field, $val) {
+        $this->$field = $val;
+        return $val;
+    }
+
+    public function getRepository() {
+        return $this->repository;
+    }
+
+    public function getRepositories($repo) {
+        $this->repositories['brand'] = 'ServicebookBundle:Brand';
+        $this->repositories['user'] = 'ServicebookBundle:User';
+        return $this->repositories[$repo];
+    }
+
+    public function gettype($field) {
+        $this->types['route'] = 'object';
+        if (@$this->types[$field] != '') {
+            return @$this->types[$field];
+        }
+        if (gettype($field) != NULL) {
+            return gettype($this->$field);
+        }
+        return 'string';
+    }
+
     /**
      * @var string
      */
@@ -67,7 +112,6 @@ class BrandVin
      */
     private $brand;
 
-
     /**
      * Set vin
      *
@@ -75,8 +119,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setVin($vin)
-    {
+    public function setVin($vin) {
         $this->vin = $vin;
 
         return $this;
@@ -87,8 +130,7 @@ class BrandVin
      *
      * @return string
      */
-    public function getVin()
-    {
+    public function getVin() {
         return $this->vin;
     }
 
@@ -99,8 +141,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setModel($model)
-    {
+    public function setModel($model) {
         $this->model = $model;
 
         return $this;
@@ -111,8 +152,7 @@ class BrandVin
      *
      * @return string
      */
-    public function getModel()
-    {
+    public function getModel() {
         return $this->model;
     }
 
@@ -123,8 +163,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setEngine($engine)
-    {
+    public function setEngine($engine) {
         $this->engine = $engine;
 
         return $this;
@@ -135,8 +174,7 @@ class BrandVin
      *
      * @return string
      */
-    public function getEngine()
-    {
+    public function getEngine() {
         return $this->engine;
     }
 
@@ -147,8 +185,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setDisplacement($displacement)
-    {
+    public function setDisplacement($displacement) {
         $this->displacement = $displacement;
 
         return $this;
@@ -159,8 +196,7 @@ class BrandVin
      *
      * @return integer
      */
-    public function getDisplacement()
-    {
+    public function getDisplacement() {
         return $this->displacement;
     }
 
@@ -171,8 +207,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setFuel($fuel)
-    {
+    public function setFuel($fuel) {
         $this->fuel = $fuel;
 
         return $this;
@@ -183,8 +218,7 @@ class BrandVin
      *
      * @return string
      */
-    public function getFuel()
-    {
+    public function getFuel() {
         return $this->fuel;
     }
 
@@ -195,8 +229,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setPower($power)
-    {
+    public function setPower($power) {
         $this->power = $power;
 
         return $this;
@@ -207,8 +240,7 @@ class BrandVin
      *
      * @return integer
      */
-    public function getPower()
-    {
+    public function getPower() {
         return $this->power;
     }
 
@@ -219,8 +251,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setDoors($doors)
-    {
+    public function setDoors($doors) {
         $this->doors = $doors;
 
         return $this;
@@ -231,8 +262,7 @@ class BrandVin
      *
      * @return integer
      */
-    public function getDoors()
-    {
+    public function getDoors() {
         return $this->doors;
     }
 
@@ -243,8 +273,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setDetails($details)
-    {
+    public function setDetails($details) {
         $this->details = $details;
 
         return $this;
@@ -255,8 +284,7 @@ class BrandVin
      *
      * @return string
      */
-    public function getDetails()
-    {
+    public function getDetails() {
         return $this->details;
     }
 
@@ -267,8 +295,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
         $this->status = $status;
 
         return $this;
@@ -279,8 +306,7 @@ class BrandVin
      *
      * @return boolean
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -289,8 +315,7 @@ class BrandVin
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -301,8 +326,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setUser(\ServicebookBundle\Entity\User $user = null)
-    {
+    public function setUser(\ServicebookBundle\Entity\User $user = null) {
         $this->user = $user;
 
         return $this;
@@ -313,8 +337,7 @@ class BrandVin
      *
      * @return \ServicebookBundle\Entity\User
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -325,8 +348,7 @@ class BrandVin
      *
      * @return BrandVin
      */
-    public function setBrand(\ServicebookBundle\Entity\Brand $brand = null)
-    {
+    public function setBrand(\ServicebookBundle\Entity\Brand $brand = null) {
         $this->brand = $brand;
 
         return $this;
@@ -337,9 +359,9 @@ class BrandVin
      *
      * @return \ServicebookBundle\Entity\Brand
      */
-    public function getBrand()
-    {
+    public function getBrand() {
         return $this->brand;
     }
+
 }
 
