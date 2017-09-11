@@ -363,4 +363,33 @@ class BrandVin extends Entity {
         return $this->brand;
     }
 
+    /**
+     * @var string
+     */
+    private $year = '';
+
+
+    /**
+     * Set year
+     *
+     * @param string $year
+     *
+     * @return BrandVin
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get year
+     *
+     * @return string
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
 }
