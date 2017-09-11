@@ -50,6 +50,14 @@
             </options>
         </field>
         
+        <field name="year" type="string" column="year" length="255" nullable="false">
+            <options>
+                <option name="fixed"/>
+                <option name="default"></option>
+            </options>
+        </field>
+       
+        
         <field name="doors" type="integer" column="doors" nullable="false">
             <options>
                 <option name="unsigned"/>
