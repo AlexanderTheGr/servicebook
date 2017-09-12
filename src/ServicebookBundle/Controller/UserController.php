@@ -81,7 +81,7 @@ class UserController extends Main {
             $this->newentity[$this->repository] = $entity;
         }
 
-        $fields["user"] = array("label" => "User");
+        $fields["username"] = array("label" => "User");
         //$fields["userName"] = array("label" => "Name");
 
         $forms = $this->getFormLyFields($entity, $fields);
@@ -98,7 +98,7 @@ class UserController extends Main {
         $this->repository = 'ServicebookBundle:User';
 
         $this->addField(array("name" => "ID", "index" => 'id', "active" => "active"))
-                ->addField(array("name" => "User", "index" => 'user'));
+                ->addField(array("name" => "User", "index" => 'username'));
         $json = $this->datatable();
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
