@@ -16,7 +16,7 @@ class UserController extends Main {
     var $newentity = '';
 
     /**
-     * @User("/servicebook/user/user")
+     * @Route("/servicebook/user/user")
      */
     public function indexAction() {
         return $this->render('ServicebookBundle:User:index.html.twig', array(
@@ -29,7 +29,7 @@ class UserController extends Main {
         ));
     }
     /**
-     * @User("/servicebook/user/view/{id}")
+     * @Route("/servicebook/user/view/{id}")
      */
     public function viewAction($id) {
         $buttons = array();
@@ -48,7 +48,7 @@ class UserController extends Main {
     }
 
     /**
-     * @User("/servicebook/user/save")
+     * @Route("/servicebook/user/save")
      */
     public function saveAction() {
         $entity = new \ServicebookBundle\Entity\User;
@@ -67,7 +67,7 @@ class UserController extends Main {
     }
 
     /**
-     * @User("/user/gettab")
+     * @Route("/user/gettab")
      */
     public function gettabs($id) {
 
@@ -92,7 +92,7 @@ class UserController extends Main {
     }
 
     /**
-     * @User("/servicebook/user/getdatatable")
+     * @Route("/servicebook/user/getdatatable")
      */
     public function getdatatableAction(Request $request) {
         $this->repository = 'ServicebookBundle:User';
