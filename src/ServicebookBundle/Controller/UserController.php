@@ -98,7 +98,10 @@ class UserController extends Main {
         $this->repository = 'ServicebookBundle:User';
 
         $this->addField(array("name" => "ID", "index" => 'id', "active" => "active"))
-                ->addField(array("name" => "User", "index" => 'username'));
+                ->addField(array("name" => "User", "index" => 'username'))
+                ->addField(array("name" => "First Name", "index" => 'firstname'))
+                ->addField(array("name" => "Last Name", "index" => 'lastname'))
+                ;
         $json = $this->datatable();
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
