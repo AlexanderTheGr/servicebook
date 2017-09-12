@@ -82,6 +82,8 @@ class UserController extends Main {
         }
 
         $fields["username"] = array("label" => "User");
+        $fields["firstname"] = array("label" => "First Name");
+        $fields["lastname"] = array("label" => "Last Name");
         //$fields["userName"] = array("label" => "Name");
 
         $forms = $this->getFormLyFields($entity, $fields);
