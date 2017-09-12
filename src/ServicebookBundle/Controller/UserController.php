@@ -81,7 +81,8 @@ class UserController extends Main {
             $this->newentity[$this->repository] = $entity;
         }
 
-        $fields["username"] = array("label" => "User");
+        $fields["username"] = array("label" => "User",'required' => 'yes');
+        $fields["password"] = array("label" => "Password", 'required' => 'no');
         $fields["firstname"] = array("label" => "First Name");
         $fields["lastname"] = array("label" => "Last Name");
         //$fields["userName"] = array("label" => "Name");
