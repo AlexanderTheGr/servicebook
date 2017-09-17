@@ -33,7 +33,7 @@ class ApiController extends Main {
             $arr[] = $data;
         }
         $data = array();
-        $data["status"] = "OK";
+        $data["status"] = "ok";
         $data["data"] = $arr;
         $json = json_encode($data);
         return new Response(
