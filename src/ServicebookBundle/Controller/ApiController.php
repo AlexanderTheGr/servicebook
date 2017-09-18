@@ -17,9 +17,9 @@ class ApiController extends Main {
     /**
      * 
      * 
-     * @Route("/api/getBrands")
+     * @Route("/api/brands")
      */
-    public function getProducts(Request $request) {
+    public function getBrands(Request $request) {
         //$allowedips = $this->getSetting("ServicebookBundle:Api:Allowedips");
         // $allowedipsArr = explode(",", $allowedips);
         //if (in_array($_SERVER["REMOTE_ADDR"], $allowedipsArr)) {
