@@ -69,7 +69,6 @@ class ApiController extends Main {
         
         $params[name] = "Paris Giannoukos";
         $params[email] = "p.giannoukos@gmail.com";
-        //$params[email] = "p.giannoukos@gmail.com";
         $params[id] = "10155421885890266";
         
         $user = $this->getDoctrine()
@@ -89,6 +88,8 @@ class ApiController extends Main {
             @$this->flushpersist($user);
         } else {
             $token = $this->generateRandomString(20);
+            $user->setName($params["name"]);
+            $user->setEmail($params["email"]);
             $user->setToken($token);
             $this->flushpersist($user);
         }
