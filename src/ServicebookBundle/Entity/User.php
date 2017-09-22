@@ -110,6 +110,12 @@ class User extends Entity {
      * @var string
      */
     private $token = '';
+    
+    
+    /**
+     * @var string
+     */
+    private $name = '';    
 
     /**
      * @var \DateTime
@@ -305,6 +311,29 @@ class User extends Entity {
         return $this;
     }
 
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName() {
+        return $this->namr;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return User
+     */
+    public function setName($name) {
+        $this->token = $name;
+
+        return $this;
+    }    
+    
+    
     /**
      * Get appkey
      *
