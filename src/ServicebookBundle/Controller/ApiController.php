@@ -58,6 +58,10 @@ class ApiController extends Main {
         }
         $data["status"] = "ok";
         //$data["data"] = $arr;
+        $out["data"] = $data;
+        $out["params"] = $params;
+        $out["headers"] = $headers;
+        file_put_contents("fblogin.log", json_encode($out));
         $json = json_encode($data);
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
