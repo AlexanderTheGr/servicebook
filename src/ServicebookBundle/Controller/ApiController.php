@@ -79,13 +79,16 @@ class ApiController extends Main {
 
         if (!$user) {
             $user = new User;
+            $token = $this->generateRandomString(20);
             $user->setEmail($params["email"]);
             $user->setKey($params["id"]);
             $user->setName($params["name"]);
             $user->setUsername($params["name"]);
+            $user->setPassword(md5($token));
+            $user->setToken($token);
             @$this->flushpersist($user);
         } else {
-            $this->generateRandomString(20);
+            $token = $this->generateRandomString(20);
             $user->setToken($token);
             $this->flushpersist($category);
         }
