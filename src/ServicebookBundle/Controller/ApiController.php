@@ -65,11 +65,12 @@ class ApiController extends Main {
         $out["content"] = $content;
         $out["headers"] = $headers;
         file_put_contents("logs/fblogin.log", print_r($out, true));
-        $json = json_encode($data);
         
-        if (!$params) {
+        
+        if (!count($params)) {
             $data["status"] = "notok";
             $data["message"] = 'no params';
+            $json = json_encode($data);
             return new Response(
                     $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
             ); 
