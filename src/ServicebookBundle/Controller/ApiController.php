@@ -51,7 +51,7 @@ class ApiController extends Main {
      * @Route("/api/fblogin")
      */
     public function fblogin(Request $request) {
-        
+
         $params = array();
         $content = $request->getContent();
         $headers = $request->headers->all();
@@ -64,25 +64,32 @@ class ApiController extends Main {
         $out["params"] = $params;
         $out["content"] = $content;
         $out["headers"] = $headers;
-        file_put_contents("logs/fblogin.log", print_r($out,true));
+        file_put_contents("logs/fblogin.log", print_r($out, true));
         $json = json_encode($data);
+        
+        $params[name] = "Paris Giannoukos";
+        $params[email] = "p.giannoukos@gmail.com";
+        $params[id] = "10155421885890266";
         
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("key" => $params["id"]));
-        $token = "autoeinaienatoken";//$this->generateRandomString(20);
-        if(!$user) {   
+        $token = "autoeinaienatoken"; //$this->generateRandomString(20);
+
+        if (!$user) {
             $user = new User;
             $user->setEmail($params["email"]);
+            $user->setKey($params["id"]);
             $user->setName($params["name"]);
+            @$this->flushpersist($user);
         } else {
             $this->generateRandomString(20);
             $user->setToken($token);
             $this->flushpersist($category);
         }
         return new Response(
-                $json, 200, array('Content-Type' => 'application/json','token'=>$token)
-        );        
+                $json, 200, array('Content-Type' => 'application/json', 'token' => $token)
+        );
     }
 
 }
