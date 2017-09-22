@@ -19,6 +19,7 @@ security:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/getBrands, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/fblogin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/islogin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
 
         - { path: ^/, roles: ROLE_USER }
