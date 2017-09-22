@@ -52,7 +52,7 @@ class ApiController extends Main {
      */
     public function fblogin(Request $request) {
 
-        
+
         $content = $request->getContent();
         $headers = $request->headers->all();
         if (!empty($content)) {
@@ -65,21 +65,21 @@ class ApiController extends Main {
         $out["content"] = $content;
         $out["headers"] = $headers;
         file_put_contents("logs/fblogin.log", print_r($out, true));
-        
-        
-        if (!count($params)) {
+
+
+        if (count($params) < 3) {
             $data["status"] = "notok";
             $data["message"] = 'no params';
             $json = json_encode($data);
             return new Response(
                     $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
-            ); 
+            );
         }
-        
-       // $params[name] = "Paris Giannoukos";
+
+        // $params[name] = "Paris Giannoukos";
         //$params[email] = "p.giannoukos@gmail.com";
         //$params[id] = "10155421885890266";
-        
+
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("key" => $params["id"]));
