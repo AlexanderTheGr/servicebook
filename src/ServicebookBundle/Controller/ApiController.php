@@ -52,7 +52,7 @@ class ApiController extends Main {
      */
     public function fblogin(Request $request) {
 
-        $params = array();
+        
         $content = $request->getContent();
         $headers = $request->headers->all();
         if (!empty($content)) {
