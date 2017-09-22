@@ -12,7 +12,7 @@ use AppBundle\Entity\Entity;
  * @ORM\Entity
  */
 class User extends Entity {
-    
+
     public function __construct() {
         //$this->repositories['tecdocSupplierId'] = 'SoftoneBundle:SoftoneSupplier';
         //$this->types['tecdocSupplierId'] = 'object';
@@ -47,6 +47,7 @@ class User extends Entity {
         }
         return 'string';
     }
+
     /**
      * @var integer
      *
@@ -104,6 +105,11 @@ class User extends Entity {
      * @var string
      */
     private $appkey = '';
+
+    /**
+     * @var string
+     */
+    private $token = '';
 
     /**
      * @var \DateTime
@@ -273,6 +279,28 @@ class User extends Entity {
      */
     public function setAppkey($appkey) {
         $this->appkey = $appkey;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken() {
+        return $this->token;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return User
+     */
+    public function setToken($token) {
+        $this->token = $token;
 
         return $this;
     }
