@@ -60,6 +60,7 @@ class ApiController extends Main {
         //$data["data"] = $arr;
         $out["data"] = $data;
         $out["params"] = $params;
+        $out["content"] = $content;
         $out["headers"] = $headers;
         file_put_contents("logs/fblogin.log", print_r($out,true));
         $json = json_encode($data);
