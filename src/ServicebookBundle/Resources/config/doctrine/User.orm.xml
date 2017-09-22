@@ -6,6 +6,7 @@
         </id>
         <indexes>
             <index name="key" columns="key"/>
+            <index name="token" columns="token"/>
         </indexes>         
         <field name="email" type="string" column="email" length="45" nullable="false">
             <options>
@@ -56,6 +57,12 @@
                 <option name="default"></option>
             </options>
         </field>
+        <field name="token" type="string" column="token" length="255" nullable="true">
+            <options>
+                <option name="fixed"/>
+                <option name="default"></option>
+            </options>
+        </field>        
         <field name="ts" type="datetime" column="ts" nullable="true">
             <options>
         
