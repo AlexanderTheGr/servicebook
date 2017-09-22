@@ -48,6 +48,35 @@ class ApiController extends Main {
     /**
      * 
      * 
+     * @Route("/api/islogin")
+     */
+    public function islogin(Request $request) {
+        $headers = $request->headers->all();
+        $token = str_replace("Bearer ", "", $headers["authorization"][0]);
+        $out["headers"] = $headers;
+        file_put_contents("logs/islogin.log", print_r($out, true));
+
+        $user = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:User")
+                ->findOneBy(array("token" => $token));
+        if ($user) {
+            $data["status"] = "ok";
+            return new Response(
+                    $json, 200, array('Content-Type' => 'application/json')
+            );
+        } else {
+            $data["status"] = "notok";
+            $data["message"] = 'authorization failed';
+            $json = json_encode($data);
+            return new Response(
+                    $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+            );
+        }
+    }
+
+    /**
+     * 
+     * 
      * @Route("/api/fblogin")
      */
     public function fblogin(Request $request) {
