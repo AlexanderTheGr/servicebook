@@ -70,7 +70,7 @@ class ApiController extends Main {
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("key" => $params["id"]));
-        $token = $this->generateRandomString(20);
+        $token = "autoeinaienatoken";//$this->generateRandomString(20);
         if(!$user) {   
             
         } else {
