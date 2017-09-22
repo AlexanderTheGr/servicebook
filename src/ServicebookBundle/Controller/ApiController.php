@@ -65,15 +65,16 @@ class ApiController extends Main {
         $out["headers"] = $headers;
         file_put_contents("logs/fblogin.log", print_r($out,true));
         $json = json_encode($data);
-        /*
+        
         $user = $this->getDoctrine()
                 ->getRepository("Servicebook:User")
                 ->findOneBy(array("key" => $params["id"]));
-        if(!$user) {
+        if(!$user) {   
             
-            
+        } else {
+            $user;
         }
-        */
+        
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json','token'=>'aytoeinaienatoken')
         );        
