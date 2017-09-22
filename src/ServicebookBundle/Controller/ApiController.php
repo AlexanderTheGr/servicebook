@@ -50,6 +50,7 @@ class ApiController extends Main {
      * @Route("/api/fblogin")
      */
     public function fblogin(Request $request) {
+        
         $params = array();
         $content = $request->getContent();
         $headers = $request->headers->all();
@@ -64,8 +65,17 @@ class ApiController extends Main {
         $out["headers"] = $headers;
         file_put_contents("logs/fblogin.log", print_r($out,true));
         $json = json_encode($data);
+        /*
+        $user = $this->getDoctrine()
+                ->getRepository("Servicebook:User")
+                ->findOneBy(array("key" => $params["id"]));
+        if(!$user) {
+            
+            
+        }
+        */
         return new Response(
-                $json, 200, array('Content-Type' => 'application/json')
+                $json, 200, array('Content-Type' => 'application/json','token'=>'aytoeinaienatoken')
         );        
     }
 
