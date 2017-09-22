@@ -68,7 +68,7 @@ class ApiController extends Main {
         $json = json_encode($data);
         
         $user = $this->getDoctrine()
-                ->getRepository("Servicebook:User")
+                ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("key" => $params["id"]));
         if(!$user) {   
             
