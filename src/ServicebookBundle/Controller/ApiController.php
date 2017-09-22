@@ -90,7 +90,7 @@ class ApiController extends Main {
         } else {
             $token = $this->generateRandomString(20);
             $user->setToken($token);
-            $this->flushpersist($category);
+            $this->flushpersist($user);
         }
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json', 'token' => $token)
