@@ -30,7 +30,14 @@
                 <option name="default"></option>
             </options>
         </field>
-                        
+        
+        <field name="name" type="string" column="name" length="45" nullable="false">
+            <options>
+                <option name="fixed"/>
+                <option name="default"></option>
+            </options>
+        </field>
+                                
         <field name="lastname" type="string" column="lastname" length="45" nullable="false">
             <options>
                 <option name="fixed"/>
