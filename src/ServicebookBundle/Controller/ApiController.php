@@ -67,9 +67,17 @@ class ApiController extends Main {
         file_put_contents("logs/fblogin.log", print_r($out, true));
         $json = json_encode($data);
         
-        $params[name] = "Paris Giannoukos";
-        $params[email] = "p.giannoukos@gmail.com";
-        $params[id] = "10155421885890266";
+        if (!$params) {
+            $data["status"] = "notok";
+            $data["message"] = 'no params';
+            return new Response(
+                    $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+            ); 
+        }
+        
+       // $params[name] = "Paris Giannoukos";
+        //$params[email] = "p.giannoukos@gmail.com";
+        //$params[id] = "10155421885890266";
         
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
