@@ -44,4 +44,24 @@ class ApiController extends Main {
         //}
     }
 
+    /**
+     * 
+     * 
+     * @Route("/api/fblogin")
+     */
+    public function fblogin(Request $request) {
+        $params = array();
+        $content = $request->getContent();
+        $headers = $request->headers->all();
+        if (!empty($content)) {
+            $params = json_decode($content, true); // 2nd param to get as array
+        }
+        //$data["status"] = "ok";
+        $data["data"] = $arr;
+        $json = json_encode($data);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );        
+    }
+
 }
