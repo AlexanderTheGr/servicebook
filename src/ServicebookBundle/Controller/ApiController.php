@@ -72,13 +72,14 @@ class ApiController extends Main {
                 ->findOneBy(array("key" => $params["id"]));
         $token = "autoeinaienatoken";//$this->generateRandomString(20);
         if(!$user) {   
-            
+            $user = new User;
+            $user->setEmail($params["email"]);
+            $user->setName($params["name"]);
         } else {
-            
+            $this->generateRandomString(20);
             $user->setToken($token);
-            
+            $this->flushpersist($category);
         }
-        
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json','token'=>$token)
         );        
