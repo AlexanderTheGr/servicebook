@@ -72,11 +72,13 @@ class ApiController extends Main {
         if(!$user) {   
             
         } else {
-            $user;
+            $token = $this->generateRandomString(20);
+            $user->setToken($token);
+            
         }
         
         return new Response(
-                $json, 200, array('Content-Type' => 'application/json','token'=>'aytoeinaienatoken')
+                $json, 200, array('Content-Type' => 'application/json','token'=>$token)
         );        
     }
 
