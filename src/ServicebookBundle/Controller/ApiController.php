@@ -100,6 +100,7 @@ class ApiController extends Main {
             $user->setName($params["name"]);
             $user->setEmail($params["email"]);
             $user->setToken($token);
+            $token = $user->getToken();
             $this->flushpersist($user);
         }
         return new Response(
