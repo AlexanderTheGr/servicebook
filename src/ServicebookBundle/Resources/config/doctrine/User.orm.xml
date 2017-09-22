@@ -4,6 +4,9 @@
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
+        <indexes>
+            <index name="key" columns="key"/>
+        </indexes>         
         <field name="email" type="string" column="email" length="45" nullable="false">
             <options>
                 <option name="fixed"/>
