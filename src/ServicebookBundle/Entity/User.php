@@ -317,7 +317,7 @@ class User extends Entity {
      * @return string
      */
     public function getName() {
-        return $this->namr;
+        return $this->name;
     }
 
     /**
@@ -328,7 +328,7 @@ class User extends Entity {
      * @return User
      */
     public function setName($name) {
-        $this->token = $name;
+        $this->name = $name;
 
         return $this;
     }    
