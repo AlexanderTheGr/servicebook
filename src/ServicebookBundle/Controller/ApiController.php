@@ -73,7 +73,38 @@ class ApiController extends Main {
             );
         }
     }
+    /**
+     * 
+     * 
+     * @Route("/api/logout")
+     */
+    public function logout(Request $request) {
+        $headers = $request->headers->all();
+        $token = str_replace("Bearer ", "", $headers["authorization"][0]);
+        $out["headers"] = $headers;
+        file_put_contents("logs/islogin.log", print_r($out, true));
 
+        $user = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:User")
+                ->findOneBy(array("token" => $token));
+        if ($user) {
+            $user->setToken("");
+            $token = $user->getToken();
+            $this->flushpersist($user);            
+            $data["status"] = "ok";
+            return new Response(
+                    $json, 200, array('Content-Type' => 'application/json')
+            );
+        } else {
+            $data["status"] = "notok";
+            $data["message"] = 'authorization failed';
+            $json = json_encode($data);
+            return new Response(
+                    $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+            );
+        }        
+        
+    }
     /**
      * 
      * 
@@ -96,9 +127,9 @@ class ApiController extends Main {
         file_put_contents("logs/fblogin.log", print_r($out, true));
 
 
-        if (count($params) < 3) {
+        if (count($params) < 3 OR $params["id"] == '' OR $params["email"] == '' OR $params["name"] == '') {
             $data["status"] = "notok";
-            $data["message"] = 'no params';
+            $data["message"] = 'no valid params';
             $json = json_encode($data);
             return new Response(
                     $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
