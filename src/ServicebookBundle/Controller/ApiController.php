@@ -58,7 +58,7 @@ class ApiController extends Main {
 
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
-                ->findOneBy(array("token" => $token));
+                ->findOneBy(array("token" => md5($token)));
         if ($user) {
             $data["status"] = "ok";
             return new Response(
@@ -82,11 +82,11 @@ class ApiController extends Main {
         $headers = $request->headers->all();
         $token = str_replace("Bearer ", "", $headers["authorization"][0]);
         $out["headers"] = $headers;
-        file_put_contents("logs/islogin.log", print_r($out, true));
+        file_put_contents("logs/logout.log", print_r($out, true));
 
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
-                ->findOneBy(array("token" => $token));
+                ->findOneBy(array("token" => md5($token)));
         if ($user) {
             $user->setToken("");
             $token = $user->getToken();
@@ -159,8 +159,8 @@ class ApiController extends Main {
             $token = $this->generateRandomString(20);
             $user->setName($params["name"]);
             $user->setEmail($params["email"]);
-            $user->setToken($token);
-            $token = $user->getToken();
+            $user->setToken(md5($token));
+            //$token = $user->getToken();
             $this->flushpersist($user);
         }
         return new Response(
