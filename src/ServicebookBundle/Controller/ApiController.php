@@ -31,12 +31,13 @@ class ApiController extends Main {
         $results = $statement->fetchAll();
         $arr = array();
         foreach ($results as $data) {
-            $arr[] = $data;
+            //$arr[] = $data;
             $file = str_replace(" ","-",strtolower($data["brand_str"]));
             $img = "assets/mg/".$file.".jpg";
             //if (file_exists($img)) {
                 $data["img"] = "http://servicebook.hebs.gr/".$img;
             //}
+            $arr[] = $data;
         }
         $data = array();
         $data["status"] = "ok";
