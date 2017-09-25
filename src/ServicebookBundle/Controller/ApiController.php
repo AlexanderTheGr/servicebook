@@ -185,14 +185,13 @@ class ApiController extends Main {
         $headers = $request->headers->all();
         $token = str_replace("Bearer ", "", $headers["authorization"][0]);
         $out["headers"] = $headers;
-        file_put_contents("logs/islogin.log", print_r($out, true));
+        file_put_contents("logs/setvin.log", print_r($out, true));
 
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("token" => md5($token)));
         if ($user) {
             $data["status"] = "ok";
-            
         } else {
             $data["status"] = "notok";
             $data["message"] = 'authorization failed';
