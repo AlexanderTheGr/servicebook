@@ -53,6 +53,14 @@
             </options>
         </field>
         
+        <field name="km" type="integer" column="km" nullable="false">
+            <options>
+                <option name="unsigned"/>
+                <option name="default">0</option>
+            </options>
+        </field>        
+        
+        
         <field name="year" type="string" column="year" length="255" nullable="false">
             <options>
                 <option name="fixed"/>
