@@ -221,6 +221,7 @@ class ApiController extends Main {
         file_put_contents("logs/setvin.log", print_r($out, true));
         
         $token = "RFu0SQxidTYgmY9yJni8";
+        echo md5($token);
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("token" => md5($token)));
