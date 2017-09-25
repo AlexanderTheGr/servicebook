@@ -33,7 +33,7 @@ class ApiController extends Main {
         foreach ($results as $data) {
             //$arr[] = $data;
             $file = str_replace(" ","-",strtolower($data["brand_str"]));
-            $img = "assets/mg/".$file.".jpg";
+            $img = "assets/img/".$file.".png";
             //if (file_exists($img)) {
                 $data["img"] = "http://servicebook.hebs.gr/".$img;
             //}
