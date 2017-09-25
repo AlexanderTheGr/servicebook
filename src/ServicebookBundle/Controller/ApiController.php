@@ -285,12 +285,12 @@ class ApiController extends Main {
                 $BrandVin = new BrandVin;
                 $BrandVin->setUser($user);
                 $BrandVin->setVin($params["vin"]);
-                $BrandVin->setVin($params["km"]);
+                $BrandVin->setKm($params["km"]);
                 $BrandVin->setBrand($brand);
                 $this->flushpersist($BrandVin);
             }
         } else {
-            $BrandVin->setVin($params["km"]);
+            $BrandVin->setKm($params["km"]);
             $this->flushpersist($BrandVin);
         }
 
