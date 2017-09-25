@@ -243,7 +243,7 @@ class ApiController extends Main {
         }
         $params[brand] = 201;
         $params[vin] = 123456789;
-        $params[km] = 180000;
+        $params[km] = 280000;
 
 
         $data["status"] = "ok";
