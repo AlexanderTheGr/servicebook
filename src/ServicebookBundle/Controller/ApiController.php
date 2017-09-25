@@ -24,6 +24,7 @@ class ApiController extends Main {
         //$allowedips = $this->getSetting("ServicebookBundle:Api:Allowedips");
         // $allowedipsArr = explode(",", $allowedips);
         //if (in_array($_SERVER["REMOTE_ADDR"], $allowedipsArr)) {
+        
         $sql = "SELECT reference, brand_str FROM  `servicebook_brand` where enable = 1 and reference > 0";
         $connection = $this->getDoctrine()->getConnection();
         $statement = $connection->prepare($sql);
@@ -174,4 +175,46 @@ class ApiController extends Main {
         );
     }
 
+    /**
+     * 
+     * 
+     * @Route("/api/setvin")
+     */
+    public function setvin(Request $request) {
+        
+        $headers = $request->headers->all();
+        $token = str_replace("Bearer ", "", $headers["authorization"][0]);
+        $out["headers"] = $headers;
+        file_put_contents("logs/islogin.log", print_r($out, true));
+
+        $user = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:User")
+                ->findOneBy(array("token" => md5($token)));
+        if ($user) {
+            $data["status"] = "ok";
+            
+        } else {
+            $data["status"] = "notok";
+            $data["message"] = 'authorization failed';
+            $json = json_encode($data);
+            return new Response(
+                    $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+            );
+        }        
+        $content = $request->getContent();
+        if (!empty($content)) {
+            $params = json_decode($content, true); // 2nd param to get as array
+        }
+        $data["status"] = "ok";
+        //$data["data"] = $arr;
+        $out["data"] = $data;
+        $out["params"] = $params;
+        $out["content"] = $content;
+        $out["headers"] = $headers;
+        file_put_contents("logs/setvin.log", print_r($out, true));        
+    }    
+    
+    
+    
+    
 }
