@@ -225,6 +225,7 @@ class ApiController extends Main {
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("token" => md5($token)));
+        
         if ($user) {
             $data["status"] = "ok";
         } else {
