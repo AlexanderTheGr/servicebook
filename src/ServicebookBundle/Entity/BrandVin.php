@@ -82,7 +82,12 @@ class BrandVin extends Entity {
      * @var integer
      */
     private $power = '0';
-
+    
+    /**
+     * @var integer
+     */
+    private $km = '0';
+    
     /**
      * @var integer
      */
@@ -245,6 +250,29 @@ class BrandVin extends Entity {
         return $this->power;
     }
 
+    /**
+     * Set km
+     *
+     * @param integer $km
+     *
+     * @return BrandVin
+     */
+    public function setKm($km) {
+        $this->km = $km;
+
+        return $this;
+    }
+
+    /**
+     * Get km
+     *
+     * @return integer
+     */
+    public function getKm() {
+        return $this->km;
+    }    
+    
+    
     /**
      * Set doors
      *
