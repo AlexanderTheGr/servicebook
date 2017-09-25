@@ -276,18 +276,20 @@ class ApiController extends Main {
                 $BrandVin = new BrandVin;
                 $BrandVin->setUser($user);
                 $BrandVin->setVin($params["vin"]);
+                $BrandVin->setVin($params["km"]);
                 $BrandVin->setBrand($brand);
                 $this->flushpersist($BrandVin);
             }
+        } else {
+            $BrandVin->setVin($params["km"]);
+            $this->flushpersist($BrandVin);
         }
-        
+
         $data["status"] = "ok";
         $json = json_encode($data);
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
-        );        
-        
-        
+        );
     }
 
 }
