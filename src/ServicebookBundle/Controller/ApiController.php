@@ -210,6 +210,57 @@ class ApiController extends Main {
     /**
      * 
      * 
+     * @Route("/api/getvins")
+     */
+    public function getvins(Request $request) {
+        
+        
+        $headers = $request->headers->all();
+        $content = $request->getContent();
+        $token = str_replace("Bearer ", "", $headers["authorization"][0]);
+        $out["headers"] = $headers;
+        file_put_contents("logs/setvin.log", print_r($out, true));
+
+        //$token = "RFu0SQxidTYgmY9yJni8";
+
+        $user = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:User")
+                ->findOneBy(array("token" => md5($token)));
+
+        if ($user) {
+            $data["status"] = "ok";
+        } else {
+            $data["status"] = "notok";
+            $data["token"] = md5($token);
+            $data["message"] = 'authorization failed';
+            $json = json_encode($data);
+            return new Response(
+                    $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+            );
+        }        
+        
+        
+        $sql = "SELECT * FROM  `servicebook_brand_vin` where user = '".$user->getId()."'";
+        $connection = $this->getDoctrine()->getConnection();
+        $statement = $connection->prepare($sql);
+        $statement->execute();
+        $results = $statement->fetchAll();
+        $arr = array();
+        foreach ($results as $data) {
+            $arr[] = $data;
+        }
+        $data = array();
+        $data["status"] = "ok";
+        $data["data"] = $arr;
+        $json = json_encode($data);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );
+    }
+
+    /**
+     * 
+     * 
      * @Route("/api/setvin")
      */
     public function setvin(Request $request) {
@@ -219,13 +270,13 @@ class ApiController extends Main {
         $token = str_replace("Bearer ", "", $headers["authorization"][0]);
         $out["headers"] = $headers;
         file_put_contents("logs/setvin.log", print_r($out, true));
-        
+
         //$token = "RFu0SQxidTYgmY9yJni8";
-        
+
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("token" => md5($token)));
-        
+
         if ($user) {
             $data["status"] = "ok";
         } else {
@@ -237,7 +288,7 @@ class ApiController extends Main {
                     $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
             );
         }
-        
+
         if (!empty($content)) {
             $params = json_decode($content, true); // 2nd param to get as array
         }
