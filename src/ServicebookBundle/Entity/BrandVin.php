@@ -18,8 +18,6 @@ class BrandVin extends Entity {
     public function __construct() {
         $this->repositories['brand'] = 'ServicebookBundle:Brand';
         $this->repositories['user'] = 'ServicebookBundle:User';
-        $this->types['route'] = 'object';
-        $this->route = new \SoftoneBundle\Entity\Route;
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
