@@ -203,7 +203,7 @@ class ApiController extends Main {
         $data["status"] = "ok";
         $json = json_encode($data);
         return new Response(
-                $json, 200, array('Content-Type' => 'application/json')
+                $json, 200, array('Content-Type' => 'application/json', 'token' => $token)
         );
     }
 
