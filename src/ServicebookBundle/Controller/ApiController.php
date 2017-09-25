@@ -231,7 +231,7 @@ class ApiController extends Main {
             $data["status"] = "ok";
         } else {
             $data["status"] = "notok";
-            $data["token"] = md5($token);
+            //$data["token"] = md5($token);
             $data["message"] = 'authorization failed';
             $json = json_encode($data);
             return new Response(
@@ -281,7 +281,7 @@ class ApiController extends Main {
             $data["status"] = "ok";
         } else {
             $data["status"] = "notok";
-            $data["token"] = md5($token);
+            //$data["token"] = md5($token);
             $data["message"] = 'authorization failed';
             $json = json_encode($data);
             return new Response(
