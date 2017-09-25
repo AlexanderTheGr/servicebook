@@ -221,7 +221,7 @@ class ApiController extends Main {
         file_put_contents("logs/setvin.log", print_r($out, true));
         
         $token = "RFu0SQxidTYgmY9yJni8";
-        echo md5($token);
+        ;
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("token" => md5($token)));
@@ -229,6 +229,7 @@ class ApiController extends Main {
             $data["status"] = "ok";
         } else {
             $data["status"] = "notok";
+            $data["token"] = md5($token);
             $data["message"] = 'authorization failed';
             $json = json_encode($data);
             return new Response(
