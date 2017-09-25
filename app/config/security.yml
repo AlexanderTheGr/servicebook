@@ -21,6 +21,7 @@ security:
         - { path: ^/api/fblogin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/islogin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/setvin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/getvins, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
 
         - { path: ^/, roles: ROLE_USER }
