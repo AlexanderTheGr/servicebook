@@ -34,9 +34,9 @@ class ApiController extends Main {
             $arr[] = $data;
             $file = str_replace(" ","-",strtolower($data["brand_str"]));
             $img = "assets/mg/".$file.".jpg";
-            if (file_exists($img)) {
+            //if (file_exists($img)) {
                 $data["img"] = "http://servicebook.hebs.gr/".$img;
-            }
+            //}
         }
         $data = array();
         $data["status"] = "ok";
