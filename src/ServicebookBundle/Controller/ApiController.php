@@ -221,7 +221,7 @@ class ApiController extends Main {
         $out["headers"] = $headers;
         file_put_contents("logs/setvin.log", print_r($out, true));
 
-        //$token = "RFu0SQxidTYgmY9yJni8";
+        $token = "RFu0SQxidTYgmY9yJni8";
 
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
