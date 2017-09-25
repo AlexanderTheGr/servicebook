@@ -220,8 +220,8 @@ class ApiController extends Main {
         $out["headers"] = $headers;
         file_put_contents("logs/setvin.log", print_r($out, true));
         
-        $token = "RFu0SQxidTYgmY9yJni8";
-        ;
+        //$token = "RFu0SQxidTYgmY9yJni8";
+        
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("token" => md5($token)));
@@ -241,10 +241,6 @@ class ApiController extends Main {
         if (!empty($content)) {
             $params = json_decode($content, true); // 2nd param to get as array
         }
-        $params[brand] = 201;
-        $params[vin] = 123456789;
-        $params[km] = 180000;
-
 
         $data["status"] = "ok";
         //$data["data"] = $arr;
