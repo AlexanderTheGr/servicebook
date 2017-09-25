@@ -240,7 +240,7 @@ class ApiController extends Main {
         }        
         
         
-        $sql = "SELECT a.*, b.brand_str FROM  `servicebook_brand_vin` a,`servicebook_brand` b  where b.id = a.brand AND user = '".$user->getId()."'";
+        $sql = "SELECT a.*, b.brand_str, b.reference FROM  `servicebook_brand_vin` a,`servicebook_brand` b  where b.id = a.brand AND user = '".$user->getId()."' order by a.id desc";
         $connection = $this->getDoctrine()->getConnection();
         $statement = $connection->prepare($sql);
         $statement->execute();
