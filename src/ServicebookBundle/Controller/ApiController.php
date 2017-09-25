@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\Main as Main;
 use ServicebookBundle\Entity\User as User;
+use ServicebookBundle\Entity\Brand as Brand;
+use ServicebookBundle\Entity\BrandVin as BrandVin;
 
 class ApiController extends Main {
 
@@ -24,7 +26,33 @@ class ApiController extends Main {
         //$allowedips = $this->getSetting("ServicebookBundle:Api:Allowedips");
         // $allowedipsArr = explode(",", $allowedips);
         //if (in_array($_SERVER["REMOTE_ADDR"], $allowedipsArr)) {
-        
+
+        $headers = $request->headers->all();
+        $content = $request->getContent();
+        $token = str_replace("Bearer ", "", $headers["authorization"][0]);
+        $out["headers"] = $headers;
+        file_put_contents("logs/getBrands.log", print_r($out, true));
+
+        $user = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:User")
+                ->findOneBy(array("token" => md5($token)));
+        if ($user) {
+            $data["status"] = "ok";
+        } else {
+            $data["status"] = "notok";
+            $data["message"] = 'authorization failed';
+            $json = json_encode($data);
+            return new Response(
+                    $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+            );
+        }
+
+
+
+
+
+
+
         $sql = "SELECT reference, brand_str FROM  `servicebook_brand` where enable = 1 and reference > 0";
         $connection = $this->getDoctrine()->getConnection();
         $statement = $connection->prepare($sql);
@@ -33,10 +61,10 @@ class ApiController extends Main {
         $arr = array();
         foreach ($results as $data) {
             //$arr[] = $data;
-            $file = str_replace(" ","-",strtolower($data["brand_str"]));
-            $img = "assets/img/".$file.".png";
+            $file = str_replace(" ", "-", strtolower($data["brand_str"]));
+            $img = "assets/img/" . $file . ".png";
             if (file_exists($img)) {
-                $data["img"] = "http://servicebook.hebs.gr/".$img;
+                $data["img"] = "http://servicebook.hebs.gr/" . $img;
             }
             $arr[] = $data;
         }
@@ -57,7 +85,7 @@ class ApiController extends Main {
      * 
      * @Route("/api/islogin")
      */
-    public function islogin(Request $request) {
+    public function isloginAction(Request $request) {
         $headers = $request->headers->all();
         $token = str_replace("Bearer ", "", $headers["authorization"][0]);
         $out["headers"] = $headers;
@@ -80,6 +108,7 @@ class ApiController extends Main {
             );
         }
     }
+
     /**
      * 
      * 
@@ -97,8 +126,9 @@ class ApiController extends Main {
         if ($user) {
             $user->setToken("");
             $token = $user->getToken();
-            $this->flushpersist($user);            
+            $this->flushpersist($user);
             $data["status"] = "ok";
+            $json = json_encode($data);
             return new Response(
                     $json, 200, array('Content-Type' => 'application/json')
             );
@@ -109,9 +139,9 @@ class ApiController extends Main {
             return new Response(
                     $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
             );
-        }        
-        
+        }
     }
+
     /**
      * 
      * 
@@ -170,8 +200,10 @@ class ApiController extends Main {
             //$token = $user->getToken();
             $this->flushpersist($user);
         }
+        $data["status"] = "ok";
+        $json = json_encode($data);
         return new Response(
-                $json, 200, array('Content-Type' => 'application/json', 'token' => $token)
+                $json, 200, array('Content-Type' => 'application/json')
         );
     }
 
@@ -181,8 +213,9 @@ class ApiController extends Main {
      * @Route("/api/setvin")
      */
     public function setvin(Request $request) {
-        
+
         $headers = $request->headers->all();
+        $content = $request->getContent();
         $token = str_replace("Bearer ", "", $headers["authorization"][0]);
         $out["headers"] = $headers;
         file_put_contents("logs/setvin.log", print_r($out, true));
@@ -199,8 +232,8 @@ class ApiController extends Main {
             return new Response(
                     $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
             );
-        }        
-        $content = $request->getContent();
+        }
+
         if (!empty($content)) {
             $params = json_decode($content, true); // 2nd param to get as array
         }
@@ -210,10 +243,51 @@ class ApiController extends Main {
         $out["params"] = $params;
         $out["content"] = $content;
         $out["headers"] = $headers;
-        file_put_contents("logs/setvin.log", print_r($out, true));        
-    }    
-    
-    
-    
-    
+        file_put_contents("logs/setvin.log", print_r($out, true));
+
+        if (count($params) < 2 OR $params["vin"] == '' OR $params["brand"] == '') {
+            $data["status"] = "notok";
+            $data["message"] = 'no valid params';
+            $json = json_encode($data);
+            return new Response(
+                    $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+            );
+        }
+
+        $BrandVin = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:BrandVin")
+                ->findOneBy(array("vin" => $params["vin"], "user" => $user));
+
+        if (!$BrandVin) {
+            $BrandVin = $this->getDoctrine()
+                    ->getRepository("ServicebookBundle:BrandVin")
+                    ->findOneBy(array("vin" => $params["vin"]));
+            if ($BrandVin) {
+                $data["status"] = "notok";
+                $data["message"] = 'vin exists from another user';
+                $json = json_encode($data);
+                return new Response(
+                        $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+                );
+            } else {
+                $brand = $this->getDoctrine()
+                        ->getRepository("ServicebookBundle:Brand")
+                        ->findOneBy(array("reference" => $params["brand"]));
+                $BrandVin = new BrandVin;
+                $BrandVin->setUser($user);
+                $BrandVin->setVin($params["vin"]);
+                $BrandVin->setBrand($brand);
+                $this->flushpersist($BrandVin);
+            }
+        }
+        
+        $data["status"] = "ok";
+        $json = json_encode($data);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );        
+        
+        
+    }
+
 }
