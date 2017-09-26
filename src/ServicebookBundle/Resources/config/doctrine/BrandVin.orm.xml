@@ -83,7 +83,12 @@
             </options>
         </field>
         
-
+        <field name="confirmed" type="boolen" column="confirmed" nullable="false">
+            <options>
+                <option name="unsigned"/>
+                <option name="default">0</option>
+            </options>
+        </field>
         
         <field name="status" type="boolean" column="status" nullable="false">
             <options>
