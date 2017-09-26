@@ -80,12 +80,12 @@ class BrandVin extends Entity {
      * @var integer
      */
     private $power = '0';
-    
+
     /**
      * @var integer
      */
     private $km = '0';
-    
+
     /**
      * @var integer
      */
@@ -268,9 +268,8 @@ class BrandVin extends Entity {
      */
     public function getKm() {
         return $this->km;
-    }    
-    
-    
+    }
+
     /**
      * Set doors
      *
@@ -415,6 +414,33 @@ class BrandVin extends Entity {
      */
     public function getYear() {
         return $this->year;
+    }
+
+    /**
+     * @var boolean
+     */
+    private $confirmed = '';
+
+    /**
+     * Set confirmed
+     *
+     * @param boolean $confirmed
+     *
+     * @return BrandVin
+     */
+    public function setConfirmed($confirmed) {
+        $this->confirmed = $confirmed;
+
+        return $this;
+    }
+
+    /**
+     * Get confirmed
+     *
+     * @return boolean
+     */
+    public function getConfirmed() {
+        return $this->confirmed;
     }
 
 }
