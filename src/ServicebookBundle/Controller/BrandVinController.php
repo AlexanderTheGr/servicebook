@@ -102,9 +102,10 @@ class BrandVinController extends Main {
         $this->repository = 'ServicebookBundle:BrandVin';
 
         $this->addField(array("name" => "ID", "index" => 'id', "active" => "active"))
-                ->addField(array("name" => "BrandVin", "index" => 'brandvinname'))
-                ->addField(array("name" => "First Name", "index" => 'firstname'))
-                ->addField(array("name" => "Last Name", "index" => 'lastname'))
+                ->addField(array("name" => "Vin", "index" => 'km'))
+                ->addField(array("name" => "Brand", "index" => 'Brand:brand'))
+                ->addField(array("name" => "User", "index" => 'User:name'))
+              
         ;
         $json = $this->datatable();
         return new Response(
