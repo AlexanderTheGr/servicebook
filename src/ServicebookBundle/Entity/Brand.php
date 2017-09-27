@@ -1,11 +1,47 @@
 <?php
 
 namespace ServicebookBundle\Entity;
+use AppBundle\Entity\Entity;
 
 /**
  * Brand
  */
-class Brand {
+class Brand extends Entity {
+
+    public function __construct() {
+        //$this->repositories['tecdocSupplierId'] = 'SoftoneBundle:SoftoneSupplier';
+        //$this->types['tecdocSupplierId'] = 'object';
+        //$this->tecdocSupplierId = new \SoftoneBundle\Entity\SoftoneSupplier;
+    }
+
+    public function getField($field) {
+        return $this->$field;
+    }
+
+    public function setField($field, $val) {
+        $this->$field = $val;
+        return $val;
+    }
+
+    public function getRepository() {
+        return $this->repository;
+    }
+
+    public function getRepositories($repo) {
+        //$this->repositories['tecdocSupplierId'] = 'SoftoneBundle:SoftoneSupplier';
+        return $this->repositories[$repo];
+    }
+
+    public function gettype($field) {
+        //$this->types['tecdocSupplierId'] = 'object';
+        if (@$this->types[$field] != '') {
+            return @$this->types[$field];
+        }
+        if (gettype($field) != NULL) {
+            return gettype($this->$field);
+        }
+        return 'string';
+    }
 
     /**
      * @var string
