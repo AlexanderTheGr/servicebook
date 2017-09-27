@@ -103,8 +103,8 @@ class BrandVinController extends Main {
 
         $this->addField(array("name" => "ID", "index" => 'id', "active" => "active"))
                 ->addField(array("name" => "Vin", "index" => 'km'))
-                ->addField(array("name" => "Brand", "index" => 'Brand:brand'))
-                ->addField(array("name" => "User", "index" => 'User:name'))
+                ->addField(array("name" => "Brand", "index" => 'brand:brand'))
+                ->addField(array("name" => "User", "index" => 'user:name'))
               
         ;
         $json = $this->datatable();
