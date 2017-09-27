@@ -76,7 +76,7 @@ class BrandVinController extends Main {
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->find($id);
-
+        
         if ($id == 0 AND @ $entity->id == 0) {
             $entity = new \ServicebookBundle\Entity\BrandVin;
             $this->newentity[$this->repository] = $entity;
@@ -92,7 +92,9 @@ class BrandVinController extends Main {
         $fields["model"] = array("label" => "Model", 'required' => false);
         $fields["engine"] = array("label" => "Engine");
         $fields["displacement"] = array("label" => "Displacement");
-        $fields["displacement"] = array("label" => "Displacement");
+        $fields["fuel"] = array("label" => "Fuel");
+        $fields["power"] = array("label" => "Power");
+        $fields["doors"] = array("label" => "Doors");
         //$fields["brandvinName"] = array("label" => "Name");
 
         $forms = $this->getFormLyFields($entity, $fields);
