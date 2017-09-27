@@ -456,7 +456,7 @@ class Main extends Controller {
         }
         foreach ($entities as $key => $entity) {
             // echo "(".$entity->reference.")";
-            $entity->setModified($dt);
+            //$entity->setModified($dt);
             $entity = $this->flushpersist($entity);
             $out[$key] = $entity->getId();
             $this->newentity[$key] = $entity;
