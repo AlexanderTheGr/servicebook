@@ -82,10 +82,10 @@ class BrandVinController extends Main {
             $this->newentity[$this->repository] = $entity;
         }
 
-        $fields["brandvinname"] = array("label" => "BrandVin", 'required' => true);
-        $fields["password"] = array("label" => "Password", 'required' => false);
-        $fields["firstname"] = array("label" => "First Name");
-        $fields["lastname"] = array("label" => "Last Name");
+        $fields["vin"] = array("label" => "Vin", 'required' => true);
+        $fields["model"] = array("label" => "Model", 'required' => false);
+        $fields["engine"] = array("label" => "Engine");
+        $fields["displacement"] = array("label" => "Displacement");
         //$fields["brandvinName"] = array("label" => "Name");
 
         $forms = $this->getFormLyFields($entity, $fields);
