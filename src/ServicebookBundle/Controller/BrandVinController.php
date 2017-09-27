@@ -38,7 +38,7 @@ class BrandVinController extends Main {
         //$content = $this->getoffcanvases($id);
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => 's',
+                    'pagename' => 'Vin',
                     'url' => '/servicebook/brandvin/save',
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
@@ -81,6 +81,9 @@ class BrandVinController extends Main {
             $entity = new \ServicebookBundle\Entity\BrandVin;
             $this->newentity[$this->repository] = $entity;
         }
+        $dataarray[] = array("value" => "0", "name" => "Oxi");
+        $dataarray[] = array("value" => "1", "name" => "Ναι");        
+        $fields["confirmed"] = array("label" => "Ενεργό", 'type' => "select", 'dataarray' => $dataarray, "required" => false, "className" => "col-md-3 col-sm-3");
 
         $fields["vin"] = array("label" => "Vin", 'required' => true);
         $fields["brand"] = array("label" => "Brand", "disabled"=>true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
@@ -88,6 +91,7 @@ class BrandVinController extends Main {
         
         $fields["model"] = array("label" => "Model", 'required' => false);
         $fields["engine"] = array("label" => "Engine");
+        $fields["displacement"] = array("label" => "Displacement");
         $fields["displacement"] = array("label" => "Displacement");
         //$fields["brandvinName"] = array("label" => "Name");
 
