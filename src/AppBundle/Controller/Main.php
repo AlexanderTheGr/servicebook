@@ -11,6 +11,7 @@ use Symfony\Component\Console\Application as Application;
 use Symfony\Component\Console\Input\ArrayInput as ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput as BufferedOutput;
 use AppBundle\Entity\Setting as Setting;
+use AppBundle\Entity\Translation as Translation;
 
 class Main extends Controller {
 
