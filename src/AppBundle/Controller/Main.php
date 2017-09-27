@@ -272,10 +272,10 @@ class Main extends Controller {
             $field_order = explode(":", $field["index"]);
             if (@$field["method"] == "yesno") {
                 $field["content"] = '<select class="style-primary-bright form-control search_init">';
-                $field["content"] .= '<option value="">All</option>';
+                $field["content"] .= '<option value="">'.$this->getTranslation("All").'</option>';
 
-                $field["content"] .= '<option value="0">NO</option>';
-                $field["content"] .= '<option value="1">YES</option>';
+                $field["content"] .= '<option value="0">'.$this->getTranslation("No").'</option>';
+                $field["content"] .= '<option value="1">'.$this->getTranslation("Yes").'</option>';
 
                 $field["content"] .= '</select>';
             } elseif (count($field_order) > 1 AND @ $field["type"] == "select") {
@@ -288,7 +288,7 @@ class Main extends Controller {
                 );
                 $results = $query->getResult();
                 $field["content"] = '<select class="style-primary-bright form-control search_init">';
-                $field["content"] .= '<option value="">Select</option>';
+                $field["content"] .= '<option value="">'.$this->getTranslation("Select").'</option>';
                 foreach ($results as $result) {
                     $field["content"] .= '<option value="' . $result["id"] . '">' . $result[$field_order[1]] . '</option>';
                 }
