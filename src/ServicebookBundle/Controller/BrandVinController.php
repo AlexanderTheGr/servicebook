@@ -112,7 +112,7 @@ class BrandVinController extends Main {
 
         $this->addField(array("name" => "ID", "index" => 'id', "active" => "active"))
                 ->addField(array("name" => "Vin", "index" => 'km'))
-                ->addField(array("name" => "Brand", "index" => 'brand:brand'))
+                ->addField(array("name" => "Brand", "index" => 'brand:brand','type' => 'select', 'object' => 'Brand'))
                 ->addField(array("name" => "User", "index" => 'user:name'))
               
         ;
