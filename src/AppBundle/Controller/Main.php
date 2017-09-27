@@ -264,7 +264,7 @@ class Main extends Controller {
     }
 
     function addField($field = array()) {
-
+        $field["name"] = $this->getTranslation($field["name"]);
         $bundle = explode(":", $this->repository);
         if (@$field["type"] == "select" AND 1 == 2) {
             $field["content"] = '<input class="style-primary-bright form-control search_init" type="radio" />';
