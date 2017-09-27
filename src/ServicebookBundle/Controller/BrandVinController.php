@@ -83,6 +83,7 @@ class BrandVinController extends Main {
         }
 
         $fields["vin"] = array("label" => "Vin", 'required' => true);
+        $fields["productSale"] = array("label" => "Brand", "className" => "col-md-3", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'SerivebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         $fields["model"] = array("label" => "Model", 'required' => false);
         $fields["engine"] = array("label" => "Engine");
         $fields["displacement"] = array("label" => "Displacement");
