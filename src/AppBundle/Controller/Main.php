@@ -543,9 +543,9 @@ class Main extends Controller {
                 //$val = new \DateTime($val);
                 //$entities[$df[0] . ":" . $df[1]]->setField($df[2], $val);
                 $defaultValue = $entity->getId() > 0 ? $entity->getField($field)->format('Y-m-d') : '';
-                @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), "defaultValue" => $defaultValue, "type" => "input", "templateOptions" => array("type" => '', 'class' => '', "label" => $options["label"], "required" => $options["required"]));
+                @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), "defaultValue" => $defaultValue, "type" => "input", "templateOptions" => array("type" => '', 'class' => '', "label" => $this->getTranslation($options["label"]), "required" => $options["required"]));
             } else {
-                $formsint["html"][] = array('class' => 'form-control', "value" => $entity->getField($field), "caption" => $options["label"], "name" => $this->repository . ":" . $field, "id" => $this->repository . ":" . $field . ":" . $entity->getId(), 'type' => 'text');
+                $formsint["html"][] = array('class' => 'form-control', "value" => $entity->getField($field), "caption" => $this->getTranslation($options["label"]), "name" => $this->repository . ":" . $field, "id" => $this->repository . ":" . $field . ":" . $entity->getId(), 'type' => 'text');
 
                 //@$options["required"] = $options["required"] ? $options["required"] : true;
                 //$forms["html"][] = array("key" => $field, "id" => $this->repository . ":" . $field . ":" . $entity->getId(), "defaultValue" => $entity->getField($field), "type" => "input", "templateOptions" => array("type" => '', "label" => $options["label"], "required" => $options["required"]));
