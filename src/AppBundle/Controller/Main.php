@@ -89,11 +89,11 @@ class Main extends Controller {
                         }
                         if (@$field["method"] == 'yesno') {
                             if (@$this->clearstring($dt_columns[$index]["search"]["value"]) == "0") {
-                                $this->q_and[] = "(".$this->prefix . "." . $this->fields[$index]["index"] . " = 0 OR ".$this->prefix . "." . $this->fields[$index]["index"] . " IS NULL)";
-                            }   
+                                $this->q_and[] = "(" . $this->prefix . "." . $this->fields[$index]["index"] . " = 0 OR " . $this->prefix . "." . $this->fields[$index]["index"] . " IS NULL)";
+                            }
                             if (@$this->clearstring($dt_columns[$index]["search"]["value"]) == "1") {
                                 $this->q_and[] = $this->prefix . "." . $this->fields[$index]["index"] . " > '0'";
-                            }                               
+                            }
                         } else {
                             if (@$this->clearstring($dt_columns[$index]["search"]["value"]) != "") {
                                 $this->q_and[] = $this->prefix . "." . $this->fields[$index]["index"] . " LIKE '%" . $this->clearstring($dt_columns[$index]["search"]["value"]) . "%'";
@@ -556,6 +556,24 @@ class Main extends Controller {
         return $forms;
     }
 
+    function getTranslation($path) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Translation');
+        $translation = $repository->findOneBy(
+                array('path' => $path)
+        );
+        if (!$translation) {
+            $dt = new \DateTime("now");
+            $translation = new translation;
+            $translation->setTs($dt);
+            $translation->setCreated($dt);
+            $translation->setModified($dt);
+            $translation->setPath($path);
+            $this->flushpersist($translation);
+        }
+        return $translation->getValue() ? $translation->getValue() : $path;
+    }
+
     function getFormLyFields($entity, $fields, $id = '') {
 
         $forms["model"] = array();
@@ -621,7 +639,7 @@ class Main extends Controller {
                  */
                 //@$options["required"] = $options["required"] != '' ? $options["required"] > 0 ? true : false : true;
                 //echo @$options["required"]." ".$options["className"]."<BR>";
-                
+
                 @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), "defaultValue" => $entity->getField($field), "type" => $options["type"], "templateOptions" => array("type" => '', 'class' => '', "label" => $options["label"], "required" => $options["required"]));
             }
         }
