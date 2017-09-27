@@ -84,7 +84,7 @@ class BrandVinController extends Main {
 
         $fields["vin"] = array("label" => "Vin", 'required' => true);
         $fields["brand"] = array("label" => "Brand", "disabled"=>true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
-        $fields["user"] = array("label" => "Brand", "disabled"=>true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'user', 'value' => 'id'));
+        $fields["user"] = array("label" => "User", "disabled"=>true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
         
         $fields["model"] = array("label" => "Model", 'required' => false);
         $fields["engine"] = array("label" => "Engine");
