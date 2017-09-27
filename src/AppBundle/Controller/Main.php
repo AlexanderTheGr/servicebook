@@ -536,8 +536,6 @@ class Main extends Controller {
                         $seloptions[] = array("name" => $data ["name"] . " (" . $data ["value"] . ")", "value" => $data ["value"]);
                     }
                 }
-
-
                 //$forms["html"][] = array("id" => $this->repository, "id" => $this->repository . ":" . $field . ":" . $entity->getId());
                 //$forms["html"][] = array("key" => $field, "id" => $this->repository . ":" . $field . ":" . $entity->getId(), 'defaultValue' => $entity->getField($field)->getId(), "type" => "select", "templateOptions" => array("type" => '', 'options' => $seloptions, 'defaultOptions' => array("value" => $entity->getField($field)->getId()), "label" => $options["label"], "required" => $options["required"]));
             } elseif ($options["type"] == 'datetime') {
