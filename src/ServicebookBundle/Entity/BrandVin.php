@@ -26,8 +26,8 @@ class BrandVin extends Entity {
     }
 
     public function getField($field) {
-        if ($field == 'confirmed') {
-            return (string)(int)$this->$field;
+        if ($this->types[$field] == 'boolean') {
+            return (int)$this->$field;
         }
         return $this->$field;
     }
@@ -49,6 +49,7 @@ class BrandVin extends Entity {
 
     public function gettype($field) {
         $this->types['route'] = 'object';
+        $this->types['confirmed'] = 'boolean';
         if (@$this->types[$field] != '') {
             return @$this->types[$field];
         }
