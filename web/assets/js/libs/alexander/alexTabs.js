@@ -8,7 +8,7 @@ $("#loaderer").hide();
         var defaults = {}
         var $dialog = {}
         var settings = $.extend({}, defaults, custom);
-        console.log(content);
+        //console.log(content);
         tabs(app, ctrl, url, content);
         function tabs(app, ctrl, url, content) {
             var app = angular.module(app, ['ngSanitize', 'ui.bootstrap', 'base64', 'formly', 'formlyBootstrap', 'ngMessages']).config(function ($interpolateProvider) {
@@ -19,7 +19,7 @@ $("#loaderer").hide();
 
             app.controller(ctrl, function ($scope, $http, $sce, $base64) {
                 var vm = this;
-
+                console.log(html_entity_decode(content));
                 var response = angular.fromJson(html_entity_decode(content));
                 //console.log(html_entity_decode(tab));
                 vm.tabs = response.tabs;
