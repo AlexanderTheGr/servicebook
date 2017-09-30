@@ -44,7 +44,6 @@ class BrandVinController extends Main {
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
                     'content' => $content,
-                    'contentjson' => json_encode($content),
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
