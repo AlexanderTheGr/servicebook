@@ -103,7 +103,7 @@ class BrandVin extends Entity {
     /**
      * @var boolean
      */
-    private $status = '2';
+    private $status = '0';
 
     /**
      * @var integer
