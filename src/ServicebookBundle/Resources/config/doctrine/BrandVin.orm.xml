@@ -95,6 +95,24 @@
                 <option name="default">0</option>
             </options>
         </field>
+        
+        
+        <field name="ts" type="datetime" column="ts" nullable="true">
+            <options>
+                
+            </options>
+        </field>
+        
+        <field name="actioneer" type="integer" column="actioneer" nullable="true">
+            <options>
+                <option name="unsigned"/>
+            </options>
+        </field>
+
+        <field name="created" type="datetime" column="created" nullable="true"/>
+        <field name="modified" type="datetime" column="modified" nullable="true"/>        
+        
+        
         <many-to-one
             field="user"
             target-entity="ServicebookBundle\Entity\User"
