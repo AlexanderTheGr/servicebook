@@ -6,6 +6,6 @@
 {% endblock %}
 {% block javascripts %}
 <script>
-   // $(".{{ctrl}}").alexTabs("{{app}}", "{{ctrl}}", "{{url}}","{{contentjson}}");
+    $(".{{ctrl}}").alexTabs("{{app}}", "{{ctrl}}", "{{url}}","{{content|json_encode()}}");
 </script>
 {% endblock %}
