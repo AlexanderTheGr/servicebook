@@ -65,7 +65,7 @@ class BrandVinController extends Main {
                 ->find($entities[$this->repository]);
         
         $branvin->setTs($dt);
-        $branvin->setModifed($dt);
+        $branvin->setModified($dt);
         $this->flushpersist($branvin);
         
         $jsonarr = array();
