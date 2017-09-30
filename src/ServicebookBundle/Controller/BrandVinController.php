@@ -68,7 +68,6 @@ class BrandVinController extends Main {
         $branvin->setModifed($dt);
         $this->flushpersist($branvin);
         
-        
         $jsonarr = array();
         if ($this->newentity[$this->repository]->getId()) {
             $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $this->newentity[$this->repository]->getId();
@@ -93,7 +92,7 @@ class BrandVinController extends Main {
             $entity = new \ServicebookBundle\Entity\BrandVin;
             $this->newentity[$this->repository] = $entity;
         }
-        $dataarray[] = array("value" => "0", "name" => "Oxi");
+        $dataarray[] = array("value" => "2", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
         $fields["confirmed"] = array("label" => "Confirmed", 'type' => "select", 'dataarray' => $dataarray, "required" => false, "className" => "col-md-3 col-sm-3");
 
