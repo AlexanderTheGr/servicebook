@@ -27,7 +27,7 @@ class BrandVin extends Entity {
 
     public function getField($field) {
         if ($field == 'confirmed') {
-            return (int)$this->$field;
+            return (string)(int)$this->$field;
         }
         return $this->$field;
     }
