@@ -114,7 +114,9 @@ class BrandVinController extends Main {
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
         $json = $this->tabs();
+        echo "<pre>";
         print_r( $json );
+        echo "</pre>";
         return $json;
     }
 
