@@ -106,6 +106,8 @@ class BrandVinController extends Main {
         $fields["fuel"] = array("label" => "Fuel");
         $fields["power"] = array("label" => "Power");
         $fields["doors"] = array("label" => "Doors");
+        $fields["doors"] = array("label" => "Doors", "type" => "textarea");
+        
         //$fields["brandvinName"] = array("label" => "Name");
 
         $forms = $this->getFormLyFields($entity, $fields);
