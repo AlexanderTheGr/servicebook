@@ -57,6 +57,9 @@ class BrandVinController extends Main {
         $this->initialazeNewEntity($entity);
         $this->newentity[$this->repository]->setField("status", 1);
         $out = $this->save();
+        $dt = new \DateTime("now");
+        $entity->setTs($dt);
+        $this->flushpersist($entity);
         $jsonarr = array();
         if ($this->newentity[$this->repository]->getId()) {
             $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $this->newentity[$this->repository]->getId();
@@ -76,19 +79,19 @@ class BrandVinController extends Main {
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->find($id);
-        
+
         if ($id == 0 AND @ $entity->id == 0) {
             $entity = new \ServicebookBundle\Entity\BrandVin;
             $this->newentity[$this->repository] = $entity;
         }
         $dataarray[] = array("value" => "0", "name" => "Oxi");
-        $dataarray[] = array("value" => "1", "name" => "Ναι");        
+        $dataarray[] = array("value" => "1", "name" => "Ναι");
         $fields["confirmed"] = array("label" => "Confirmed", 'type' => "select", 'dataarray' => $dataarray, "required" => false, "className" => "col-md-3 col-sm-3");
 
         $fields["vin"] = array("label" => "Vin", 'required' => true);
-        $fields["brand"] = array("label" => "Brand", "disabled"=>true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
-        $fields["user"] = array("label" => "User", "disabled"=>true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
-        
+        $fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+        $fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
+
         $fields["model"] = array("label" => "Model", 'required' => false);
         $fields["engine"] = array("label" => "Engine");
         $fields["displacement"] = array("label" => "Displacement");
@@ -112,10 +115,10 @@ class BrandVinController extends Main {
 
         $this->addField(array("name" => "ID", "index" => 'id', "active" => "active"))
                 ->addField(array("name" => "Vin", "index" => 'km'))
-                ->addField(array("name" => "Brand", "index" => 'brand:brand','type' => 'select', 'object' => 'Brand'))
+                ->addField(array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand'))
                 ->addField(array("name" => "User", "index" => 'user:name'))
                 ->addField(array("name" => "Confirned", "index" => 'confirmed', 'method' => 'yesno'))
-              
+
         ;
         $json = $this->datatable();
         return new Response(
