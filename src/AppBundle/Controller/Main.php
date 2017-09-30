@@ -356,6 +356,7 @@ class Main extends Controller {
     }
 
     public function tabsAction($ctrl, $app, $url, $tabs) {
+        echo $tabs;
         $tabs = (array) json_decode($tabs);
         return $this->render('elements/tabs.twig', array(
                     'pagename' => '',
@@ -410,7 +411,6 @@ class Main extends Controller {
     function formLybase64() {
         $json = json_encode(array("ok"));
         $content = $this->get("request")->getContent();
-        echo $content;
         $data = json_decode($content);
         $post = array();
         foreach ($data->data as $key64 => $val64) {
