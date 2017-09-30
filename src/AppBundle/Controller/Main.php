@@ -410,6 +410,7 @@ class Main extends Controller {
     function formLybase64() {
         $json = json_encode(array("ok"));
         $content = $this->get("request")->getContent();
+        echo $content;
         $data = json_decode($content);
         $post = array();
         foreach ($data->data as $key64 => $val64) {
