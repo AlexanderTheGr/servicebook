@@ -109,7 +109,7 @@ class BrandVinController extends Main {
         $fields["details"] = array("label" => "Details", "type" => "textarea");
         
         //$fields["brandvinName"] = array("label" => "Name");
-
+        
         $forms = $this->getFormLyFields($entity, $fields);
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
