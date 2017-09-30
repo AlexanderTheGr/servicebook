@@ -607,9 +607,9 @@ class Main extends Controller {
                     foreach (@(array) $options["dataarray"] as $data) {
                         $seloptions[] = array("name" => $data ["name"] . " (" . $data ["value"] . ")", "value" => $data ["value"]);
                     }
-                    echo $field."-->(".$entity->getField($field).")";
-                    //$defaultValue = $entity->getField($field) != '' OR $entity->getField($field) == "0" ? (string) $entity->getField($field) : NULL;
-                    $defaultValue =  (string) $entity->getField($field); 
+                    //echo $field."-->(".$entity->getField($field).")";
+                    $defaultValue = $entity->getField($field) != '' OR $entity->getField($field) == "0" ? (string) $entity->getField($field) : NULL;
+                    //$defaultValue =  (string) $entity->getField($field); 
                     //$defaultValue = "0";
                 }
                 /*
