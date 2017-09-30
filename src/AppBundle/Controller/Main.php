@@ -356,7 +356,6 @@ class Main extends Controller {
     }
 
     public function tabsAction($ctrl, $app, $url, $tabs) {
-        echo $tabs;
         $tabs = (array) json_decode($tabs);
         return $this->render('elements/tabs.twig', array(
                     'pagename' => '',
