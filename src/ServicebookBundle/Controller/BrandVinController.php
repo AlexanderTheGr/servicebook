@@ -53,13 +53,14 @@ class BrandVinController extends Main {
      */
     public function saveAction() {
         $entity = new \ServicebookBundle\Entity\BrandVin;
+        $dt = new \DateTime("now");
         $this->newentity[$this->repository] = $entity;
         $this->initialazeNewEntity($entity);
         $this->newentity[$this->repository]->setField("status", 1);
+        $this->newentity[$this->repository]->setField("ts", $dt);
         $out = $this->save();
-        $dt = new \DateTime("now");
-        $entity->setTs($dt);
-        $this->flushpersist($entity);
+        
+
         $jsonarr = array();
         if ($this->newentity[$this->repository]->getId()) {
             $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $this->newentity[$this->repository]->getId();
