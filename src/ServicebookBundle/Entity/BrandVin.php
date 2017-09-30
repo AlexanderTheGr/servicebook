@@ -22,6 +22,7 @@ class BrandVin extends Entity {
         $this->created = $dt;
         $this->repositories['brand'] = 'ServicebookBundle:Brand';
         $this->repositories['user'] = 'ServicebookBundle:User';
+        $this->types['confirmed'] = 'boolean';
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -48,7 +49,6 @@ class BrandVin extends Entity {
     }
 
     public function gettype($field) {
-        $this->types['route'] = 'object';
         $this->types['confirmed'] = 'boolean';
         if (@$this->types[$field] != '') {
             return @$this->types[$field];
