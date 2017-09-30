@@ -609,7 +609,7 @@ class Main extends Controller {
                     }
                     //echo $field."-->(".$entity->getField($field).")";
                     $defaultValue = $entity->getField($field) != '' ? (string) $entity->getField($field) : NULL;
-                    $defaultValue = "1";
+                    $defaultValue = "0";
                 }
                 /*
                   if (@$options["required"] == '') {
