@@ -16,6 +16,10 @@ class BrandVin extends Entity {
     var $uniques = array();
 
     public function __construct() {
+        $dt = new \DateTime("now");
+        $this->ts = $dt;
+        $this->modified = $dt;
+        $this->created = $dt;
         $this->repositories['brand'] = 'ServicebookBundle:Brand';
         $this->repositories['user'] = 'ServicebookBundle:User';
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
@@ -117,6 +121,21 @@ class BrandVin extends Entity {
     private $brand;
 
     /**
+     * @var \DateTime
+     */
+    private $ts;
+
+    /**
+     * @var \DateTime
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     */
+    private $modified;
+
+    /**
      * Set vin
      *
      * @param string $vin
@@ -125,7 +144,6 @@ class BrandVin extends Entity {
      */
     public function setVin($vin) {
         $this->vin = $vin;
-
         return $this;
     }
 
@@ -441,6 +459,72 @@ class BrandVin extends Entity {
      */
     public function getConfirmed() {
         return $this->confirmed;
+    }
+
+    /**
+     * Set ts
+     *
+     * @param \DateTime $ts
+     *
+     * @return Product
+     */
+    public function setTs($ts) {
+        $this->ts = $ts;
+
+        return $this;
+    }
+
+    /**
+     * Get ts
+     *
+     * @return \DateTime
+     */
+    public function getTs() {
+        return $this->ts;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Product
+     */
+    public function setCreated($created) {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated() {
+        return $this->created;
+    }
+
+    /**
+     * Set modified
+     *
+     * @param \DateTime $modified
+     *
+     * @return Product
+     */
+    public function setModified($modified) {
+        $this->modified = $modified;
+
+        return $this;
+    }
+
+    /**
+     * Get modified
+     *
+     * @return \DateTime
+     */
+    public function getModified() {
+        return $this->modified;
     }
 
 }
