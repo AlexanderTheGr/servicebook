@@ -425,6 +425,7 @@ class Main extends Controller {
         $entities = array();
         foreach ($data as $key => $val) {
             //echo $key."\n";
+            $val = str_replace("\\","\\\\",$val);
             $df = explode(":", $key);
             if (!@$entities[$df[0] . ":" . $df[1]]) {
                 $entities[$df[0] . ":" . $df[1]] = $this->getDoctrine()
