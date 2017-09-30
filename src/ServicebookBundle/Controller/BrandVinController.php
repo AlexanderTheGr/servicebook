@@ -106,7 +106,7 @@ class BrandVinController extends Main {
         $fields["fuel"] = array("label" => "Fuel");
         $fields["power"] = array("label" => "Power");
         $fields["doors"] = array("label" => "Doors");
-        $fields["details"] = array("label" => "Doors", "type" => "textarea");
+        $fields["details"] = array("label" => "Details", "type" => "textarea");
         
         //$fields["brandvinName"] = array("label" => "Name");
 
