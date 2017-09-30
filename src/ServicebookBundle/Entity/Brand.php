@@ -3,9 +3,11 @@
 namespace ServicebookBundle\Entity;
 use AppBundle\Entity\Entity;
 
+// php app/console doctrine:generate:entities ServicebookBundle
+
 /**
  * Brand
- */
+ */ 
 class Brand extends Entity {
 
     public function __construct() {
