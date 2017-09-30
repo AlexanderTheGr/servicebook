@@ -11,7 +11,7 @@
             <generator strategy="IDENTITY"/>
         </id>
 
-        <field name="service" type="string" column="vin" length="255" nullable="false">
+        <field name="service" type="string" column="service" length="255" nullable="false">
             <options>
                 <option name="fixed"/>
             </options>
