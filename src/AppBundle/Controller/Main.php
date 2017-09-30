@@ -609,7 +609,7 @@ class Main extends Controller {
                     }
                     //echo $field."-->(".$entity->getField($field).")";
                     $defaultValue = $entity->getField($field) != '' ? (string) $entity->getField($field) : NULL;
-                    //$defaultValue = "1";
+                    $defaultValue = "1";
                 }
                 /*
                   if (@$options["required"] == '') {
@@ -619,7 +619,7 @@ class Main extends Controller {
                   }
                  * 
                  */
-                @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), 'defaultValue' => 1, "type" => "select", "templateOptions" => array("type" => '', 'options' => $seloptions, 'defaultOptions' => array("value" => $defaultValue), "label" => $this->getTranslation($options["label"]), "required" => $options["required"]));
+                @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), 'defaultValue' => $defaultValue, "type" => "select", "templateOptions" => array("type" => '', 'options' => $seloptions, 'defaultOptions' => array("value" => $defaultValue), "label" => $this->getTranslation($options["label"]), "required" => $options["required"]));
             } elseif ($options["type"] == 'datetime') {
                 //$val = new \DateTime($val);
                 //$entities[$df[0] . ":" . $df[1]]->setField($df[2], $val);
