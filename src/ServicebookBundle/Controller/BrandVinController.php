@@ -48,8 +48,6 @@ class BrandVinController extends Main {
         ));
     }
 
-    
-    
     /**
      * @Route("/servicebook/brandvin/service/save")
      */
@@ -79,7 +77,7 @@ class BrandVinController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
-    
+
     /**
      * @Route("/servicebook/brandvin/save")
      */
@@ -189,7 +187,8 @@ class BrandVinController extends Main {
     }
 
     public function getservicetabs($id) {
-                $entity = $this->getDoctrine()
+        $this->repository = "ServicebookBundle:BrandService";
+        $entity = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:BrandService")
                 ->find($id);
 
