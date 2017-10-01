@@ -172,15 +172,10 @@ class BrandVinController extends Main {
         $fields["service"] = array("label" => "Vin", 'required' => true);
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
-
-
         //$fields["brandvinName"] = array("label" => "Name");
-
         $forms = $this->getFormLyFields($entity, $fields);
 
-
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
-
 
         $json = $this->tabs();
         //echo json_encode($json);
