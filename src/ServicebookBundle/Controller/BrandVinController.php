@@ -69,7 +69,7 @@ class BrandVinController extends Main {
 
         $jsonarr = array();
         if ($this->newentity[$this->repository]->getId()) {
-            $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $this->newentity[$this->repository]->getId();
+            $jsonarr["returnurl"] = "/servicebook/brandvin/service/view/" . $this->newentity[$this->repository]->getId();
         }
         $json = json_encode($jsonarr);
         return new Response(
