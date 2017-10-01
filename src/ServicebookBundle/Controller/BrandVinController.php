@@ -71,6 +71,7 @@ class BrandVinController extends Main {
         if ($entity->getId()) {
             $jsonarr["returnurl"] = "/servicebook/brandvin/service/view/" . $entity->getId();
         }
+        
         $json = json_encode($jsonarr);
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
@@ -147,7 +148,7 @@ class BrandVinController extends Main {
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/brandvin/getservices/' . $id;
-            $params['view'] = '/servicebook/brandvin/services/view';
+            $params['view'] = '/servicebook/brandvin/service/view';
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
@@ -167,7 +168,7 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/services/view/{id}")
+     * @Route("/servicebook/brandvin/service/view/{id}")
      */
     public function servicesAction($id) {
         $buttons = array();
