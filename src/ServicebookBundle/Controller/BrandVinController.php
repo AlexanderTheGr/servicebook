@@ -48,6 +48,38 @@ class BrandVinController extends Main {
         ));
     }
 
+    
+    
+    /**
+     * @Route("/servicebook/brandvin/service//save")
+     */
+    public function servicesaveAction() {
+        $dt = new \DateTime("now");
+        $entity = new \ServicebookBundle\Entity\BrandService;
+        $this->newentity['ServicebookBundle:BrandService'] = $entity;
+        $this->initialazeNewEntity($entity);
+        $this->newentity['ServicebookBundle:BrandService']->setField("status", 1);
+        $entities = $this->save();
+
+
+        $BrandService = $this->getDoctrine()
+                ->getRepository('ServicebookBundle:BrandService')
+                ->find($entities['ServicebookBundle:BrandService']);
+
+        $branvin->setTs($dt);
+        $branvin->setModified($dt);
+        $this->flushpersist($branvin);
+
+        $jsonarr = array();
+        if ($this->newentity['ServicebookBundle:BrandService']->getId()) {
+            $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $this->newentity['ServicebookBundle:BrandService']->getId();
+        }
+        $json = json_encode($jsonarr);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );
+    }
+    
     /**
      * @Route("/servicebook/brandvin/save")
      */
@@ -147,7 +179,7 @@ class BrandVinController extends Main {
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
                     'pagename' => 'Vin',
-                    'url' => '/servicebook/brandvin/save',
+                    'url' => '/servicebook/brandvin/service/save',
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
