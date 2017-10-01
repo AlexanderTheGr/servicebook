@@ -23,12 +23,14 @@ class BrandVin extends Entity {
         $this->repositories['brand'] = 'ServicebookBundle:Brand';
         $this->repositories['user'] = 'ServicebookBundle:User';
         
-        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user = new \ServicebookBundle\Entity\User;
+        $this->brand = new \ServicebookBundle\Entity\Brand;
+        $this->services = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
         if ($this->gettype($field) == 'boolean') {
-            return (int)$this->$field;
+            return (int) $this->$field;
         }
         return $this->$field;
     }
@@ -531,4 +533,40 @@ class BrandVin extends Entity {
         return $this->modified;
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $services;
+
+    /**
+     * Add service
+     *
+     * @param \SoftoneBundle\Entity\BrandService $service
+     *
+     * @return Order
+     */
+    public function addService(\SoftoneBundle\Entity\BrandService $service) {
+        $this->services[] = $item;
+
+        return $this;
+    }
+
+    /**
+     * Remove service
+     *
+     * @param \SoftoneBundle\Entity\BrandService $service
+     */
+    public function removeService(\SoftoneBundle\Entity\BrandService $service) {
+        $this->services->removeElement($service);
+    }
+
+    /**
+     * Get services
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getServices() {
+        return $this->services;
+    }    
+    
 }
