@@ -18,7 +18,7 @@ class BrandService extends Entity {
         $this->modified = $dt;
         $this->created = $dt;
         $this->repositories['brandVin'] = 'ServicebookBundle:BrandVin';
-
+        $this->brandVin = new \ServicebookBundle\Entity\BrandVin;
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
