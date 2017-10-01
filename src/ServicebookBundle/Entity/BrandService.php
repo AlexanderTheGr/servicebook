@@ -1,7 +1,9 @@
 <?php
 
 namespace ServicebookBundle\Entity;
+
 use AppBundle\Entity\Entity;
+
 /**
  * BrandService
  */
@@ -95,7 +97,6 @@ class BrandService extends Entity {
      * @var integer
      */
     private $id;
-
 
     /**
      * Set service
@@ -284,7 +285,6 @@ class BrandService extends Entity {
 
     private $brandVin;
 
-
     /**
      * Set brandVin
      *
@@ -292,8 +292,7 @@ class BrandService extends Entity {
      *
      * @return BrandService
      */
-    public function setBrandVin(\ServicebookBundle\Entity\BrandVin $brandVin = null)
-    {
+    public function setBrandVin(\ServicebookBundle\Entity\BrandVin $brandVin = null) {
         $this->brandVin = $brandVin;
 
         return $this;
@@ -304,8 +303,8 @@ class BrandService extends Entity {
      *
      * @return \ServicebookBundle\Entity\BrandVin
      */
-    public function getBrandVin()
-    {
+    public function getBrandVin() {
         return $this->brandVin;
     }
+
 }
