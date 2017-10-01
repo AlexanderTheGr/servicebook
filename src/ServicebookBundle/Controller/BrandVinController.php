@@ -66,9 +66,9 @@ class BrandVinController extends Main {
                 ->getRepository('ServicebookBundle:BrandService')
                 ->find($entities['ServicebookBundle:BrandService']);
 
-        $branvin->setTs($dt);
-        $branvin->setModified($dt);
-        $this->flushpersist($branvin);
+        $BrandService->setTs($dt);
+        $BrandService->setModified($dt);
+        $this->flushpersist($BrandService);
 
         $jsonarr = array();
         if ($this->newentity['ServicebookBundle:BrandService']->getId()) {
