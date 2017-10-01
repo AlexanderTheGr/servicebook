@@ -19,7 +19,7 @@ class BrandService extends Entity {
         $this->created = $dt;
         $this->repositories['brandVin'] = 'ServicebookBundle:BrandVin';
         $this->brandVin = new \ServicebookBundle\Entity\BrandVin;
-        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
