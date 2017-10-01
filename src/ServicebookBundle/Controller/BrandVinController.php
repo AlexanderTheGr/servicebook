@@ -49,28 +49,27 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/service/save")
+     * @Route("/servicebook/brandvin/service//save")
      */
     public function servicesaveAction() {
+        $this->repository = "ServicebookBundle:BrandService";
         $dt = new \DateTime("now");
-        $entity = new \ServicebookBundle\Entity\BrandService;
-        $this->newentity['ServicebookBundle:BrandService'] = $entity;
+        $entity = new \ServicebookBundle\Entity\BrandVin;
+        $this->newentity[$this->repository] = $entity;
         $this->initialazeNewEntity($entity);
-        $this->newentity['ServicebookBundle:BrandService']->setField("status", 1);
+        $this->newentity[$this->repository]->setField("status", 1);
         $entities = $this->save();
 
-
-        $BrandService = $this->getDoctrine()
-                ->getRepository('ServicebookBundle:BrandService')
-                ->find($entities['ServicebookBundle:BrandService']);
-
-        $BrandService->setTs($dt);
-        $BrandService->setModified($dt);
-        $this->flushpersist($BrandService);
+        $entity = $this->getDoctrine()
+                ->getRepository($this->repository)
+                ->find($entities[$this->repository]);
+        $entity->setTs($dt);
+        $entity->setModified($dt);
+        $this->flushpersist($entity);
 
         $jsonarr = array();
-        if ($this->newentity['ServicebookBundle:BrandService']->getId()) {
-            $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $this->newentity['ServicebookBundle:BrandService']->getId();
+        if ($this->newentity[$this->repository]->getId()) {
+            $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $this->newentity[$this->repository]->getId();
         }
         $json = json_encode($jsonarr);
         return new Response(
@@ -90,13 +89,13 @@ class BrandVinController extends Main {
         $entities = $this->save();
 
 
-        $branvin = $this->getDoctrine()
+        $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->find($entities[$this->repository]);
 
-        $branvin->setTs($dt);
-        $branvin->setModified($dt);
-        $this->flushpersist($branvin);
+        $entity->setTs($dt);
+        $entity->setModified($dt);
+        $this->flushpersist($entity);
 
         $jsonarr = array();
         if ($this->newentity[$this->repository]->getId()) {
