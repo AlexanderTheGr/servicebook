@@ -54,7 +54,7 @@ class BrandVinController extends Main {
     public function servicesaveAction() {
         $this->repository = "ServicebookBundle:BrandService";
         $dt = new \DateTime("now");
-        $entity = new \ServicebookBundle\Entity\BrandVin;
+        $entity = new \ServicebookBundle\Entity\BrandService;
         $this->newentity[$this->repository] = $entity;
         $this->initialazeNewEntity($entity);
         $this->newentity[$this->repository]->setField("status", 1);
@@ -69,7 +69,7 @@ class BrandVinController extends Main {
 
         $jsonarr = array();
         if ($entity->getId()) {
-            $jsonarr["returnurl"] = "/servicebook/brandvin/service/view/" . $entity->getId();
+            $jsonarr["returnurl"] = "/servicebook/brandvin/service/view/" . $entity->getBrandVin()->getId();
         }
         
         $json = json_encode($jsonarr);
