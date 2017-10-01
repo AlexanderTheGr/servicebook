@@ -112,14 +112,13 @@ class BrandVinController extends Main {
         
         $forms = $this->getFormLyFields($entity, $fields);
         if ($id > 0 AND count($entity) > 0) {
-
-
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams[] = array("name" => "Title", "index" => 'service');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/brandvin/getservices/' . $id;
+            $params['view'] = '/servicebook/brandvin/services/'. $id;
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
