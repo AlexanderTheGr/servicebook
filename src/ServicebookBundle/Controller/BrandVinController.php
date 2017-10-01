@@ -58,16 +58,16 @@ class BrandVinController extends Main {
         $this->initialazeNewEntity($entity);
         $this->newentity[$this->repository]->setField("status", 1);
         $entities = $this->save();
-        
-        
+
+
         $branvin = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->find($entities[$this->repository]);
-        
+
         $branvin->setTs($dt);
         $branvin->setModified($dt);
         $this->flushpersist($branvin);
-        
+
         $jsonarr = array();
         if ($this->newentity[$this->repository]->getId()) {
             $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $this->newentity[$this->repository]->getId();
@@ -107,9 +107,9 @@ class BrandVinController extends Main {
         $fields["power"] = array("label" => "Power");
         $fields["doors"] = array("label" => "Doors");
         $fields["details"] = array("label" => "Details", "type" => "textarea");
-        
+
         //$fields["brandvinName"] = array("label" => "Name");
-        
+
         $forms = $this->getFormLyFields($entity, $fields);
         if ($id > 0 AND count($entity) > 0) {
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
@@ -124,24 +124,25 @@ class BrandVinController extends Main {
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
         }
-        
+
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
         if ($id > 0 AND count($entity) > 0) {
             $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
-        }   
+        }
         foreach ($tabs as $tab) {
             $this->addTab($tab);
-        }        
+        }
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
     }
+
     /**
      * @Route("/servicebook/brandvin/services/view/{id}")
      */
     public function servicesAction($id) {
         $buttons = array();
-        $content = $this->gettabs($id);
+        $content = $this->getservicetabs($id);
         //$content = $this->getoffcanvases($id);
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
@@ -153,8 +154,39 @@ class BrandVinController extends Main {
                     'content' => $content,
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
-    }    
-    
+    }
+
+    public function getservicetabs($id) {
+                $entity = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:BrandServices")
+                ->find($id);
+
+        if ($id == 0 AND @ $entity->id == 0) {
+            $entity = new \ServicebookBundle\Entity\BrandVin;
+            $this->newentity[$this->repository] = $entity;
+        }
+        $dataarray[] = array("value" => "0", "name" => "Oxi");
+        $dataarray[] = array("value" => "1", "name" => "Ναι");
+        $fields["confirmed"] = array("label" => "Confirmed", 'type' => "select", 'dataarray' => $dataarray, "required" => false, "className" => "col-md-3 col-sm-3");
+
+        $fields["service"] = array("label" => "Vin", 'required' => true);
+        //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+        //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
+
+
+        //$fields["brandvinName"] = array("label" => "Name");
+
+        $forms = $this->getFormLyFields($entity, $fields);
+
+
+        $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
+
+
+        $json = $this->tabs();
+        //echo json_encode($json);
+        return $json;
+    }
+
     /**
      * @Route("/servicebook/brandvin/getservices/{id}")
      */
@@ -164,7 +196,7 @@ class BrandVinController extends Main {
             $this->addField($param);
         }
         $this->repository = 'ServicebookBundle:BrandService';
-        $this->q_and[] = $this->prefix . ".brandVin = '".$id."'";
+        $this->q_and[] = $this->prefix . ".brandVin = '" . $id . "'";
         $json = $this->datatable();
 
         $datatable = json_decode($json);
@@ -182,7 +214,7 @@ class BrandVinController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
-    
+
     /**
      * @Route("/servicebook/brandvin/getdatatable")
      */
