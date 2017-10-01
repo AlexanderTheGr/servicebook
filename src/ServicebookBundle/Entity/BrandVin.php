@@ -546,7 +546,7 @@ class BrandVin extends Entity {
      * @return Order
      */
     public function addService(\SoftoneBundle\Entity\BrandService $service) {
-        $this->services[] = $item;
+        $this->services[] = $service;
 
         return $this;
     }
