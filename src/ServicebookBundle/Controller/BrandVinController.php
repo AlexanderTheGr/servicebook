@@ -194,7 +194,7 @@ class BrandVinController extends Main {
                 ->find($id);
 
         if ($id == 0 AND @ $entity->id == 0) {
-            $entity = new \ServicebookBundle\Entity\BrandVin;
+            $entity = new \ServicebookBundle\Entity\BrandService;
             $this->newentity[$this->repository] = $entity;
         }
         $dataarray[] = array("value" => "0", "name" => "Oxi");
