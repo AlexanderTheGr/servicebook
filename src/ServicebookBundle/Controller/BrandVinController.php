@@ -144,6 +144,7 @@ class BrandVinController extends Main {
         if ($id > 0 AND count($entity) > 0) {
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams[] = array("name" => "Title", "index" => 'service');
+            $dtparams[] = array("name" => "Title", "index" => 'km');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
@@ -200,7 +201,9 @@ class BrandVinController extends Main {
         $dataarray[] = array("value" => "1", "name" => "Ναι");
         $fields["confirmed"] = array("label" => "Confirmed", 'type' => "select", 'dataarray' => $dataarray, "required" => false, "className" => "col-md-3 col-sm-3");
 
-        $fields["service"] = array("label" => "Vin", 'required' => true);
+        $fields["service"] = array("label" => "Service", 'required' => true);
+        $fields["km"] = array("label" => "Km", 'required' => true);
+        $fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
         //$fields["brandvinName"] = array("label" => "Name");
