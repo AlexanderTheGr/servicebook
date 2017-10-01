@@ -118,7 +118,7 @@ class BrandVinController extends Main {
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/brandvin/getservices/' . $id;
-            $params['view'] = '/servicebook/brandvin/services/view/';
+            $params['view'] = '/servicebook/brandvin/services/view';
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
