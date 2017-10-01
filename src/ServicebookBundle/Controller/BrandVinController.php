@@ -118,13 +118,12 @@ class BrandVinController extends Main {
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/brandvin/getservices/' . $id;
-            $params['view'] = '/servicebook/brandvin/services/';
+            $params['view'] = '/servicebook/brandvin/services/view/';
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
         }
-        
         
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
         if ($id > 0 AND count($entity) > 0) {
@@ -137,6 +136,24 @@ class BrandVinController extends Main {
         //echo json_encode($json);
         return $json;
     }
+    /**
+     * @Route("/servicebook/brandvin/services/view/{id}")
+     */
+    public function servicesAction($id) {
+        $buttons = array();
+        $content = $this->gettabs($id);
+        //$content = $this->getoffcanvases($id);
+        $content = $this->content();
+        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
+                    'pagename' => 'Vin',
+                    'url' => '/servicebook/brandvin/save',
+                    'buttons' => $buttons,
+                    'ctrl' => $this->generateRandomString(),
+                    'app' => $this->generateRandomString(),
+                    'content' => $content,
+                    'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
+        ));
+    }    
     
     /**
      * @Route("/servicebook/brandvin/getservices/{id}")
