@@ -111,13 +111,59 @@ class BrandVinController extends Main {
         //$fields["brandvinName"] = array("label" => "Name");
         
         $forms = $this->getFormLyFields($entity, $fields);
+        if ($id > 0 AND count($entity) > 0) {
 
+
+            $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams[] = array("name" => "Title", "index" => 'service');
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params['dtparams'] = $dtparams;
+            $params['id'] = $dtparams;
+            $params['url'] = '/servicebook/brandvin/getservices/' . $id;
+            $params['key'] = 'gettabs_' . $id;
+            $params["ctrl"] = 'ctrlgettabs';
+            $params["app"] = 'appgettabs';
+            $datatables[] = $this->contentDatatable($params);
+        }
+        
+        
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
+        if ($id > 0 AND count($entity) > 0) {
+            $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => $forms2, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+        }       
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
     }
+    
+    /**
+     * @Route("/servicebook/brandvin/getservices/{id}")
+     */
+    public function getservicesAction($id) {
+        $session = new Session();
+        foreach ($session->get('params_gettabs_' . $id) as $param) {
+            $this->addField($param);
+        }
+        $this->repository = 'ServicebookBundle:BrandService';
+        $this->q_and[] = $this->prefix . ".brandVin = '".$id."'";
+        $json = $this->datatable();
 
+        $datatable = json_decode($json);
+        $datatable->data = (array) $datatable->data;
+        foreach ($datatable->data as $key => $table) {
+            $table = (array) $table;
+            $table1 = array();
+            foreach ($table as $f => $val) {
+                $table1[$f] = $val;
+            }
+            $datatable->data[$key] = $table1;
+        }
+        $json = json_encode($datatable);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );
+    }
+    
     /**
      * @Route("/servicebook/brandvin/getdatatable")
      */
