@@ -51,7 +51,7 @@ class BrandVinController extends Main {
     
     
     /**
-     * @Route("/servicebook/brandvin/service//save")
+     * @Route("/servicebook/brandvin/service/save")
      */
     public function servicesaveAction() {
         $dt = new \DateTime("now");
