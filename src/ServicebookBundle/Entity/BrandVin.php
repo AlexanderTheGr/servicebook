@@ -543,9 +543,9 @@ class BrandVin extends Entity {
      *
      * @param \SoftoneBundle\Entity\BrandService $service
      *
-     * @return Order
+     * @return BrandVin
      */
-    public function addService(\SoftoneBundle\Entity\BrandService $service) {
+    public function addService(\ServicebookBundle\Entity\BrandService $service) {
         $this->services[] = $service;
 
         return $this;
@@ -556,7 +556,7 @@ class BrandVin extends Entity {
      *
      * @param \SoftoneBundle\Entity\BrandService $service
      */
-    public function removeService(\SoftoneBundle\Entity\BrandService $service) {
+    public function removeService(\ServicebookBundle\Entity\BrandService $service) {
         $this->services->removeElement($service);
     }
 
