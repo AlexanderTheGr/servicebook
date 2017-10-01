@@ -68,8 +68,8 @@ class BrandVinController extends Main {
         $this->flushpersist($entity);
 
         $jsonarr = array();
-        if ($this->newentity[$this->repository]->getId()) {
-            $jsonarr["returnurl"] = "/servicebook/brandvin/service/view/" . $this->newentity[$this->repository]->getId();
+        if ($entity->getId()) {
+            $jsonarr["returnurl"] = "/servicebook/brandvin/service/view/" . $entity->getId();
         }
         $json = json_encode($jsonarr);
         return new Response(
