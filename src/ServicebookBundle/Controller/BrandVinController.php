@@ -69,7 +69,7 @@ class BrandVinController extends Main {
 
         $jsonarr = array();
         if ($entity->getId()) {
-            $jsonarr["returnurl"] = "/servicebook/brandvin/service/view/" . $entity->getBrandVin()->getId();
+            $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $entity->getBrandVin()->getId();
         }
         
         $json = json_encode($jsonarr);
