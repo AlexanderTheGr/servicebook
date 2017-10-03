@@ -32,7 +32,7 @@ class BrandVinController extends Main {
     /**
      * @Route("/servicebook/brandvin/view/{id}")
      */
-    public function viewAction($id,$vin=false) {
+    public function viewAction($id, $vin = false) {
         $buttons = array();
         $content = $this->gettabs($id);
         //$content = $this->getoffcanvases($id);
@@ -47,11 +47,11 @@ class BrandVinController extends Main {
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
-    
+
     /**
      * @Route("/servicebook/brandvin/service/save/{vin}")
      */
-    public function servicesaveAction($vin=false) {
+    public function servicesaveAction($vin = false) {
         $this->repository = "ServicebookBundle:BrandService";
         $dt = new \DateTime("now");
         $entity = new \ServicebookBundle\Entity\BrandService;
@@ -71,7 +71,7 @@ class BrandVinController extends Main {
         if ($entity->getId()) {
             $jsonarr["returnurl"] = "/servicebook/brandvin/view/" . $entity->getBrandVin()->getId();
         }
-        
+
         $json = json_encode($jsonarr);
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
@@ -160,7 +160,7 @@ class BrandVinController extends Main {
         if ($id > 0 AND count($entity) > 0) {
             $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
         }
-        foreach ((array)$tabs as $tab) {
+        foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
         }
         $json = $this->tabs();
@@ -171,14 +171,21 @@ class BrandVinController extends Main {
     /**
      * @Route("/servicebook/brandvin/service/view/{id}/{vin}")
      */
-    public function servicesAction($id,$vin=false) {
+    public function servicesAction($id, $vin = false) {
+        $this->repository = "ServicebookBundle:BrandService";
         $buttons = array();
         $content = $this->getservicetabs($id);
         //$content = $this->getoffcanvases($id);
+        if ($id > 0) {
+            $entity = $this->getDoctrine()
+                    ->getRepository($this->repository)
+                    ->find($id);
+            $vin = $entity->getBrandVin()->getId();
+        }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
                     'pagename' => 'Vin',
-                    'url' => '/servicebook/brandvin/service/save/'.$vin,
+                    'url' => '/servicebook/brandvin/service/save/' . $vin,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
