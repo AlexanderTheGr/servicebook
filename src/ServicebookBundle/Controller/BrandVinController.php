@@ -51,7 +51,7 @@ class BrandVinController extends Main {
     /**
      * @Route("/servicebook/brandvin/service/save/{vin}")
      */
-    public function servicesaveAction($vin) {
+    public function servicesaveAction($vin=false) {
         $this->repository = "ServicebookBundle:BrandService";
         $dt = new \DateTime("now");
         $entity = new \ServicebookBundle\Entity\BrandService;
