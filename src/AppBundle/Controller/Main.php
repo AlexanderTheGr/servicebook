@@ -425,7 +425,7 @@ class Main extends Controller {
         $dt = new \DateTime("now");
         $entities = array();
         foreach ($data as $key => $val) {
-            echo $key."\n";
+            //echo $key."\n";
             $val = str_replace("\\","\\\\",$val);
             $df = explode(":", $key);
             if (!@$entities[$df[0] . ":" . $df[1]]) {
