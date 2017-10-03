@@ -54,7 +54,7 @@ class BrandVinController extends Main {
     public function servicepartsaveAction($service = false) {
         $this->repository = "ServicebookBundle:BrandServicePart";
         $dt = new \DateTime("now");
-        $entity = new \ServicebookBundle\Entity\BrandService;
+        $entity = new \ServicebookBundle\Entity\BrandServicePart;
         $this->newentity[$this->repository] = $entity;
         $this->initialazeNewEntity($entity);
         $brandService = $this->getDoctrine()
