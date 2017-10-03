@@ -1,17 +1,57 @@
 {% block body %}
-    <a class="btn btn-icon-toggle btn-default offcanvas-search" href="#asdf" data-toggle="offcanvas" data-backdrop="false"></a>
-    
-    <div class="alexander {{ctrl}}" ng-app="{{app}}" ng-controller="{{ctrl}} as vm">
+<a class="btn btn-icon-toggle btn-default offcanvas-search" href="#asdf" data-toggle="offcanvas" data-backdrop="false"></a>
 
-        <form ng-submit="vm.onSubmit()" name="vm.form" class="form" id="{{ctrl}}" novalidate>      
-            <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
-            <button type="button" class="btn btn-default" ng-click="vm.resetAllForms()">Reset</button>          
-            <uib-tabset>
-                <uib-tab ng-repeat="tab in vm.tabs" heading="[[ tab.title ]]" active="tab.active" disable="tab.disable">
+<div class="alexander {{ctrl}}" ng-app="{{app}}" ng-controller="{{ctrl}} as vm">
 
-                    <formly-form model="tab.form.model" fields="tab.form.fields" form="vm.form" options="tab.form.options"></formly-form>
-                    <div id="[[ tab.index ]]"></div>  
-                    <div ng-repeat="datatable in tab.datatables"> 
+    <form ng-submit="vm.onSubmit()" name="vm.form" class="form" id="{{ctrl}}" novalidate>      
+        <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
+        <button type="button" class="btn btn-default" ng-click="vm.resetAllForms()">Reset</button>          
+        <uib-tabset>
+            <uib-tab ng-repeat="tab in vm.tabs" heading="[[ tab.title ]]" active="tab.active" disable="tab.disable">
+
+                <formly-form model="tab.form.model" fields="tab.form.fields" form="vm.form" options="tab.form.options"></formly-form>
+                <div id="[[ tab.index ]]"></div>  
+                <div ng-repeat="datatable in tab.datatables"> 
+                    <div class="gui-controls">
+                        <button class="addnew btn-primary btn ink-reaction btn btn-success btn_new btn_new_[[datatable.ctrl]]">
+                            <div class="gui-icon"><i class="md md-add"></i></div>
+                            <span class="title">Add New</span>   
+                        </button>   
+                    </div> 
+                    <table class="alexander table table-striped dataTable [[datatable.ctrl]]">
+                        <thead>
+                            <tr>
+                                <td  ng-repeat="field in datatable.fields">
+                                    [[ field.content ]]
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td ng-repeat="field in datatable.fields">[[ field.name ]]</td>
+                            </tr>                
+                        </thead> 
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <!--div id="[[ tab.index ]]"></div-->    
+            </uib-tab>
+        </uib-tabset> 
+        <div class="offcanvas">
+
+
+            <div ng-repeat="offcanvas in vm.offcanvases" id="[[ offcanvas.id ]]" style='width: 1600px' style='width: 1600px' class="{{ctrl}} offcanvas-pane style-default-light">
+                <div class="offcanvas-head">
+                    <header class="text-primary">Search</header>
+                    <div class="offcanvas-tools">
+                        <a class="btn btn-icon-toggle btn-default-light pull-right" data-toggle="offcanvas">
+                            <i class="md md-close"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="offcanvas-body">
+                    <div id="extracanvascontent" style='float:left'></div>
+                    <div id="[[ offcanvas.index ]]"  style='float:right'></div>
+                    <div ng-repeat="datatable in offcanvas.datatables" class="dt[[datatable.ctrl]]"> 
                         <table class="alexander table table-striped dataTable [[datatable.ctrl]]">
                             <thead>
                                 <tr>
@@ -27,45 +67,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <!--div id="[[ tab.index ]]"></div-->    
-                </uib-tab>
-            </uib-tabset> 
-            <div class="offcanvas">
-                
-                
-                <div ng-repeat="offcanvas in vm.offcanvases" id="[[ offcanvas.id ]]" style='width: 1600px' style='width: 1600px' class="{{ctrl}} offcanvas-pane style-default-light">
-                    <div class="offcanvas-head">
-                        <header class="text-primary">Search</header>
-                        <div class="offcanvas-tools">
-                            <a class="btn btn-icon-toggle btn-default-light pull-right" data-toggle="offcanvas">
-                                <i class="md md-close"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="offcanvas-body">
-                        <div id="extracanvascontent" style='float:left'></div>
-                        <div id="[[ offcanvas.index ]]"  style='float:right'></div>
-                        <div ng-repeat="datatable in offcanvas.datatables" class="dt[[datatable.ctrl]]"> 
-                            <table class="alexander table table-striped dataTable [[datatable.ctrl]]">
-                                <thead>
-                                    <tr>
-                                        <td  ng-repeat="field in datatable.fields">
-                                            [[ field.content ]]
-                                        </td>
-                                    </tr> 
-                                    <tr>
-                                        <td ng-repeat="field in datatable.fields">[[ field.name ]]</td>
-                                    </tr>                
-                                </thead> 
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-        </form>
-    </div>    
+                </div>
+            </div>  
+        </div>
+    </form>
+</div>    
 {% endblock %}
 
 {% block stylesheets %}
