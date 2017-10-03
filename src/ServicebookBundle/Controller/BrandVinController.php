@@ -272,7 +272,7 @@ class BrandVinController extends Main {
 
         $datatable = json_decode($json);
         $datatable->data = (array) $datatable->data;
-        foreach ($datatable->data as $key => $table) {
+        foreach ((array)$datatable->data as $key => $table) {
             $table = (array) $table;
             $table1 = array();
             foreach ($table as $f => $val) {
