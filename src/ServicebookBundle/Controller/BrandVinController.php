@@ -57,7 +57,6 @@ class BrandVinController extends Main {
         $entity = new \ServicebookBundle\Entity\BrandService;
         $this->newentity[$this->repository] = $entity;
         $this->initialazeNewEntity($entity);
-        $this->newentity[$this->repository]->setField("status", 1);
         $brandService = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:BrandService")
                 ->find($service);
@@ -82,16 +81,8 @@ class BrandVinController extends Main {
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
         );
-    }    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }
+
     /**
      * @Route("/servicebook/brandvin/service/save/{vin}")
      */
@@ -245,7 +236,7 @@ class BrandVinController extends Main {
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
- 
+
     /**
      * @Route("/servicebook/brandvin/servicepart/view/{id}/{service}")
      */
@@ -270,9 +261,8 @@ class BrandVinController extends Main {
                     'content' => $content,
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
-    }    
-    
-    
+    }
+
     public function getserviceparttabs($id) {
         $this->repository = "ServicebookBundle:BrandService";
         $entity = $this->getDoctrine()
@@ -285,7 +275,7 @@ class BrandVinController extends Main {
         }
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
-        
+
         $fields["part"] = array("label" => "Part", 'required' => true);
         $fields["brand"] = array("label" => "Brand", 'required' => true);
         $fields["code"] = array("label" => "Code", 'required' => true);
@@ -296,14 +286,14 @@ class BrandVinController extends Main {
         //$fields["brandVin"] = array("label" => "Brand Vin", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:BrandVin', 'name' => 'vin', 'value' => 'id'));
 
         $forms = $this->getFormLyFields($entity, $fields);
-        
+
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
 
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
     }
-    
+
     public function getservicetabs($id) {
         $this->repository = "ServicebookBundle:BrandService";
         $entity = $this->getDoctrine()
@@ -343,10 +333,10 @@ class BrandVinController extends Main {
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
-        }        
-        
-        
-        
+        }
+
+
+
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
 
         if ($id > 0 AND count($entity) > 0) {
@@ -354,12 +344,13 @@ class BrandVinController extends Main {
         }
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
-        }        
-        
+        }
+
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
     }
+
     /**
      * @Route("/servicebook/brandvin/getserviceparts/{id}")
      */
@@ -374,7 +365,7 @@ class BrandVinController extends Main {
 
         $datatable = json_decode($json);
         $datatable->data = (array) $datatable->data;
-        foreach ((array)$datatable->data as $key => $table) {
+        foreach ((array) $datatable->data as $key => $table) {
             $table = (array) $table;
             $table1 = array();
             foreach ($table as $f => $val) {
@@ -387,7 +378,7 @@ class BrandVinController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
-    
+
     /**
      * @Route("/servicebook/brandvin/getservices/{id}")
      */
