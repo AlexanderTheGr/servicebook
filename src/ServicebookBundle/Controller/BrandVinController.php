@@ -75,7 +75,7 @@ class BrandVinController extends Main {
 
         $jsonarr = array();
         if ($entity->getId()) {
-            $jsonarr["returnurl"] = "/servicebook/brandservice/view/" . $entity->getBrandService()->getId();
+            $jsonarr["returnurl"] = "/servicebook/brandvin/brandservice/view/" . $entity->getBrandService()->getId();
         }
 
         $json = json_encode($jsonarr);
