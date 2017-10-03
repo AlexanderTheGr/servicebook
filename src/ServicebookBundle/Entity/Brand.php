@@ -5,6 +5,7 @@ use AppBundle\Entity\Entity;
 
 // php app/console doctrine:generate:entities ServicebookBundle
 
+// php app/console doctrine:schema:update
 /**
  * Brand
  */ 
