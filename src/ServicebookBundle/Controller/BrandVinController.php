@@ -160,7 +160,7 @@ class BrandVinController extends Main {
         if ($id > 0 AND count($entity) > 0) {
             $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
         }
-        foreach ($tabs as $tab) {
+        foreach ((array)$tabs as $tab) {
             $this->addTab($tab);
         }
         $json = $this->tabs();
