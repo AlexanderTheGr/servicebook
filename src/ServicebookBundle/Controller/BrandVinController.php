@@ -261,7 +261,7 @@ class BrandVinController extends Main {
     /**
      * @Route("/servicebook/brandvin/getserviceparts/{id}")
      */
-    public function getservicesAction($id) {
+    public function getservicepartsAction($id) {
         $session = new Session();
         foreach ($session->get('params_gettabparts_' . $id) as $param) {
             $this->addField($param);
