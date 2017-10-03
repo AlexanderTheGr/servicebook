@@ -126,7 +126,7 @@ $("#loaderer").hide();
                          }
                          */
                         if (datatable.view) {
-                            alert(datatable.view);
+                            alert(datatable.ctrl);
                             location.href = datatable.view + "/" + $(this).attr("data-ref");
                         }
                     });
