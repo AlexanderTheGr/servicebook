@@ -30,9 +30,9 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/view/{id}")
+     * @Route("/servicebook/brandvin/view/{id}/{vin}")
      */
-    public function viewAction($id) {
+    public function viewAction($id,$vin=false) {
         $buttons = array();
         $content = $this->gettabs($id);
         //$content = $this->getoffcanvases($id);
@@ -207,7 +207,7 @@ class BrandVinController extends Main {
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
         //$fields["brandVin:id"] = array("label" => "Name");
-        $fields["brandVin"] = array("label" => "Brand Vin", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:BrandVin', 'name' => 'vin', 'value' => 'id'));
+        //$fields["brandVin"] = array("label" => "Brand Vin", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:BrandVin', 'name' => 'vin', 'value' => 'id'));
 
         $forms = $this->getFormLyFields($entity, $fields);
 
