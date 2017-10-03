@@ -287,4 +287,3 @@ class BrandServicePart extends Entity {
     }
 
 }
-
