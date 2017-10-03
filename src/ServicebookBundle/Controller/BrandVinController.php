@@ -49,6 +49,50 @@ class BrandVinController extends Main {
     }
 
     /**
+     * @Route("/servicebook/brandvin/service/save/{service}")
+     */
+    public function servicepartsaveAction($vin = false) {
+        $this->repository = "ServicebookBundle:BrandServicePart";
+        $dt = new \DateTime("now");
+        $entity = new \ServicebookBundle\Entity\BrandService;
+        $this->newentity[$this->repository] = $entity;
+        $this->initialazeNewEntity($entity);
+        $this->newentity[$this->repository]->setField("status", 1);
+        $brandService = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:BrandService")
+                ->find($vin);
+        $this->newentity[$this->repository]->setField("brandService", $brandVin);
+
+        $entities = $this->save();
+
+        $entity = $this->getDoctrine()
+                ->getRepository($this->repository)
+                ->find($entities[$this->repository]);
+
+        $entity->setTs($dt);
+        $entity->setModified($dt);
+        $this->flushpersist($entity);
+
+        $jsonarr = array();
+        if ($entity->getId()) {
+            $jsonarr["returnurl"] = "/servicebook/brandservice/view/" . $entity->getBrandVin()->getId();
+        }
+
+        $json = json_encode($jsonarr);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );
+    }    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /**
      * @Route("/servicebook/brandvin/service/save/{vin}")
      */
     public function servicesaveAction($vin = false) {
@@ -219,7 +263,7 @@ class BrandVinController extends Main {
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
                     'pagename' => 'Vin',
-                    'url' => '/servicebook/brandvin/service/save/' . $vin,
+                    'url' => '/servicebook/brandvin/servicepart/save/' . $vin,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
