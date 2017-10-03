@@ -258,12 +258,12 @@ class BrandVinController extends Main {
             $entity = $this->getDoctrine()
                     ->getRepository("ServicebookBundle:BrandService")
                     ->find($id);
-            $vin = $entity->getBrandService()->getId();
+            $service = $entity->getBrandService()->getId();
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
                     'pagename' => 'Vin',
-                    'url' => '/servicebook/brandvin/servicepart/save/' . $vin,
+                    'url' => '/servicebook/brandvin/servicepart/save/' . $service,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
