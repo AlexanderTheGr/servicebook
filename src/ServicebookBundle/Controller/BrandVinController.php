@@ -263,7 +263,7 @@ class BrandVinController extends Main {
      */
     public function getservicepartsAction($id) {
         $session = new Session();
-        foreach ($session->get('params_gettabparts_' . $id) as $param) {
+        foreach ($session->get('params_gettabs_' . $id) as $param) {
             $this->addField($param);
         }
         $this->repository = 'ServicebookBundle:BrandServicePart';
