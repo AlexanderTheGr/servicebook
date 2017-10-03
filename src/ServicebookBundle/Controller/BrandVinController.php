@@ -51,7 +51,7 @@ class BrandVinController extends Main {
     /**
      * @Route("/servicebook/brandvin/servicepart/save/{service}")
      */
-    public function servicepartsaveAction($vin = false) {
+    public function servicepartsaveAction($service = false) {
         $this->repository = "ServicebookBundle:BrandServicePart";
         $dt = new \DateTime("now");
         $entity = new \ServicebookBundle\Entity\BrandService;
@@ -60,8 +60,7 @@ class BrandVinController extends Main {
         $brandService = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:BrandService")
                 ->find($service);
-        echo $brandService->getId();
-        exit;
+
         $this->newentity[$this->repository]->setField("brandService", $brandService);
 
         $entities = $this->save();
