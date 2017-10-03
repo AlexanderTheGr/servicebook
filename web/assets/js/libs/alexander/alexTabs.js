@@ -126,6 +126,7 @@ $("#loaderer").hide();
                          }
                          */
                         if (datatable.view) {
+                            alert(datatable.view);
                             location.href = datatable.view + "/" + $(this).attr("data-ref");
                         }
                     });
