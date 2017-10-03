@@ -41,7 +41,7 @@
         <field name="modified" type="datetime" column="modified" nullable="true"/>        
         
         <many-to-one
-            field="BrandService"
+            field="brandService"
             target-entity="ServicebookBundle\Entity\BrandService"
             inversed-by="BrandService"
             join-column="brand_service">
