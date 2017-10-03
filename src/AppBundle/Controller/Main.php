@@ -325,6 +325,7 @@ class Main extends Controller {
             'fields' => $fields,
             'drawCallback' => @$params["drawCallback"],
             'view' => @$params["view"],
+            'viewnew' => @$params["viewnew"],
             'ctrl' => @$params["ctrl"] ? $params["ctrl"] : $this->generateRandomString(),
             'app' => @$params["app"] ? $params["app"] : $this->generateRandomString());
         return $datatable;
