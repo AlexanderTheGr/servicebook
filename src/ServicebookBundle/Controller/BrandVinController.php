@@ -61,7 +61,7 @@ class BrandVinController extends Main {
         $brandService = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:BrandService")
                 ->find($service);
-        $this->newentity[$this->repository]->setField("brandService", $brandVin);
+        $this->newentity[$this->repository]->setField("brandService", $brandService);
 
         $entities = $this->save();
 
