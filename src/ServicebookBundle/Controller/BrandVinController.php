@@ -49,7 +49,7 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/service/save/{service}")
+     * @Route("/servicebook/brandvin/servicepart/save/{service}")
      */
     public function servicepartsaveAction($vin = false) {
         $this->repository = "ServicebookBundle:BrandServicePart";
