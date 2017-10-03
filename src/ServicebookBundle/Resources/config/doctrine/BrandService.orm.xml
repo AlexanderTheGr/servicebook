@@ -4,9 +4,7 @@
         <indexes>
             <index name="brand_vin" columns="brand_vin"/>
         </indexes>
-        <unique-constraints>
-            <unique-constraint name="vin" columns="vin"/>
-        </unique-constraints>        
+   
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
