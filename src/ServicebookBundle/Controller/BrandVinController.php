@@ -237,7 +237,7 @@ class BrandVinController extends Main {
             $params['view'] = '/servicebook/brandvin/servicepart/view';
             $params['viewnew'] = '/servicebook/brandvin/servicepart/view/new/' . $id;
 
-            $params['key'] = 'gettabsp_' . $id;
+            $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
