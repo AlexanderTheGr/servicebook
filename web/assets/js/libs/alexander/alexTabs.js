@@ -129,7 +129,7 @@ $("#loaderer").hide();
                             location.href = datatable.view + "/" + $(this).attr("data-ref");
                         }
                     });
-                    $(".btn_newc_" + datatable.ctrl).live('click', function() {
+                    $(".btn_new_" + datatable.ctrl).live('click', function() {
                         location.href = datatable.view + "/new";
                     });
                 })
