@@ -58,11 +58,17 @@ class BrandVinController extends Main {
         $this->newentity[$this->repository] = $entity;
         $this->initialazeNewEntity($entity);
         $this->newentity[$this->repository]->setField("status", 1);
+        $brandVin = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:BrandVin")
+                ->find($vin);
+        $this->newentity[$this->repository]->setField("brandVin", $brandVin);
+
         $entities = $this->save();
 
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->find($entities[$this->repository]);
+
         $entity->setTs($dt);
         $entity->setModified($dt);
         $this->flushpersist($entity);
@@ -150,8 +156,8 @@ class BrandVinController extends Main {
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/brandvin/getservices/' . $id;
             $params['view'] = '/servicebook/brandvin/service/view';
-            $params['viewnew'] = '/servicebook/brandvin/service/view/new/'.$id;
-            
+            $params['viewnew'] = '/servicebook/brandvin/service/view/new/' . $id;
+
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
