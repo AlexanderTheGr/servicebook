@@ -22,6 +22,7 @@ class BrandService extends Entity {
         $this->repositories['brandVin'] = 'ServicebookBundle:BrandVin';
         $this->brandVin = new \ServicebookBundle\Entity\BrandVin;
         //$this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->parts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
@@ -305,6 +306,42 @@ class BrandService extends Entity {
      */
     public function getBrandVin() {
         return $this->brandVin;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $parts;
+
+    /**
+     * Add part
+     *
+     * @param \SoftoneBundle\Entity\BrandServicePart $service
+     *
+     * @return BrandService
+     */
+    public function addService(\ServicebookBundle\Entity\BrandServicePart $part) {
+        $this->parts[] = $part;
+
+        return $this;
+    }
+
+    /**
+     * Remove part
+     *
+     * @param \SoftoneBundle\Entity\BrandServicePart $part
+     */
+    public function removeService(\ServicebookBundle\Entity\BrandServicePart $part) {
+        $this->services->removeElement($part);
+    }
+
+    /**
+     * Get parts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParts() {
+        return $this->parts;
     }
 
 }
