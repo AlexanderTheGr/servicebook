@@ -226,8 +226,34 @@ class BrandVinController extends Main {
 
         $forms = $this->getFormLyFields($entity, $fields);
 
+        if ($id > 0 AND count($entity) > 0) {
+            $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams[] = array("name" => "Title", "index" => 'part');
+            $dtparams[] = array("name" => "Code", "index" => 'code');
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params['dtparams'] = $dtparams;
+            $params['id'] = $dtparams;
+            $params['url'] = '/servicebook/brandvin/getserviceparts/' . $id;
+            $params['view'] = '/servicebook/brandvin/servicepart/view';
+            $params['viewnew'] = '/servicebook/brandvin/servicepart/view/new/' . $id;
+
+            $params['key'] = 'gettabspart_' . $id;
+            $params["ctrl"] = 'ctrlgettabparts';
+            $params["app"] = 'appgettabparts';
+            $datatables[] = $this->contentDatatable($params);
+        }        
+        
+        
+        
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
 
+        if ($id > 0 AND count($entity) > 0) {
+            $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+        }
+        foreach ((array) $tabs as $tab) {
+            $this->addTab($tab);
+        }        
+        
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
