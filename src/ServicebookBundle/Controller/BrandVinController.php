@@ -208,7 +208,7 @@ class BrandVinController extends Main {
     public function servicepartAction($id, $service = false) {
         $this->repository = "ServicebookBundle:BrandServicePart";
         $buttons = array();
-        $content = $this->getservicetabs($id);
+        $content = $this->getserviceparttabs($id);
         //$content = $this->getoffcanvases($id);
         if ($id > 0) {
             $entity = $this->getDoctrine()
@@ -229,7 +229,36 @@ class BrandVinController extends Main {
     }    
     
     
+    public function getserviceparttabs($id) {
+        $this->repository = "ServicebookBundle:BrandService";
+        $entity = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:BrandService")
+                ->find($id);
 
+        if ($id == 0 AND @ $entity->id == 0) {
+            $entity = new \ServicebookBundle\Entity\BrandService;
+            $this->newentity[$this->repository] = $entity;
+        }
+        $dataarray[] = array("value" => "0", "name" => "Oxi");
+        $dataarray[] = array("value" => "1", "name" => "Ναι");
+        
+        $fields["part"] = array("label" => "Part", 'required' => true);
+        $fields["code"] = array("label" => "Code", 'required' => true);
+        //$fields["details"] = array("label" => "Details", "type" => "textarea");
+        //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+        //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
+        //$fields["brandVin:id"] = array("label" => "Name");
+        //$fields["brandVin"] = array("label" => "Brand Vin", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:BrandVin', 'name' => 'vin', 'value' => 'id'));
+
+        $forms = $this->getFormLyFields($entity, $fields);
+        
+        $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
+
+        $json = $this->tabs();
+        //echo json_encode($json);
+        return $json;
+    }
+    
     public function getservicetabs($id) {
         $this->repository = "ServicebookBundle:BrandService";
         $entity = $this->getDoctrine()
