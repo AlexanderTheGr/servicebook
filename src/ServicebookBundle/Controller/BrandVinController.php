@@ -265,9 +265,9 @@ class BrandVinController extends Main {
     }
 
     public function getserviceparttabs($id) {
-        $this->repository = "ServicebookBundle:BrandService";
+        $this->repository = "ServicebookBundle:BrandServicePart";
         $entity = $this->getDoctrine()
-                ->getRepository("ServicebookBundle:BrandService")
+                ->getRepository("ServicebookBundle:BrandServicePart")
                 ->find($id);
 
         if ($id == 0 AND @ $entity->id == 0) {
