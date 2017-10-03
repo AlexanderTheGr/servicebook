@@ -320,7 +320,7 @@ class BrandService extends Entity {
      *
      * @return BrandService
      */
-    public function addService(\ServicebookBundle\Entity\BrandServicePart $part) {
+    public function addPart(\ServicebookBundle\Entity\BrandServicePart $part) {
         $this->parts[] = $part;
 
         return $this;
@@ -331,7 +331,7 @@ class BrandService extends Entity {
      *
      * @param \SoftoneBundle\Entity\BrandServicePart $part
      */
-    public function removeService(\ServicebookBundle\Entity\BrandServicePart $part) {
+    public function removePart(\ServicebookBundle\Entity\BrandServicePart $part) {
         $this->services->removeElement($part);
     }
 
