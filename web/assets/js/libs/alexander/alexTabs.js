@@ -126,12 +126,10 @@ $("#loaderer").hide();
                          }
                          */
                         if (datatable.view) {
-                            alert(datatable.ctrl);
                             location.href = datatable.view + "/" + $(this).attr("data-ref");
                         }
                     });
-                    $(".btn_new_" + ctrl).live('click', function() {
-                        alert(datatable.view);
+                    $(".btn_new_" + datatable.ctrl).live('click', function() {
                         location.href = datatable.view + "/new";
                     });
                 })
