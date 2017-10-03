@@ -30,7 +30,7 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/view/{id}/{vin}")
+     * @Route("/servicebook/brandvin/view/{id}")
      */
     public function viewAction($id,$vin=false) {
         $buttons = array();
@@ -49,9 +49,9 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/service/save")
+     * @Route("/servicebook/brandvin/service/save/{vin}")
      */
-    public function servicesaveAction() {
+    public function servicesaveAction($vin) {
         $this->repository = "ServicebookBundle:BrandService";
         $dt = new \DateTime("now");
         $entity = new \ServicebookBundle\Entity\BrandService;
@@ -169,16 +169,16 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/service/view/{id}")
+     * @Route("/servicebook/brandvin/service/view/{id}/{vin}")
      */
-    public function servicesAction($id) {
+    public function servicesAction($id,$vin=false) {
         $buttons = array();
         $content = $this->getservicetabs($id);
         //$content = $this->getoffcanvases($id);
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
                     'pagename' => 'Vin',
-                    'url' => '/servicebook/brandvin/service/save',
+                    'url' => '/servicebook/brandvin/service/save/'.$vin,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
