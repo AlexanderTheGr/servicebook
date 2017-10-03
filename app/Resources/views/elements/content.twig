@@ -12,7 +12,7 @@
                 <formly-form model="tab.form.model" fields="tab.form.fields" form="vm.form" options="tab.form.options"></formly-form>
                 <div id="[[ tab.index ]]"></div>  
                 <div ng-repeat="datatable in tab.datatables"> 
-                    <a href=[[datatable.view]]>Add New</a>
+                    <a href='[[datatable.view]]/new'>Add New</a>
                     <table class="alexander table table-striped dataTable [[datatable.ctrl]]">
                         <thead>
                             <tr>
