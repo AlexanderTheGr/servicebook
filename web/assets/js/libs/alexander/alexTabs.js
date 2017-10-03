@@ -1,8 +1,8 @@
 var dt_tables = [];
 $("#loaderer").hide();
 
-(function ($) {
-    $.fn.alexTabs = function (app, ctrl, url, content, custom) {
+(function($) {
+    $.fn.alexTabs = function(app, ctrl, url, content, custom) {
         var alexander = this;
         alexander.hide();
         var defaults = {}
@@ -11,13 +11,13 @@ $("#loaderer").hide();
         //console.log(content);
         tabs(app, ctrl, url, content);
         function tabs(app, ctrl, url, content) {
-            var app = angular.module(app, ['ngSanitize', 'ui.bootstrap', 'base64', 'formly', 'formlyBootstrap', 'ngMessages']).config(function ($interpolateProvider) {
+            var app = angular.module(app, ['ngSanitize', 'ui.bootstrap', 'base64', 'formly', 'formlyBootstrap', 'ngMessages']).config(function($interpolateProvider) {
                 $interpolateProvider.startSymbol('[[').endSymbol(']]');
             });
             var data = {};
             data.id = 1;
 
-            app.controller(ctrl, function ($scope, $http, $sce, $base64) {
+            app.controller(ctrl, function($scope, $http, $sce, $base64) {
                 var vm = this;
                 console.log(html_entity_decode(content));
                 var response = angular.fromJson(html_entity_decode(content));
@@ -26,7 +26,7 @@ $("#loaderer").hide();
                 vm.offcanvases = response.offcanvases;
                 alexander.show();
 
-                $scope.deliberatelyTrustDangerousSnippet = function (html) {
+                $scope.deliberatelyTrustDangerousSnippet = function(html) {
                     $scope.snippet = html;
                     return $sce.trustAsHtml($scope.snippet);
                 };
@@ -48,34 +48,34 @@ $("#loaderer").hide();
                     var data = {}
                     data.data = vm.model;
                     $http.post(url, data)
-                            .success(function (response) {
-                                if (response.returnurl) {
-                                    location.href = response.returnurl;
-                                }
-                                //if (response.unique) {
-                                angular.forEach(vm.tabs, function (tab) {
-                                    angular.forEach(tab.form.fields, function (field, index) {
-                                        //vm.model[field.id] = field.value();
-                                        //field.error = 1;
-                                        angular.forEach(response.unique, function (unique) {
-                                            if (field.id == unique) {
-                                                field.formControl.$setValidity('server', false);
-                                            }
-                                        })
-                                        //alert(field.class);
-                                    })
-                                });
-                                //}
+                            .success(function(response) {
+                        if (response.returnurl) {
+                            location.href = response.returnurl;
+                        }
+                        //if (response.unique) {
+                        angular.forEach(vm.tabs, function(tab) {
+                            angular.forEach(tab.form.fields, function(field, index) {
+                                //vm.model[field.id] = field.value();
+                                //field.error = 1;
+                                angular.forEach(response.unique, function(unique) {
+                                    if (field.id == unique) {
+                                        field.formControl.$setValidity('server', false);
+                                    }
+                                })
+                                //alert(field.class);
                             })
+                        });
+                        //}
+                    })
                 }
 
-                setTimeout(function () {
+                setTimeout(function() {
                     forEach(vm.tabs)
                     forEach(vm.offcanvases)
                 }, 30)
                 function invokeOnAllFormOptions(fn) {
-                    angular.forEach(vm.tabs, function (tab) {
-                        angular.forEach(tab.form.fields, function (field, index) {
+                    angular.forEach(vm.tabs, function(tab) {
+                        angular.forEach(tab.form.fields, function(field, index) {
                             //vm.model[field.id] = field.value();
                             field.formControl.$setValidity('server', true);
                             vm.model[$base64.encode(unescape(encodeURIComponent(field.id)))] = $base64.encode(unescape(encodeURIComponent(field.value())));
@@ -89,12 +89,12 @@ $("#loaderer").hide();
             });
         }
         function forEach(p) {
-            angular.forEach(p, function (r) {
+            angular.forEach(p, function(r) {
                 if (r.content != "") {
                     jQuery("#" + r.index).html(html_entity_decode(r.content))
 
                 }
-                angular.forEach(r.datatables, function (datatable) {
+                angular.forEach(r.datatables, function(datatable) {
                     //$("."+datatable.ctrl).alexDataTable(datatable.app, datatable.ctrl, datatable.url, datatable.view)
                     $("." + datatable.ctrl).show();
                     var dt_table = $("." + datatable.ctrl).dataTable({
@@ -102,7 +102,7 @@ $("#loaderer").hide();
                         "processing": true,
                         "serverSide": true,
                         //"initComplete": initComplete,
-                        "drawCallback": function () {
+                        "drawCallback": function() {
                             eval(datatable.drawCallback);
                         },
                         //"rowCallback": rowCallback,
@@ -115,7 +115,7 @@ $("#loaderer").hide();
                         }
                     })
                     dt_tables[datatable.ctrl] = dt_table;
-                    $("." + datatable.ctrl).find('tbody').on('click', 'tr', function () {
+                    $("." + datatable.ctrl).find('tbody').on('click', 'tr', function() {
                         /*
                          if ($(this).hasClass('selected')) {
                          $(this).removeClass('selected');
@@ -128,6 +128,9 @@ $("#loaderer").hide();
                         if (datatable.view) {
                             location.href = datatable.view + "/" + $(this).attr("data-ref");
                         }
+                        $(".btn_new_" + ctrl).live('click', function() {
+                            location.href = datatable.view + "/new";
+                        });
                     });
                 })
             })
