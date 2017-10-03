@@ -179,7 +179,7 @@ class BrandVinController extends Main {
     /**
      * @Route("/servicebook/brandvin/service/view/{id}/{vin}")
      */
-    public function servicesAction($id, $vin = false) {
+    public function serviceAction($id, $vin = false) {
         $this->repository = "ServicebookBundle:BrandService";
         $buttons = array();
         $content = $this->getservicetabs($id);
@@ -201,6 +201,34 @@ class BrandVinController extends Main {
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
+ 
+    /**
+     * @Route("/servicebook/brandvin/servicepart/view/{id}/{service}")
+     */
+    public function servicepartAction($id, $service = false) {
+        $this->repository = "ServicebookBundle:BrandServicePart";
+        $buttons = array();
+        $content = $this->getservicetabs($id);
+        //$content = $this->getoffcanvases($id);
+        if ($id > 0) {
+            $entity = $this->getDoctrine()
+                    ->getRepository("ServicebookBundle:BrandService")
+                    ->find($id);
+            $vin = $entity->getBrandService()->getId();
+        }
+        $content = $this->content();
+        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
+                    'pagename' => 'Vin',
+                    'url' => '/servicebook/brandvin/service/save/' . $vin,
+                    'buttons' => $buttons,
+                    'ctrl' => $this->generateRandomString(),
+                    'app' => $this->generateRandomString(),
+                    'content' => $content,
+                    'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
+        ));
+    }    
+    
+    
 
     public function getservicetabs($id) {
         $this->repository = "ServicebookBundle:BrandService";
