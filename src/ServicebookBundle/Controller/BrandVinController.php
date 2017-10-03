@@ -248,7 +248,7 @@ class BrandVinController extends Main {
         //$content = $this->getoffcanvases($id);
         if ($id > 0) {
             $entity = $this->getDoctrine()
-                    ->getRepository("ServicebookBundle:BrandService")
+                    ->getRepository($this->repository)
                     ->find($id);
             $service = $entity->getBrandService()->getId();
         }
