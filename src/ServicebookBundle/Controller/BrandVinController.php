@@ -281,7 +281,34 @@ class BrandVinController extends Main {
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
-
+    /**
+     * @Route("/servicebook/brandvin/serviceaction/view/{id}/{service}")
+     */
+    public function serviceactionAction($id, $service = false) {
+        $this->repository = "ServicebookBundle:BrandServiceAction";
+        $buttons = array();
+        $content = $this->getserviceactiontabs($id);
+        //$content = $this->getoffcanvases($id);
+        $pagename = 'Actions';
+        if ($id > 0) {
+            $entity = $this->getDoctrine()
+                    ->getRepository($this->repository)
+                    ->find($id);
+            $service = $entity->getBrandService()->getId();
+            $pagename = 'Actions ('.$entity->getAction().')';
+        }
+        $content = $this->content();
+        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
+                    'pagename' => $pagename,
+                    'url' => '/servicebook/brandvin/serviceaction/save/' . $service,
+                    'buttons' => $buttons,
+                    'ctrl' => $this->generateRandomString(),
+                    'app' => $this->generateRandomString(),
+                    'content' => $content,
+                    'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
+        ));
+    }
+    
     /**
      * @Route("/servicebook/brandvin/servicepart/view/{id}/{action}")
      */
@@ -341,33 +368,6 @@ class BrandVinController extends Main {
         return $json;
     }
 
-    /**
-     * @Route("/servicebook/brandvin/serviceaction/view/{id}/{service}")
-     */
-    public function serviceactionAction($id, $service = false) {
-        $this->repository = "ServicebookBundle:BrandServiceAction";
-        $buttons = array();
-        $content = $this->getserviceactiontabs($id);
-        //$content = $this->getoffcanvases($id);
-        $pagename = 'Actions';
-        if ($id > 0) {
-            $entity = $this->getDoctrine()
-                    ->getRepository($this->repository)
-                    ->find($id);
-            $service = $entity->getBrandService()->getId();
-            $pagename = 'Actions ('.$entity->getAction().')';
-        }
-        $content = $this->content();
-        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => $pagename,
-                    'url' => '/servicebook/brandvin/serviceaction/save/' . $service,
-                    'buttons' => $buttons,
-                    'ctrl' => $this->generateRandomString(),
-                    'app' => $this->generateRandomString(),
-                    'content' => $content,
-                    'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
-        ));
-    }
 
     public function getserviceactiontabs($id) {
         $this->repository = "ServicebookBundle:BrandServiceAction";
