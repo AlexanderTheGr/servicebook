@@ -285,7 +285,7 @@ class ApiController extends Main {
         $statement = $connection->prepare($sql);
         $statement->execute();
         $results = $statement->fetchAll();
-        return $results;
+        return (array)$results;
     }
 
     /**
