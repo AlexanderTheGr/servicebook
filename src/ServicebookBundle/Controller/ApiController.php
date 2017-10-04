@@ -245,6 +245,7 @@ class ApiController extends Main {
         }        
                 
         $sql = "SELECT a.*, b.brand_str, b.reference FROM  `servicebook_brand_vin` a,`servicebook_brand` b  where b.id = a.brand AND user = '".$user->getId()."' order by a.id desc";
+        echo $sql;
         $vins = $this->executeSql($sql);
         $arr = array();
         foreach ($vins as $vin) {
