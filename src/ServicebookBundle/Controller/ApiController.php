@@ -48,11 +48,6 @@ class ApiController extends Main {
         }
 
 
-
-
-
-
-
         $sql = "SELECT reference, brand_str FROM  `servicebook_brand` where enable = 1 and reference > 0";
         $connection = $this->getDoctrine()->getConnection();
         $statement = $connection->prepare($sql);
@@ -349,7 +344,7 @@ class ApiController extends Main {
                 $data["message"] = 'vin exists from another user';
                 $json = json_encode($data);
                 return new Response(
-                        $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+                        $json, 500, array('Content-Type' => 'application/json', 'token' => $token)
                 );
             } else {
                 $brand = $this->getDoctrine()
