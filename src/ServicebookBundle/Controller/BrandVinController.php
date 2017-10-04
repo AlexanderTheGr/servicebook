@@ -279,15 +279,17 @@ class BrandVinController extends Main {
         $buttons = array();
         $content = $this->getserviceparttabs($id);
         //$content = $this->getoffcanvases($id);
+        $pagenane = "Parts";
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $action = $entity->getBrandServiceAction()->getId();
+            $pagenane = "Parts (".$entity->getPart().")";
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => 'Vin',
+                    'pagename' => $pagenane,
                     'url' => '/servicebook/brandvin/servicepart/save/' . $action,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
@@ -336,15 +338,17 @@ class BrandVinController extends Main {
         $buttons = array();
         $content = $this->getserviceactiontabs($id);
         //$content = $this->getoffcanvases($id);
+        $pagename = 'Actions';
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $service = $entity->getBrandService()->getId();
+            $pagename = 'Actions ('.$entity->getAction().')';
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => 'Vin',
+                    'pagename' => $pagename,
                     'url' => '/servicebook/brandvin/serviceaction/save/' . $service,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
