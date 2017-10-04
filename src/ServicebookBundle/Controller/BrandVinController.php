@@ -49,12 +49,12 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/servicepart/save/{service}")
+     * @Route("/servicebook/brandvin/serviceaction/save/{service}")
      */
-    public function servicepartsaveAction($service = false) {
-        $this->repository = "ServicebookBundle:BrandServicePart";
+    public function serviceactionsaveAction($service = false) {
+        $this->repository = "ServicebookBundle:BrandServiceAction";
         $dt = new \DateTime("now");
-        $entity = new \ServicebookBundle\Entity\BrandServicePart;
+        $entity = new \ServicebookBundle\Entity\BrandServiceAction;
         $this->newentity[$this->repository] = $entity;
         $this->initialazeNewEntity($entity);
         $brandService = $this->getDoctrine()
@@ -130,12 +130,9 @@ class BrandVinController extends Main {
         $this->initialazeNewEntity($entity);
         $this->newentity[$this->repository]->setField("status", 1);
         $entities = $this->save();
-
-
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->find($entities[$this->repository]);
-
         $entity->setTs($dt);
         $entity->setModified($dt);
         $this->flushpersist($entity);
@@ -239,12 +236,12 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/servicepart/view/{id}/{service}")
+     * @Route("/servicebook/brandvin/serviceaction/view/{id}/{service}")
      */
-    public function servicepartAction($id, $service = false) {
-        $this->repository = "ServicebookBundle:BrandServicePart";
+    public function serviceactionAction($id, $service = false) {
+        $this->repository = "ServicebookBundle:BrandServiceAction";
         $buttons = array();
-        $content = $this->getserviceparttabs($id);
+        $content = $this->getserviceactiontabs($id);
         //$content = $this->getoffcanvases($id);
         if ($id > 0) {
             $entity = $this->getDoctrine()
@@ -255,7 +252,7 @@ class BrandVinController extends Main {
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
                     'pagename' => 'Vin',
-                    'url' => '/servicebook/brandvin/servicepart/save/' . $service,
+                    'url' => '/servicebook/brandvin/serviceaction/save/' . $service,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
@@ -264,22 +261,22 @@ class BrandVinController extends Main {
         ));
     }
 
-    public function getserviceparttabs($id) {
-        $this->repository = "ServicebookBundle:BrandServicePart";
+    public function getserviceactiontabs($id) {
+        $this->repository = "ServicebookBundle:BrandServiceAction";
         $entity = $this->getDoctrine()
-                ->getRepository("ServicebookBundle:BrandServicePart")
+                ->getRepository("ServicebookBundle:BrandServiceAction")
                 ->find($id);
 
         if ($id == 0 AND @ $entity->id == 0) {
-            $entity = new \ServicebookBundle\Entity\BrandServicePart;
+            $entity = new \ServicebookBundle\Entity\BrandServiceAction;
             $this->newentity[$this->repository] = $entity;
         }
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
-        $fields["part"] = array("label" => "Part", 'required' => true);
-        $fields["brand"] = array("label" => "Brand", 'required' => true);
-        $fields["code"] = array("label" => "Code", 'required' => true);
+        $fields["action"] = array("label" => "Action", 'required' => true);
+        $fields["manhour"] = array("label" => "Manhours", 'required' => true);
+        $fields["details"] = array("label" => "Details", 'required' => true);
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
@@ -321,15 +318,15 @@ class BrandVinController extends Main {
 
         if ($id > 0 AND count($entity) > 0) {
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
-            $dtparams[] = array("name" => "Title", "index" => 'part');
+            $dtparams[] = array("name" => "Title", "index" => 'action');
             $dtparams[] = array("name" => "Brand", "index" => 'brand');
             $dtparams[] = array("name" => "Code", "index" => 'code');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
-            $params['url'] = '/servicebook/brandvin/getserviceparts/' . $id;
-            $params['view'] = '/servicebook/brandvin/servicepart/view';
-            $params['viewnew'] = '/servicebook/brandvin/servicepart/view/new/' . $id;
+            $params['url'] = '/servicebook/brandvin/getserviceactions/' . $id;
+            $params['view'] = '/servicebook/brandvin/serviceaction/view';
+            $params['viewnew'] = '/servicebook/brandvin/serviceaction/view/new/' . $id;
 
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
@@ -342,7 +339,7 @@ class BrandVinController extends Main {
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
 
         if ($id > 0 AND count($entity) > 0) {
-            $tabs[] = array("title" => $this->getTranslation("Parts"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+            $tabs[] = array("title" => $this->getTranslation("Actions"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
         }
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
@@ -354,14 +351,14 @@ class BrandVinController extends Main {
     }
 
     /**
-     * @Route("/servicebook/brandvin/getserviceparts/{id}")
+     * @Route("/servicebook/brandvin/getserviceactions/{id}")
      */
-    public function getservicepartsAction($id) {
+    public function getserviceactionsAction($id) {
         $session = new Session();
         foreach ($session->get('params_gettabs_' . $id) as $param) {
             $this->addField($param);
         }
-        $this->repository = 'ServicebookBundle:BrandServicePart';
+        $this->repository = 'ServicebookBundle:BrandServiceAction';
         $this->q_and[] = $this->prefix . ".brandService = '" . $id . "'";
         $json = $this->datatable();
 
