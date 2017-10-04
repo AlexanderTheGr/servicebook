@@ -253,11 +253,13 @@ class BrandVinController extends Main {
         $buttons = array();
         $content = $this->getservicetabs($id);
         //$content = $this->getoffcanvases($id);
+        $pagenane = "Service";
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $vin = $entity->getBrandVin()->getId();
+            $pagenane = "Service (".$entity->getService().")";
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
@@ -279,13 +281,13 @@ class BrandVinController extends Main {
         $buttons = array();
         $content = $this->getserviceparttabs($id);
         //$content = $this->getoffcanvases($id);
-        $pagenane = "Parts";
+        $pagenane = "Part";
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $action = $entity->getBrandServiceAction()->getId();
-            $pagenane = "Parts (".$entity->getPart().")";
+            $pagenane = "Part (".$entity->getPart().")";
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
