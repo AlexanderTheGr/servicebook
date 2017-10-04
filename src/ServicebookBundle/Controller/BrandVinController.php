@@ -276,7 +276,7 @@ class BrandVinController extends Main {
 
         $fields["action"] = array("label" => "Action", 'required' => true);
         $fields["manhour"] = array("label" => "Manhours", 'required' => true);
-        $fields["details"] = array("label" => "Details", 'required' => true);
+        $fields["details"] = array("label" => "Details", 'required' => true, "type" => "textarea");
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
