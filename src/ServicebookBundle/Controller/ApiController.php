@@ -259,10 +259,10 @@ class ApiController extends Main {
             $services = $this->executeSql($sql);            
             foreach ($services as $service) {
                 $service["actions"] = array();
-                $sql = "select * from servicebook_brand_action where brand_service = '".$service["id"]."'";
+                $sql = "select * from servicebook_brand_service_action where brand_service = '".$service["id"]."'";
                 $actions = $this->executeSql($sql);
                 foreach ($actions as $action) {
-                    $sql = "select * from servicebook_brand_part where brand_service_action = '".$action["id"]."'";
+                    $sql = "select * from servicebook_brand_service_part where brand_service_action = '".$action["id"]."'";
                     $parts = $this->executeSql($sql);
                     $action["parts"] = $parts;
                     $service["actions"][] = $action;
