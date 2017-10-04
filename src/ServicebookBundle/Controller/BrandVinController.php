@@ -263,7 +263,7 @@ class BrandVinController extends Main {
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => 'Vin',
+                    'pagename' => $pagenane,
                     'url' => '/servicebook/brandvin/service/save/' . $vin,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
