@@ -29,24 +29,6 @@ class BrandVinController extends Main {
         ));
     }
 
-    /**
-     * @Route("/servicebook/brandvin/view/{id}")
-     */
-    public function viewAction($id, $vin = false) {
-        $buttons = array();
-        $content = $this->gettabs($id);
-        //$content = $this->getoffcanvases($id);
-        $content = $this->content();
-        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => 'Vin',
-                    'url' => '/servicebook/brandvin/save',
-                    'buttons' => $buttons,
-                    'ctrl' => $this->generateRandomString(),
-                    'app' => $this->generateRandomString(),
-                    'content' => $content,
-                    'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
-        ));
-    }
 
     /**
      * @Route("/servicebook/brandvin/servicepart/save/{action}")
@@ -244,6 +226,33 @@ class BrandVinController extends Main {
         //echo json_encode($json);
         return $json;
     }
+    
+    
+    /**
+     * @Route("/servicebook/brandvin/view/{id}")
+     */
+    public function viewAction($id, $vin = false) {
+        $buttons = array();
+        $content = $this->gettabs($id);
+        //$content = $this->getoffcanvases($id);
+        $content = $this->content();
+        $pagenane = "Vin";
+        if ($id > 0) {
+            $entity = $this->getDoctrine()
+                    ->getRepository($this->repository)
+                    ->find($id);
+            $pagenane = "Vin (".$entity->getVin().")";
+        }        
+        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
+                    'pagename' => $pagenane,
+                    'url' => '/servicebook/brandvin/save',
+                    'buttons' => $buttons,
+                    'ctrl' => $this->generateRandomString(),
+                    'app' => $this->generateRandomString(),
+                    'content' => $content,
+                    'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
+        ));
+    }    
 
     /**
      * @Route("/servicebook/brandvin/service/view/{id}/{vin}")
