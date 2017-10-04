@@ -226,10 +226,6 @@ class ApiController extends Main {
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
                 ->findOneBy(array("token" => md5($token)));
-        
-        $user = $this->getDoctrine()
-                ->getRepository("ServicebookBundle:User")
-                ->find(8);
 
 
         if ($user) {
