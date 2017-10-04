@@ -42,8 +42,8 @@
         
         <many-to-one
             field="brandServiceAction"
-            target-entity="ServicebookBundle\Entity\BrandServiceActionAction"
-            inversed-by="BrandServiceActionAction"
+            target-entity="ServicebookBundle\Entity\BrandServiceAction"
+            inversed-by="BrandServiceAction"
             join-column="brand_service_action">
             <join-column name="brand_service_action" referenced-column-name="id" />
         </many-to-one>    
