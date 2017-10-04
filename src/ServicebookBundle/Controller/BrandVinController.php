@@ -33,7 +33,7 @@ class BrandVinController extends Main {
     /**
      * @Route("/servicebook/brandvin/servicepart/save/{action}")
      */
-    public function servicepartsaveAction($service = false) {
+    public function servicepartsaveAction($action = false) {
         $this->repository = "ServicebookBundle:BrandServicePart";
         $dt = new \DateTime("now");
         $entity = new \ServicebookBundle\Entity\BrandServicePart;
