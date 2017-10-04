@@ -565,7 +565,8 @@ class BrandVinController extends Main {
         $this->repository = 'ServicebookBundle:BrandVin';
 
         $this->addField(array("name" => "ID", "index" => 'id', "active" => "active"))
-                ->addField(array("name" => "Vin", "index" => 'km'))
+                ->addField(array("name" => "Vin", "index" => 'vin'))
+                ->addField(array("name" => "Km", "index" => 'km'))
                 ->addField(array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand'))
                 ->addField(array("name" => "User", "index" => 'user:name'))
                 ->addField(array("name" => "Confirned", "index" => 'confirmed', 'method' => 'yesno'))
