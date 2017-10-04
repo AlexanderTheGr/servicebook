@@ -238,21 +238,32 @@ class ApiController extends Main {
                     $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
             );
         }        
-        
-        
+                
         $sql = "SELECT a.*, b.brand_str, b.reference FROM  `servicebook_brand_vin` a,`servicebook_brand` b  where b.id = a.brand AND user = '".$user->getId()."' order by a.id desc";
-        $connection = $this->getDoctrine()->getConnection();
-        $statement = $connection->prepare($sql);
-        $statement->execute();
-        $results = $statement->fetchAll();
+        $vins = $this->executeSql($sql);
         $arr = array();
-        foreach ($results as $data) {
+        foreach ($vins as $vin) {
             $file = str_replace(" ", "-", strtolower($data["brand_str"]));
             $img = "assets/img/" . $file . ".png";
             if (file_exists($img)) {
-                $data["img"] = "http://servicebook.hebs.gr/" . $img;
+                $vin["img"] = "http://servicebook.hebs.gr/" . $img;
             }
-            $arr[] = $data;            
+            $vin["services"] = array();            
+            $sql = "select * from servicebook_brand_service where brand_vin = '".$vin["id"]."'";
+            $services = $this->executeSql($sql);            
+            foreach ($services as $service) {
+                $service["actions"] = array();
+                $sql = "select * from servicebook_brand_action where brand_service = '".$service["id"]."'";
+                $actions = $this->executeSql($sql);
+                foreach ($actions as $action) {
+                    $sql = "select * from servicebook_brand_part where brand_service_action = '".$action["id"]."'";
+                    $parts = $this->executeSql($sql);
+                    $action["parts"] = $parts;
+                    $service["actions"][] = $action;
+                }          
+                $vin["services"][] = $service;
+            }
+            $arr[] = $vin;            
         }
         $data = array();
         $data["status"] = "ok";
@@ -261,6 +272,14 @@ class ApiController extends Main {
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
         );
+    }
+    
+    function executeSql($sql) {
+        $connection = $this->getDoctrine()->getConnection();
+        $statement = $connection->prepare($sql);
+        $statement->execute();
+        $results = $statement->fetchAll();
+        
     }
 
     /**
