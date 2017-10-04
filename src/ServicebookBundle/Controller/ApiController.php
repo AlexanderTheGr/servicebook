@@ -229,7 +229,7 @@ class ApiController extends Main {
         
         $user = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:User")
-                ->findOneBy(array("id" => 8));
+                ->find(8);
 
 
         if ($user) {
