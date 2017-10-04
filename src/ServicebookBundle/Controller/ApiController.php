@@ -274,7 +274,6 @@ class ApiController extends Main {
         $data = array();
         $data["status"] = "ok";
         $data["data"] = $arr;
-        print_r($data);
         $json = json_encode($data);
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
