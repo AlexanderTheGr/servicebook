@@ -336,7 +336,7 @@ class ApiController extends Main {
             $data["message"] = 'no valid params';
             $json = json_encode($data);
             return new Response(
-                    $json, 403, array('Content-Type' => 'application/json', 'token' => $token)
+                    $json, 500, array('Content-Type' => 'application/json', 'token' => $token)
             );
         }
 
