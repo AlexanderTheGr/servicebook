@@ -2,12 +2,10 @@
 
 namespace ServicebookBundle\Entity;
 
-use AppBundle\Entity\Entity;
-
 /**
- * BrandServicePart
+ * WorkshopPart
  */
-class BrandServicePart extends Entity {
+class WorkshopPart extends Entity {
 
     private $repository = 'ServicebookBundle:BrandServicePart';
     private $types = array();
@@ -19,9 +17,9 @@ class BrandServicePart extends Entity {
         $this->ts = $dt;
         $this->modified = $dt;
         $this->created = $dt;
-        $this->repositories['brandServiceAction'] = 'ServicebookBundle:BrandServiceAction';
+        $this->repositories['workshop'] = 'ServicebookBundle:Workshop';
         $this->repositories['brand'] = 'ServicebookBundle:Brand';
-        $this->brandServiceAction = new \ServicebookBundle\Entity\BrandServiceAction;
+        $this->workshop = new \ServicebookBundle\Entity\Workshop;
         $this->brand = new \ServicebookBundle\Entity\Brand;
         //$this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -43,7 +41,7 @@ class BrandServicePart extends Entity {
     }
 
     public function getRepositories($repo) {
-        $this->repositories['brandServiceAction'] = 'ServicebookBundle:BrandServiceAction';
+        $this->repositories['workshop'] = 'ServicebookBundle:Workshop';
         $this->repositories['brand'] = 'ServicebookBundle:Brand';
         return $this->repositories[$repo];
     }
@@ -63,11 +61,6 @@ class BrandServicePart extends Entity {
      * @var string
      */
     private $part;
-
-    /**
-     * @var \ServicebookBundle\Entity\Brand
-     */
-    private $brand;
 
     /**
      * @var string
@@ -100,16 +93,21 @@ class BrandServicePart extends Entity {
     private $id;
 
     /**
-     * @var \ServicebookBundle\Entity\BrandServiceAction
+     * @var \ServicebookBundle\Entity\Workshop
      */
-    private $brandServiceAction;
+    private $workshop;
+
+    /**
+     * @var \ServicebookBundle\Entity\Brand
+     */
+    private $brand;
 
     /**
      * Set part
      *
      * @param string $part
      *
-     * @return BrandServiceActionPart
+     * @return WorkshopPart
      */
     public function setPart($part) {
         $this->part = $part;
@@ -127,33 +125,11 @@ class BrandServicePart extends Entity {
     }
 
     /**
-     * Set brand
-     *
-     * @param \ServicebookBundle\Entity\Brand $brand
-     *
-     * @return WorkshopPart
-     */
-    public function setBrand(\ServicebookBundle\Entity\Brand $brand = null) {
-        $this->brand = $brand;
-
-        return $this;
-    }
-
-    /**
-     * Get brand
-     *
-     * @return \ServicebookBundle\Entity\Brand
-     */
-    public function getBrand() {
-        return $this->brand;
-    }
-
-    /**
      * Set code
      *
      * @param string $code
      *
-     * @return BrandServiceActionPart
+     * @return WorkshopPart
      */
     public function setCode($code) {
         $this->code = $code;
@@ -175,7 +151,7 @@ class BrandServicePart extends Entity {
      *
      * @param string $details
      *
-     * @return BrandServiceActionPart
+     * @return WorkshopPart
      */
     public function setDetails($details) {
         $this->details = $details;
@@ -197,7 +173,7 @@ class BrandServicePart extends Entity {
      *
      * @param \DateTime $ts
      *
-     * @return BrandServiceActionPart
+     * @return WorkshopPart
      */
     public function setTs($ts) {
         $this->ts = $ts;
@@ -219,7 +195,7 @@ class BrandServicePart extends Entity {
      *
      * @param \DateTime $created
      *
-     * @return BrandServiceActionPart
+     * @return WorkshopPart
      */
     public function setCreated($created) {
         $this->created = $created;
@@ -241,7 +217,7 @@ class BrandServicePart extends Entity {
      *
      * @param \DateTime $modified
      *
-     * @return BrandServiceActionPart
+     * @return WorkshopPart
      */
     public function setModified($modified) {
         $this->modified = $modified;
@@ -268,25 +244,48 @@ class BrandServicePart extends Entity {
     }
 
     /**
-     * Set brandServiceAction
+     * Set workshop
      *
-     * @param \ServicebookBundle\Entity\BrandServiceAction $brandServiceAction
+     * @param \ServicebookBundle\Entity\Workshop $workshop
      *
-     * @return BrandServiceActionPart
+     * @return WorkshopPart
      */
-    public function setBrandServiceAction(\ServicebookBundle\Entity\BrandServiceAction $brandServiceAction = null) {
-        $this->brandServiceAction = $brandServiceAction;
+    public function setWorkshop(\ServicebookBundle\Entity\Workshop $workshop = null) {
+        $this->workshop = $workshop;
 
         return $this;
     }
 
     /**
-     * Get brandServiceAction
+     * Get workshop
      *
-     * @return \ServicebookBundle\Entity\BrandServiceAction
+     * @return \ServicebookBundle\Entity\Workshop
      */
-    public function getBrandServiceAction() {
-        return $this->brandServiceAction;
+    public function getWorkshop() {
+        return $this->workshop;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \ServicebookBundle\Entity\Brand $brand
+     *
+     * @return WorkshopPart
+     */
+    public function setBrand(\ServicebookBundle\Entity\Brand $brand = null) {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \ServicebookBundle\Entity\Brand
+     */
+    public function getBrand() {
+        return $this->brand;
     }
 
 }
+

@@ -435,4 +435,3 @@ class Workshop extends Entity {
     }
 
 }
-
