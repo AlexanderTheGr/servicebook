@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\Main as Main;
 
-class WorkshopController extends \ServicebookBundle\Controller\SoftoneController {
+class WorkshopController extends Main {
 
     var $repository = 'ServicebookBundle:Workshop';
 
