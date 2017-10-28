@@ -15,8 +15,6 @@
             </options>
         </field>
 
-
-
         <field name="code" type="string" column="code" length="255" nullable="false">
             <options>
                 <option name="unsigned"/>
