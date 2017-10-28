@@ -2,6 +2,7 @@
 
 namespace ServicebookBundle\Entity;
 
+use AppBundle\Entity\Entity;
 /**
  * WorkshopPart
  */
