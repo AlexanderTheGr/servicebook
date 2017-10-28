@@ -349,7 +349,7 @@ class BrandVinController extends Main {
 
         $fields["part"] = array("label" => "Part", 'required' => true);
         //$fields["brand"] = array("label" => "Brand", 'required' => true);
-        //$fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');
+        
         $fields["code"] = array("label" => "Code", 'required' => true);
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
@@ -393,7 +393,7 @@ class BrandVinController extends Main {
         if ($id > 0 AND count($entity) > 0) {
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams[] = array("name" => "Title", "index" => 'part');
-            $dtparams[] = array("name" => "Brand", "index" => 'brand');
+            $dtparams[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');;
             $dtparams[] = array("name" => "Code", "index" => 'code');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
