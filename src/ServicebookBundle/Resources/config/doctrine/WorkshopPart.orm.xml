@@ -15,13 +15,6 @@
             </options>
         </field>
 
-        <field name="brand" type="string" column="brand" length="255" nullable="false">
-            <options>
-                <option name="unsigned"/>
-                <option name="default"></option>
-            </options>
-        </field>
-
         <field name="code" type="string" column="code" length="255" nullable="false">
             <options>
                 <option name="unsigned"/>
