@@ -126,11 +126,12 @@ class Main extends Controller {
 
             $recordsFiltered = $em->getRepository($this->repository)->recordsFiltered($this->where);
 
-
+            /*
             echo 'SELECT  ' . $this->select . '
                                 FROM ' . $this->repository . ' ' . $this->prefix . '
                                 ' . $this->where . '
                                 ORDER BY ' . $this->orderBy;
+            */
             $query = $em->createQuery(
                             'SELECT  ' . $this->select . '
                                 FROM ' . $this->repository . ' ' . $this->prefix . '
