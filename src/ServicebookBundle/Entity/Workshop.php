@@ -1,12 +1,47 @@
 <?php
 
 namespace ServicebookBundle\Entity;
-
+use AppBundle\Entity\Entity;
 /**
  * Workshop
  */
-class Workshop
-{
+class Workshop extends Entity {
+
+    public function __construct() {
+        //$this->repositories['tecdocSupplierId'] = 'SoftoneBundle:SoftoneSupplier';
+        //$this->types['tecdocSupplierId'] = 'object';
+        //$this->tecdocSupplierId = new \SoftoneBundle\Entity\SoftoneSupplier;
+    }
+
+    public function getField($field) {
+        return $this->$field;
+    }
+
+    public function setField($field, $val) {
+        $this->$field = $val;
+        return $val;
+    }
+
+    public function getRepository() {
+        return $this->repository;
+    }
+
+    public function getRepositories($repo) {
+        //$this->repositories['tecdocSupplierId'] = 'SoftoneBundle:SoftoneSupplier';
+        return $this->repositories[$repo];
+    }
+
+    public function gettype($field) {
+        //$this->types['tecdocSupplierId'] = 'object';
+        if (@$this->types[$field] != '') {
+            return @$this->types[$field];
+        }
+        if (gettype($field) != NULL) {
+            return gettype($this->$field);
+        }
+        return 'string';
+    }
+
     /**
      * @var string
      */
@@ -82,7 +117,6 @@ class Workshop
      */
     private $id;
 
-
     /**
      * Set code
      *
@@ -90,8 +124,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setCode($code)
-    {
+    public function setCode($code) {
         $this->code = $code;
 
         return $this;
@@ -102,8 +135,7 @@ class Workshop
      *
      * @return string
      */
-    public function getCode()
-    {
+    public function getCode() {
         return $this->code;
     }
 
@@ -114,8 +146,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -126,8 +157,7 @@ class Workshop
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -138,8 +168,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setAfm($afm)
-    {
+    public function setAfm($afm) {
         $this->afm = $afm;
 
         return $this;
@@ -150,8 +179,7 @@ class Workshop
      *
      * @return string
      */
-    public function getAfm()
-    {
+    public function getAfm() {
         return $this->afm;
     }
 
@@ -162,8 +190,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setAddress($address)
-    {
+    public function setAddress($address) {
         $this->address = $address;
 
         return $this;
@@ -174,8 +201,7 @@ class Workshop
      *
      * @return string
      */
-    public function getAddress()
-    {
+    public function getAddress() {
         return $this->address;
     }
 
@@ -186,8 +212,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setDistrict($district)
-    {
+    public function setDistrict($district) {
         $this->district = $district;
 
         return $this;
@@ -198,8 +223,7 @@ class Workshop
      *
      * @return string
      */
-    public function getDistrict()
-    {
+    public function getDistrict() {
         return $this->district;
     }
 
@@ -210,8 +234,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setZip($zip)
-    {
+    public function setZip($zip) {
         $this->zip = $zip;
 
         return $this;
@@ -222,8 +245,7 @@ class Workshop
      *
      * @return string
      */
-    public function getZip()
-    {
+    public function getZip() {
         return $this->zip;
     }
 
@@ -234,8 +256,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setCity($city)
-    {
+    public function setCity($city) {
         $this->city = $city;
 
         return $this;
@@ -246,8 +267,7 @@ class Workshop
      *
      * @return string
      */
-    public function getCity()
-    {
+    public function getCity() {
         return $this->city;
     }
 
@@ -258,8 +278,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setPhone01($phone01)
-    {
+    public function setPhone01($phone01) {
         $this->phone01 = $phone01;
 
         return $this;
@@ -270,8 +289,7 @@ class Workshop
      *
      * @return string
      */
-    public function getPhone01()
-    {
+    public function getPhone01() {
         return $this->phone01;
     }
 
@@ -282,8 +300,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setPhone02($phone02)
-    {
+    public function setPhone02($phone02) {
         $this->phone02 = $phone02;
 
         return $this;
@@ -294,8 +311,7 @@ class Workshop
      *
      * @return string
      */
-    public function getPhone02()
-    {
+    public function getPhone02() {
         return $this->phone02;
     }
 
@@ -306,8 +322,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setFax($fax)
-    {
+    public function setFax($fax) {
         $this->fax = $fax;
 
         return $this;
@@ -318,8 +333,7 @@ class Workshop
      *
      * @return string
      */
-    public function getFax()
-    {
+    public function getFax() {
         return $this->fax;
     }
 
@@ -330,8 +344,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setWebpage($webpage)
-    {
+    public function setWebpage($webpage) {
         $this->webpage = $webpage;
 
         return $this;
@@ -342,8 +355,7 @@ class Workshop
      *
      * @return string
      */
-    public function getWebpage()
-    {
+    public function getWebpage() {
         return $this->webpage;
     }
 
@@ -354,8 +366,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setTs($ts)
-    {
+    public function setTs($ts) {
         $this->ts = $ts;
 
         return $this;
@@ -366,8 +377,7 @@ class Workshop
      *
      * @return \DateTime
      */
-    public function getTs()
-    {
+    public function getTs() {
         return $this->ts;
     }
 
@@ -378,8 +388,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setCreated($created)
-    {
+    public function setCreated($created) {
         $this->created = $created;
 
         return $this;
@@ -390,8 +399,7 @@ class Workshop
      *
      * @return \DateTime
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
 
@@ -402,8 +410,7 @@ class Workshop
      *
      * @return Workshop
      */
-    public function setModified($modified)
-    {
+    public function setModified($modified) {
         $this->modified = $modified;
 
         return $this;
@@ -414,8 +421,7 @@ class Workshop
      *
      * @return \DateTime
      */
-    public function getModified()
-    {
+    public function getModified() {
         return $this->modified;
     }
 
@@ -424,9 +430,9 @@ class Workshop
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
+
 }
 
