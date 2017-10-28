@@ -26,7 +26,6 @@ class WorkshopController extends \ServicebookBundle\Controller\SoftoneController
         ));
     }
 
-
     /**
      * @Route("/servicebook/workshop/view/{id}")
      */
@@ -91,4 +90,5 @@ class WorkshopController extends \ServicebookBundle\Controller\SoftoneController
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
+
 }
