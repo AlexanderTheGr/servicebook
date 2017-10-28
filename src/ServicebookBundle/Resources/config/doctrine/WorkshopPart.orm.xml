@@ -3,6 +3,7 @@
     <entity name="ServicebookBundle\Entity\WorkshopPart"  repository-class="ServicebookBundle\Entity\WorkshopPartRepository"  table="servicebook_brand_service_part">
         <indexes>
             <index name="workshop" columns="workshop"/>
+            <index name="brand" columns="brand"/>
         </indexes>     
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
@@ -46,6 +47,13 @@
             inversed-by="Workshop"
             join-column="workshop">
             <join-column name="workshop" referenced-column-name="id" />
-        </many-to-one>    
+        </many-to-one> 
+        <many-to-one
+            field="brand"
+            target-entity="ServicebookBundle\Entity\Brand"
+            inversed-by="Brand"
+            join-column="brand">
+            <join-column name="brand" referenced-column-name="id" />
+        </many-to-one>            
     </entity>
 </doctrine-mapping>
