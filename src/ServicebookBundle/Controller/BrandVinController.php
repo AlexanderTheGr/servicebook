@@ -323,7 +323,7 @@ class BrandVinController extends Main {
             
             $dtparams2 = array();
             $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
-            $dtparams2[] = array("name" => "Date", "index" => 'ts');
+            $dtparams2[] = array("name" => "Date","method"=>'datetime', "index" => 'ts');
             $dtparams2[] = array("name" => "KM", "index" => 'km');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params2['dtparams'] = $dtparams2;
