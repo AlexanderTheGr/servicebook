@@ -332,9 +332,9 @@ class BrandVinController extends Main {
             $params2['view'] = '/servicebook/brandvin/km/view';
             $params2['viewnew'] = '/servicebook/brandvin/km/view/new/' . $id;
 
-            $params2['key'] = 'gettabs_' . $id;
-            $params2["ctrl"] = 'ctrlgettabs';
-            $params2["app"] = 'appgettabs';
+            $params2['key'] = 'gettabs2_' . $id;
+            $params2["ctrl"] = 'ctrlgettabs2';
+            $params2["app"] = 'appgettabs2';
             $datatables2[] = $this->contentDatatable($params2);
 
         }
@@ -580,9 +580,9 @@ class BrandVinController extends Main {
     /**
      * @Route("/servicebook/brandvin/getkm/{id}")
      */
-    public function getkmction($id) {
+    public function getkmAction($id) {
         $session = new Session();
-        foreach ($session->get('params_gettabs_' . $id) as $param) {
+        foreach ($session->get('params_gettabs2_' . $id) as $param) {
             $this->addField($param);
         }
         $this->repository = 'ServicebookBundle:BrandVinKm';
