@@ -307,8 +307,8 @@ class BrandVinController extends Main {
         $forms = $this->getFormLyFields($entity, $fields);
         if ($id > 0 AND count($entity) > 0) {
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
-            $dtparams[] = array("name" => "Title", "index" => 'service');
             $dtparams[] = array("name" => "Title", "index" => 'km');
+            //$dtparams[] = array("name" => "Title", "index" => 'km');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
@@ -320,10 +320,28 @@ class BrandVinController extends Main {
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
+            
+            $dtparams = array();
+            $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams[] = array("name" => "Title", "index" => 'service');
+            $dtparams[] = array("name" => "Title", "index" => 'km');
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params['dtparams'] = $dtparams;
+            $params['id'] = $dtparams;
+            $params['url'] = '/servicebook/brandvin/getkm/' . $id;
+            $params['view'] = '/servicebook/brandvin/km/view';
+            $params['viewnew'] = '/servicebook/brandvin/km/view/new/' . $id;
+
+            $params['key'] = 'gettabs_' . $id;
+            $params["ctrl"] = 'ctrlgettabs';
+            $params["app"] = 'appgettabs';
+            $datatables2[] = $this->contentDatatable($params);
+
         }
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
         if ($id > 0 AND count($entity) > 0) {
+            $tabs[] = array("title" => $this->getTranslation("ΚΜ"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
             $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
         }
         foreach ((array) $tabs as $tab) {
@@ -559,7 +577,34 @@ class BrandVinController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
+    /**
+     * @Route("/servicebook/brandvin/getkm/{id}")
+     */
+    public function getkmction($id) {
+        $session = new Session();
+        foreach ($session->get('params_gettabs_' . $id) as $param) {
+            $this->addField($param);
+        }
+        $this->repository = 'ServicebookBundle:BrandVinKm';
+        $this->q_and[] = $this->prefix . ".brandVin = '" . $id . "'";
+        $json = $this->datatable();
 
+        $datatable = json_decode($json);
+        $datatable->data = (array) $datatable->data;
+        foreach ($datatable->data as $key => $table) {
+            $table = (array) $table;
+            $table1 = array();
+            foreach ($table as $f => $val) {
+                $table1[$f] = $val;
+            }
+            $datatable->data[$key] = $table1;
+        }
+        $json = json_encode($datatable);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );
+    }
+    
     /**
      * @Route("/servicebook/brandvin/getdatatable")
      */
