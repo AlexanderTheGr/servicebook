@@ -5,11 +5,11 @@ namespace ServicebookBundle\Entity;
 use AppBundle\Entity\Entity;
 
 /**
- * BrandService
+ * BrandVinKm
  */
-class BrandService extends Entity {
+class BrandVinKm extends Entity {
 
-    private $repository = 'ServicebookBundle:BrandService';
+    private $repository = 'ServicebookBundle:BrandVinKm';
     private $types = array();
     var $repositories = array();
     var $uniques = array();
@@ -57,13 +57,6 @@ class BrandService extends Entity {
         return 'string';
     }
 
-    private $service;
-
-    /**
-     * @var string
-     */
-    private $model = '';
-
     /**
      * @var integer
      */
@@ -100,55 +93,16 @@ class BrandService extends Entity {
     private $id;
 
     /**
-     * Set service
-     *
-     * @param string $service
-     *
-     * @return BrandService
+     * @var \ServicebookBundle\Entity\BrandVin
      */
-    public function setService($service) {
-        $this->service = $service;
-
-        return $this;
-    }
-
-    /**
-     * Get service
-     *
-     * @return string
-     */
-    public function getService() {
-        return $this->service;
-    }
-
-    /**
-     * Set model
-     *
-     * @param string $model
-     *
-     * @return BrandService
-     */
-    public function setModel($model) {
-        $this->model = $model;
-
-        return $this;
-    }
-
-    /**
-     * Get model
-     *
-     * @return string
-     */
-    public function getModel() {
-        return $this->model;
-    }
+    private $brandVin;
 
     /**
      * Set km
      *
      * @param integer $km
      *
-     * @return BrandService
+     * @return BrandVinKm
      */
     public function setKm($km) {
         $this->km = $km;
@@ -170,7 +124,7 @@ class BrandService extends Entity {
      *
      * @param string $details
      *
-     * @return BrandService
+     * @return BrandVinKm
      */
     public function setDetails($details) {
         $this->details = $details;
@@ -192,7 +146,7 @@ class BrandService extends Entity {
      *
      * @param boolean $status
      *
-     * @return BrandService
+     * @return BrandVinKm
      */
     public function setStatus($status) {
         $this->status = $status;
@@ -214,7 +168,7 @@ class BrandService extends Entity {
      *
      * @param \DateTime $ts
      *
-     * @return BrandService
+     * @return BrandVinKm
      */
     public function setTs($ts) {
         $this->ts = $ts;
@@ -236,7 +190,7 @@ class BrandService extends Entity {
      *
      * @param \DateTime $created
      *
-     * @return BrandService
+     * @return BrandVinKm
      */
     public function setCreated($created) {
         $this->created = $created;
@@ -258,7 +212,7 @@ class BrandService extends Entity {
      *
      * @param \DateTime $modified
      *
-     * @return BrandService
+     * @return BrandVinKm
      */
     public function setModified($modified) {
         $this->modified = $modified;
@@ -284,14 +238,12 @@ class BrandService extends Entity {
         return $this->id;
     }
 
-    private $brandVin;
-
     /**
      * Set brandVin
      *
      * @param \ServicebookBundle\Entity\BrandVin $brandVin
      *
-     * @return BrandService
+     * @return BrandVinKm
      */
     public function setBrandVin(\ServicebookBundle\Entity\BrandVin $brandVin = null) {
         $this->brandVin = $brandVin;
@@ -308,40 +260,5 @@ class BrandService extends Entity {
         return $this->brandVin;
     }
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $parts;
-
-    /**
-     * Add part
-     *
-     * @param \SoftoneBundle\Entity\BrandServicePart $service
-     *
-     * @return BrandService
-     */
-    public function addPart(\ServicebookBundle\Entity\BrandServicePart $part) {
-        $this->parts[] = $part;
-
-        return $this;
-    }
-
-    /**
-     * Remove part
-     *
-     * @param \SoftoneBundle\Entity\BrandServicePart $part
-     */
-    public function removePart(\ServicebookBundle\Entity\BrandServicePart $part) {
-        $this->services->removeElement($part);
-    }
-
-    /**
-     * Get parts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getParts() {
-        return $this->parts;
-    }
-
 }
+
