@@ -321,27 +321,27 @@ class BrandVinController extends Main {
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
             
-            $dtparams = array();
-            $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
-            $dtparams[] = array("name" => "Title", "index" => 'service');
-            $dtparams[] = array("name" => "Title", "index" => 'km');
+            $dtparams2 = array();
+            $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams2[] = array("name" => "Title", "index" => 'service');
+            $dtparams2[] = array("name" => "Title", "index" => 'km');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
-            $params['dtparams'] = $dtparams;
-            $params['id'] = $dtparams;
-            $params['url'] = '/servicebook/brandvin/getkm/' . $id;
-            $params['view'] = '/servicebook/brandvin/km/view';
-            $params['viewnew'] = '/servicebook/brandvin/km/view/new/' . $id;
+            $params2['dtparams'] = $dtparams2;
+            $params2['id'] = $dtparams2;
+            $params2['url'] = '/servicebook/brandvin/getkm/' . $id;
+            $params2['view'] = '/servicebook/brandvin/km/view';
+            $params2['viewnew'] = '/servicebook/brandvin/km/view/new/' . $id;
 
-            $params['key'] = 'gettabs_' . $id;
-            $params["ctrl"] = 'ctrlgettabs';
-            $params["app"] = 'appgettabs';
-            $datatables2[] = $this->contentDatatable($params);
+            $params2['key'] = 'gettabs_' . $id;
+            $params2["ctrl"] = 'ctrlgettabs';
+            $params2["app"] = 'appgettabs';
+            $datatables2[] = $this->contentDatatable($params2);
 
         }
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
         if ($id > 0 AND count($entity) > 0) {
-            $tabs[] = array("title" => $this->getTranslation("ΚΜ"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+            $tabs[] = array("title" => $this->getTranslation("ΚΜ"), "datatables" => $datatables2, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
             $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
         }
         foreach ((array) $tabs as $tab) {
