@@ -198,7 +198,7 @@ class BrandVinController extends Main {
      * @Route("/servicebook/brandvin/km/view/{id}/{vin}")
      */
     public function kmAction($id, $vin = false) {
-        $this->repository = "ServicebookBundle:BrandService";
+        $this->repository = "ServicebookBundle:BrandVinKm";
         $buttons = array();
         $content = $this->getservicetabs($id);
         //$content = $this->getoffcanvases($id);
@@ -208,7 +208,7 @@ class BrandVinController extends Main {
                     ->getRepository($this->repository)
                     ->find($id);
             $vin = $entity->getBrandVin()->getId();
-            $pagenane = "Service (".$entity->getService().")";
+            $pagenane = "KM (".$entity->getService().")";
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
