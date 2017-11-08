@@ -200,7 +200,7 @@ class BrandVinController extends Main {
     public function kmAction($id, $vin = false) {
         $this->repository = "ServicebookBundle:BrandVinKm";
         $buttons = array();
-        $content = $this->getservicetabs($id);
+        $content = $this->getkmtabs($id);
         //$content = $this->getoffcanvases($id);
         $pagenane = "KM";
         if ($id > 0) {
@@ -377,6 +377,39 @@ class BrandVinController extends Main {
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
         }
+        $json = $this->tabs();
+        //echo json_encode($json);
+        return $json;
+    }
+    
+    public function getkmtabs($id) {
+        $this->repository = "ServicebookBundle:BrandVinKm";
+        $entity = $this->getDoctrine()
+                ->getRepository("ServicebookBundle:BrandVinKm")
+                ->find($id);
+
+        if ($id == 0 AND @ $entity->id == 0) {
+            $entity = new \ServicebookBundle\Entity\BrandServicePart;
+            $this->newentity[$this->repository] = $entity;
+        }
+        $dataarray[] = array("value" => "0", "name" => "Oxi");
+        $dataarray[] = array("value" => "1", "name" => "Ναι");
+
+        $fields["km"] = array("label" => "Km", 'required' => true);
+        //$fields["brand"] = array("label" => "Brand", 'required' => true);
+        //$fields["km"] = array("label" => "Brand", "disabled" => false, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+
+        //$fields["code"] = array("label" => "Code", 'required' => true);
+        //$fields["details"] = array("label" => "Details", "type" => "textarea");
+        //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+        //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
+        //$fields["brandVin:id"] = array("label" => "Name");
+        //$fields["brandVin"] = array("label" => "Brand Vin", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:BrandVin', 'name' => 'vin', 'value' => 'id'));
+
+        $forms = $this->getFormLyFields($entity, $fields);
+
+        $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
+
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
