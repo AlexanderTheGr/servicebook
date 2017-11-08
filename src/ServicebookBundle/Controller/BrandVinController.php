@@ -144,7 +144,7 @@ class BrandVinController extends Main {
     public function kmsaveAction($vin = false) {
         $this->repository = "ServicebookBundle:BrandVinKm";
         $dt = new \DateTime("now");
-        $entity = new \ServicebookBundle\Entity\BrandService;
+        $entity = new \ServicebookBundle\Entity\BrandVinKm;
         $this->newentity[$this->repository] = $entity;
         $this->initialazeNewEntity($entity);
         //$this->newentity[$this->repository]->setField("status", 1);
