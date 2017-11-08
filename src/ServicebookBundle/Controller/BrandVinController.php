@@ -138,6 +138,8 @@ class BrandVinController extends Main {
         );
     }
 
+    
+    
     /**
      * @Route("/servicebook/brandvin/save")
      */
@@ -192,6 +194,34 @@ class BrandVinController extends Main {
         ));
     }    
 
+    /**
+     * @Route("/servicebook/brandvin/km/view/{id}/{vin}")
+     */
+    public function kmAction($id, $vin = false) {
+        $this->repository = "ServicebookBundle:BrandService";
+        $buttons = array();
+        $content = $this->getservicetabs($id);
+        //$content = $this->getoffcanvases($id);
+        $pagenane = "KM";
+        if ($id > 0) {
+            $entity = $this->getDoctrine()
+                    ->getRepository($this->repository)
+                    ->find($id);
+            $vin = $entity->getBrandVin()->getId();
+            $pagenane = "Service (".$entity->getService().")";
+        }
+        $content = $this->content();
+        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
+                    'pagename' => $pagenane,
+                    'url' => '/servicebook/brandvin/km/save/' . $vin,
+                    'buttons' => $buttons,
+                    'ctrl' => $this->generateRandomString(),
+                    'app' => $this->generateRandomString(),
+                    'content' => $content,
+                    'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
+        ));
+    }
+    
     /**
      * @Route("/servicebook/brandvin/service/view/{id}/{vin}")
      */
