@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="ServicebookBundle\Entity\WorkshopServiceAction"  repository-class="ServicebookBundle\Entity\WorkshopServiceActionRepository"  table="servicebook_brand_service_action">
+        <indexes>
+            <index name="workshop_service" columns="workshop_service"/>
+            <index name="brand_service_action" columns="brand_service_action"/>
+        </indexes>     
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+        
+        <field name="action" type="string" column="action" length="255" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+
+        <field name="manhour" type="integer" column="manhour" length="255" nullable="false">
+            <options>
+                <option name="unsigned"/>
+                <option name="default">0</option>
+            </options>
+        </field>    
+                
+        <field name="details" type="text" column="details" length="65535" nullable="false">
+            <options>
+                <option name="fixed"/>
+                <option name="default"></option>
+            </options>
+        </field>
+        
+        <field name="ts" type="datetime" column="ts" nullable="true"/>
+        <field name="created" type="datetime" column="created" nullable="true"/>
+        <field name="modified" type="datetime" column="modified" nullable="true"/>        
+        
+        <many-to-one
+            field="workshopService"
+            target-entity="ServicebookBundle\Entity\WorkshopService"
+            inversed-by="WorkshopService"
+            join-column="workshop_service">
+            <join-column name="workshop_service" referenced-column-name="id" />
+        </many-to-one>    
+        <many-to-one
+            field="brandServiceAction"
+            target-entity="ServicebookBundle\Entity\BrandServiceAction"
+            inversed-by="BrandServiceAction"
+            join-column="brand_service_action">
+            <join-column name="brand_service_action" referenced-column-name="id" />
+        </many-to-one>        
+    </entity>
+</doctrine-mapping>
