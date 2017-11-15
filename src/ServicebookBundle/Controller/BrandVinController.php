@@ -343,7 +343,7 @@ class BrandVinController extends Main {
                     ->getRepository($this->repository)
                     ->find($id);
             $action = $entity->getBrandServiceAction()->getId();
-            $pagename = "Part (" . $entity->getPart() . " " . $entity->getCode() . ")";
+            $pagename = "Part (" . $entity->getBrand()->getBrand() . "  " . $entity->getPart() . " " . $entity->getCode() . ")";
 
             //$pagename = 'Action: (' . $entity->getAction() . ')';
             $vinpagenane = "Vin (" . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getVin() . ")";
