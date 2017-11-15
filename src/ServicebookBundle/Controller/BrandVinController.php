@@ -286,6 +286,7 @@ class BrandVinController extends Main {
             $vinpagenane = "Vin: (" . $entity->getVin() . ")";
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
             $breadcrumb[] = 'New Service';
+            $pagename = 'New Service';
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
