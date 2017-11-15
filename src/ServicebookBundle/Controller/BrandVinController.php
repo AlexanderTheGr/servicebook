@@ -249,6 +249,7 @@ class BrandVinController extends Main {
                     ->getRepository($this->repository)
                     ->find($id);
             $vin = $entity->getBrandVin()->getId();
+            
             $pagenane = "KM (".$entity->getService().")";
         }
         $content = $this->content();
@@ -277,7 +278,11 @@ class BrandVinController extends Main {
                     ->getRepository($this->repository)
                     ->find($id);
             $vin = $entity->getBrandVin()->getId();
+            
             $pagenane = "Service (".$entity->getService().")";
+            $vinpagenane = "Vin (".$entity->getBrandVin()->getVin().")";
+            $breadcrumb[] = '<a href="/servicebook/brandvin/view/'.$vin.'">'.$vinpagenane.'</a>';
+            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/'.$id.'/'.$vin.'">'.$pagenane.'</a>';
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
