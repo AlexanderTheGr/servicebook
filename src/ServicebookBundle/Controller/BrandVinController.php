@@ -311,6 +311,13 @@ class BrandVinController extends Main {
                     ->find($id);
             $service = $entity->getBrandService()->getId();
             $pagename = 'Actions ('.$entity->getAction().')';
+            
+            $vinpagenane = "Vin (".$entity->getBrandService()->getBrandVin()->getVin().")";
+            $servicepagenane = "Service (".$entity->getBrandService()->getService().")";
+            $breadcrumb[] = '<a href="/servicebook/brandvin/view/'.$entity->getBrandService()->getBrandVin()->getId().'">'.$vinpagenane.'</a>';
+            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/'.$entity->getBrandService()->getId().'/'.$entity->getBrandService()->getBrandVin()->getId().'">'.$servicepagenane.'</a>';
+            $breadcrumb[] = '<a href="/servicebook/brandvin/serviceaction/view/'.$id.'/'.$service.'">'.$pagenane.'</a>';
+            
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
@@ -339,6 +346,9 @@ class BrandVinController extends Main {
                     ->find($id);
             $action = $entity->getBrandServiceAction()->getId();
             $pagenane = "Part (".$entity->getPart().")";
+            
+            
+
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
