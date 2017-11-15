@@ -2,11 +2,63 @@
 
 namespace ServicebookBundle\Entity;
 
+use AppBundle\Entity\Entity;
+
 /**
  * WorkshopServiceAction
  */
-class WorkshopServiceAction
-{
+class WorkshopServiceAction extends Entity {
+
+    private $repository = 'ServicebookBundle:WorkshopServiceAction';
+    private $types = array();
+    var $repositories = array();
+    var $uniques = array();
+
+    public function __construct() {
+        $dt = new \DateTime("now");
+        $this->ts = $dt;
+        $this->modified = $dt;
+        $this->created = $dt;
+        $this->repositories['workshopService'] = 'ServicebookBundle:WorkshopService';
+        $this->repositories['brandServiceAction'] = 'ServicebookBundle:BrandServiceAction';
+        $this->workshopService = new \ServicebookBundle\Entity\WorkshopService;
+        $this->brandServiceAction = new \ServicebookBundle\Entity\BrandServiceAction;
+        //$this->items = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getField($field) {
+        if ($this->gettype($field) == 'boolean') {
+            return (int) $this->$field;
+        }
+        return $this->$field;
+    }
+
+    public function setField($field, $val) {
+        $this->$field = $val;
+        return $val;
+    }
+
+    public function getRepository() {
+        return $this->repository;
+    }
+
+    public function getRepositories($repo) {
+        $this->repositories['brandService'] = 'ServicebookBundle:BrandService';
+        $this->repositories['brandServiceAction'] = 'ServicebookBundle:BrandServiceAction';
+        return $this->repositories[$repo];
+    }
+
+    public function gettype($field) {
+        $this->types['confirmed'] = 'boolean';
+        if (@$this->types[$field] != '') {
+            return @$this->types[$field];
+        }
+        if (gettype($field) != NULL) {
+            return gettype($this->$field);
+        }
+        return 'string';
+    }
+
     /**
      * @var string
      */
@@ -52,7 +104,6 @@ class WorkshopServiceAction
      */
     private $brandServiceAction;
 
-
     /**
      * Set action
      *
@@ -60,8 +111,7 @@ class WorkshopServiceAction
      *
      * @return WorkshopServiceAction
      */
-    public function setAction($action)
-    {
+    public function setAction($action) {
         $this->action = $action;
 
         return $this;
@@ -72,8 +122,7 @@ class WorkshopServiceAction
      *
      * @return string
      */
-    public function getAction()
-    {
+    public function getAction() {
         return $this->action;
     }
 
@@ -84,8 +133,7 @@ class WorkshopServiceAction
      *
      * @return WorkshopServiceAction
      */
-    public function setManhour($manhour)
-    {
+    public function setManhour($manhour) {
         $this->manhour = $manhour;
 
         return $this;
@@ -96,8 +144,7 @@ class WorkshopServiceAction
      *
      * @return integer
      */
-    public function getManhour()
-    {
+    public function getManhour() {
         return $this->manhour;
     }
 
@@ -108,8 +155,7 @@ class WorkshopServiceAction
      *
      * @return WorkshopServiceAction
      */
-    public function setDetails($details)
-    {
+    public function setDetails($details) {
         $this->details = $details;
 
         return $this;
@@ -120,8 +166,7 @@ class WorkshopServiceAction
      *
      * @return string
      */
-    public function getDetails()
-    {
+    public function getDetails() {
         return $this->details;
     }
 
@@ -132,8 +177,7 @@ class WorkshopServiceAction
      *
      * @return WorkshopServiceAction
      */
-    public function setTs($ts)
-    {
+    public function setTs($ts) {
         $this->ts = $ts;
 
         return $this;
@@ -144,8 +188,7 @@ class WorkshopServiceAction
      *
      * @return \DateTime
      */
-    public function getTs()
-    {
+    public function getTs() {
         return $this->ts;
     }
 
@@ -156,8 +199,7 @@ class WorkshopServiceAction
      *
      * @return WorkshopServiceAction
      */
-    public function setCreated($created)
-    {
+    public function setCreated($created) {
         $this->created = $created;
 
         return $this;
@@ -168,8 +210,7 @@ class WorkshopServiceAction
      *
      * @return \DateTime
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
 
@@ -180,8 +221,7 @@ class WorkshopServiceAction
      *
      * @return WorkshopServiceAction
      */
-    public function setModified($modified)
-    {
+    public function setModified($modified) {
         $this->modified = $modified;
 
         return $this;
@@ -192,8 +232,7 @@ class WorkshopServiceAction
      *
      * @return \DateTime
      */
-    public function getModified()
-    {
+    public function getModified() {
         return $this->modified;
     }
 
@@ -202,8 +241,7 @@ class WorkshopServiceAction
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -214,8 +252,7 @@ class WorkshopServiceAction
      *
      * @return WorkshopServiceAction
      */
-    public function setWorkshopService(\ServicebookBundle\Entity\WorkshopService $workshopService = null)
-    {
+    public function setWorkshopService(\ServicebookBundle\Entity\WorkshopService $workshopService = null) {
         $this->workshopService = $workshopService;
 
         return $this;
@@ -226,8 +263,7 @@ class WorkshopServiceAction
      *
      * @return \ServicebookBundle\Entity\WorkshopService
      */
-    public function getWorkshopService()
-    {
+    public function getWorkshopService() {
         return $this->workshopService;
     }
 
@@ -238,8 +274,7 @@ class WorkshopServiceAction
      *
      * @return WorkshopServiceAction
      */
-    public function setBrandServiceAction(\ServicebookBundle\Entity\BrandServiceAction $brandServiceAction = null)
-    {
+    public function setBrandServiceAction(\ServicebookBundle\Entity\BrandServiceAction $brandServiceAction = null) {
         $this->brandServiceAction = $brandServiceAction;
 
         return $this;
@@ -250,9 +285,9 @@ class WorkshopServiceAction
      *
      * @return \ServicebookBundle\Entity\BrandServiceAction
      */
-    public function getBrandServiceAction()
-    {
+    public function getBrandServiceAction() {
         return $this->brandServiceAction;
     }
+
 }
 
