@@ -345,10 +345,10 @@ class BrandVinController extends Main {
             $action = $entity->getBrandServiceAction()->getId();
             $pagename = "Part (" . $entity->getPart() . ")";
 
-            $pagename = 'Action: (' . $entity->getAction() . ')';
+            //$pagename = 'Action: (' . $entity->getAction() . ')';
             $vinpagenane = "Vin (" . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getVin() . ")";
             $servicepagenane = "Service: (" . $entity->getBrandServiceAction()->getBrandService()->getService() . ")";
-            $serviceactionpagename = 'Action: (' . $entity->getBrandServiceAction()->getId() . ')';
+            $serviceactionpagename = 'Action: (' . $entity->getBrandServiceAction()->getAction() . ')';
             
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getId() . '">' . $vinpagenane . '</a>';
             $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $entity->getBrandServiceAction()->getBrandService()->getId() . '/' . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getId() . '">' . $servicepagenane . '</a>';
