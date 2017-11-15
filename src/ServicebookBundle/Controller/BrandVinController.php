@@ -360,9 +360,6 @@ class BrandVinController extends Main {
         $pagename = "Part";
         $breadcrumb = array();
 
-
-
-
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
