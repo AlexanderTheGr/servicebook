@@ -348,7 +348,7 @@ class BrandVinController extends Main {
             $pagename = 'Action: (' . $entity->getAction() . ')';
             $vinpagenane = "Vin (" . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getVin() . ")";
             $servicepagenane = "Service: (" . $entity->getBrandServiceAction()->getBrandService()->getService() . ")";
-            $serviceactionpagename = 'Action: (' . $entity->getBrandServiceAction()->getAction() . ')';
+            $serviceactionpagename = 'Action: (' . $entity->getBrandServiceAction()->getId() . ')';
             
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getId() . '">' . $vinpagenane . '</a>';
             $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $entity->getBrandServiceAction()->getBrandService()->getId() . '/' . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getId() . '">' . $servicepagenane . '</a>';
