@@ -278,6 +278,13 @@ class BrandVinController extends Main {
             $vinpagenane = "Vin: (" . $entity->getBrandVin()->getVin() . ")";
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
             $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $id . '/' . $vin . '">' . $pagename . '</a>';
+        } else {
+
+            $entity = $this->getDoctrine()
+                    ->getRepository('ServicebookBundle:BrandVin')
+                    ->find($vin);
+            $vinpagenane = "Vin: (" . $entity->getVin() . ")";
+            $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
@@ -323,7 +330,7 @@ class BrandVinController extends Main {
             $servicepagenane = "Service: (" . $entity->getService() . ")";
             $vinpagenane = "Vin: (" . $entity->getBrandVin()->getVin() . ")";
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
-            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $service . '/' . $vin . '">' . $servicepagenane . '</a>';            
+            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $service . '/' . $vin . '">' . $servicepagenane . '</a>';
             $breadcrumb[] = 'New Action';
         }
         $content = $this->content();
@@ -349,10 +356,10 @@ class BrandVinController extends Main {
         //$content = $this->getoffcanvases($id);
         $pagename = "Part";
         $breadcrumb = array();
-        
-        
-        
-        
+
+
+
+
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
@@ -380,7 +387,7 @@ class BrandVinController extends Main {
             $servicepagenane = "Service: (" . $entity->getBrandService()->getService() . ")";
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $entity->getBrandService()->getBrandVin()->getId() . '">' . $vinpagenane . '</a>';
             $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $entity->getBrandService()->getId() . '/' . $entity->getBrandService()->getBrandVin()->getId() . '">' . $servicepagenane . '</a>';
-            $breadcrumb[] = '<a href="/servicebook/brandvin/serviceaction/view/' . $action . '/' . $service . '">' . $serviceactionpagename . '</a>';            
+            $breadcrumb[] = '<a href="/servicebook/brandvin/serviceaction/view/' . $action . '/' . $service . '">' . $serviceactionpagename . '</a>';
             $breadcrumb[] = "New Part";
         }
         $content = $this->content();
