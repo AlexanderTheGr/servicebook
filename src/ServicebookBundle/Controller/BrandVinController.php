@@ -213,18 +213,18 @@ class BrandVinController extends Main {
         $content = $this->gettabs($id);
         //$content = $this->getoffcanvases($id);
         $content = $this->content();
-        $pagenane = "Vin";
+        $pagename = "Vin";
         $breadcrumb = array();
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
-            $pagenane = "Vin (".$entity->getVin().")";
-            $breadcrumb[] = '<a href="/servicebook/brandvin/view/'.$id.'">'.$pagenane.'</a>';
+            $pagename = "Vin (".$entity->getVin().")";
+            $breadcrumb[] = '<a href="/servicebook/brandvin/view/'.$id.'">'.$pagename.'</a>';
         }
         
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => $pagenane,
+                    'pagename' => $pagename,
                     'breadcrumb' => implode(" / ",$breadcrumb),
                     'url' => '/servicebook/brandvin/save',
                     'buttons' => $buttons,
@@ -243,18 +243,18 @@ class BrandVinController extends Main {
         $buttons = array();
         $content = $this->getkmtabs($id);
         //$content = $this->getoffcanvases($id);
-        $pagenane = "KM";
+        $pagename = "KM";
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $vin = $entity->getBrandVin()->getId();
             
-            $pagenane = "KM (".$entity->getService().")";
+            $pagename = "KM (".$entity->getService().")";
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => $pagenane,
+                    'pagename' => $pagename,
                     'url' => '/servicebook/brandvin/km/save/' . $vin,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
@@ -272,21 +272,21 @@ class BrandVinController extends Main {
         $buttons = array();
         $content = $this->getservicetabs($id);
         //$content = $this->getoffcanvases($id);
-        $pagenane = "Service";
+        $pagename = "Service";
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $vin = $entity->getBrandVin()->getId();
             
-            $pagenane = "Service (".$entity->getService().")";
+            $pagename = "Service (".$entity->getService().")";
             $vinpagenane = "Vin (".$entity->getBrandVin()->getVin().")";
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/'.$vin.'">'.$vinpagenane.'</a>';
-            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/'.$id.'/'.$vin.'">'.$pagenane.'</a>';
+            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/'.$id.'/'.$vin.'">'.$pagename.'</a>';
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => $pagenane,
+                    'pagename' => $pagename,
                     'breadcrumb' => implode(" / ",$breadcrumb),
                     'url' => '/servicebook/brandvin/service/save/' . $vin,
                     'buttons' => $buttons,
@@ -316,7 +316,7 @@ class BrandVinController extends Main {
             $servicepagenane = "Service (".$entity->getBrandService()->getService().")";
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/'.$entity->getBrandService()->getBrandVin()->getId().'">'.$vinpagenane.'</a>';
             $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/'.$entity->getBrandService()->getId().'/'.$entity->getBrandService()->getBrandVin()->getId().'">'.$servicepagenane.'</a>';
-            $breadcrumb[] = '<a href="/servicebook/brandvin/serviceaction/view/'.$id.'/'.$service.'">'.$pagenane.'</a>';
+            $breadcrumb[] = '<a href="/servicebook/brandvin/serviceaction/view/'.$id.'/'.$service.'">'.$pagename.'</a>';
             
         }
         $content = $this->content();
@@ -340,20 +340,20 @@ class BrandVinController extends Main {
         $buttons = array();
         $content = $this->getserviceparttabs($id);
         //$content = $this->getoffcanvases($id);
-        $pagenane = "Part";
+        $pagename = "Part";
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $action = $entity->getBrandServiceAction()->getId();
-            $pagenane = "Part (".$entity->getPart().")";
+            $pagename = "Part (".$entity->getPart().")";
             
             
 
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => $pagenane,
+                    'pagename' => $pagename,
                     'url' => '/servicebook/brandvin/servicepart/save/' . $action,
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
