@@ -214,17 +214,18 @@ class BrandVinController extends Main {
         //$content = $this->getoffcanvases($id);
         $content = $this->content();
         $pagenane = "Vin";
+        $breadcrumb = array();
         if ($id > 0) {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $pagenane = "Vin (".$entity->getVin().")";
-            $breadcrumb = '<a href="/servicebook/brandvin/view/'.$id.'">'.$pagenane.'</a>';
+            $breadcrumb[] = '<a href="/servicebook/brandvin/view/'.$id.'">'.$pagenane.'</a>';
         }
         
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
                     'pagename' => $pagenane,
-                    'breadcrumb' => $breadcrumb,
+                    'breadcrumb' => implode(" / ",$breadcrumb),
                     'url' => '/servicebook/brandvin/save',
                     'buttons' => $buttons,
                     'ctrl' => $this->generateRandomString(),
