@@ -323,7 +323,7 @@ class BrandVinController extends Main {
             $servicepagenane = "Service: (" . $entity->getService() . ")";
             $vinpagenane = "Vin: (" . $entity->getBrandVin()->getVin() . ")";
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
-            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $service . '/' . $vin . '">' . $pagename . '</a>';            
+            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $service . '/' . $vin . '">' . $servicepagenane . '</a>';            
             $breadcrumb[] = 'New Action';
         }
         $content = $this->content();
