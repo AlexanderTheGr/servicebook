@@ -261,4 +261,3 @@ class BrandVinKm extends Entity {
     }
 
 }
-
