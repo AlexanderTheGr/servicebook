@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-hhash
+{% if breadcrumb is defined %}
+    {{breadcrumb}}
+{% endif %}
 {{ render(controller('ServicebookBundle:BrandVin:content', { 'ctrl': ctrl,'app':app,'url':url,'content':content }) ) }}
 {% endblock %}
 {% block stylesheets %}
