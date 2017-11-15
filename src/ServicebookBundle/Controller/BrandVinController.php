@@ -314,6 +314,17 @@ class BrandVinController extends Main {
             $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $entity->getBrandService()->getBrandVin()->getId() . '">' . $vinpagenane . '</a>';
             $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $entity->getBrandService()->getId() . '/' . $entity->getBrandService()->getBrandVin()->getId() . '">' . $servicepagenane . '</a>';
             $breadcrumb[] = '<a href="/servicebook/brandvin/serviceaction/view/' . $id . '/' . $service . '">' . $pagename . '</a>';
+        } else {
+            $entity = $this->getDoctrine()
+                    ->getRepository("ServicebookBundle:BrandService")
+                    ->find($service);
+            $vin = $entity->getBrandVin()->getId();
+
+            $servicepagenane = "Service: (" . $entity->getService() . ")";
+            $vinpagenane = "Vin: (" . $entity->getBrandVin()->getVin() . ")";
+            $breadcrumb[] = '<a href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
+            $breadcrumb[] = '<a href="/servicebook/brandvin/service/view/' . $service . '/' . $vin . '">' . $pagename . '</a>';            
+            $breadcrumb[] = 'New Service';
         }
         $content = $this->content();
         return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
