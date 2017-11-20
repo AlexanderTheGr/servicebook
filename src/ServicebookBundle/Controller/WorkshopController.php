@@ -40,8 +40,8 @@ class WorkshopController extends Main {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
-            $pagename = "Vin: (" . $entity->getVin() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/view/' . $id . '">' . $pagename . '</a>';
+            $pagename = "Worshop: (" . $entity->getName() . ")";
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $id . '">' . $pagename . '</a>';
         }
         $content = $this->gettabs($id);
         //$content = $this->content();
