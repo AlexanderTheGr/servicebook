@@ -88,7 +88,6 @@ class WorkshopController extends Main {
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
         
-        
         $json = $this->tabs();
         return $json;
     }
