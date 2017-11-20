@@ -29,43 +29,6 @@ class BrandVinController extends Main {
         ));
     }
 
-    /**
-     * @Route("/servicebook/brandvin/servicepart/save/{action}")
-     */
-    public function servicepartsaveAction($action = false) {
-        $this->repository = "ServicebookBundle:BrandServicePart";
-        $dt = new \DateTime("now");
-        $entity = new \ServicebookBundle\Entity\BrandServicePart;
-        $this->newentity[$this->repository] = $entity;
-        $this->initialazeNewEntity($entity);
-        $brandServiceAction = $this->getDoctrine()
-                ->getRepository("ServicebookBundle:BrandServiceAction")
-                ->find($action);
-
-        $this->newentity[$this->repository]->setField("brandServiceAction", $brandServiceAction);
-
-        $entities = $this->save();
-
-        $entity = $this->getDoctrine()
-                ->getRepository($this->repository)
-                ->find($entities[$this->repository]);
-
-        $entity->setTs($dt);
-        $entity->setModified($dt);
-        $this->flushpersist($entity);
-
-        $jsonarr = array();
-        if ($entity->getId()) {
-            $jsonarr["returnurl"] = "/servicebook/brandvin/serviceaction/view/" . $entity->getBrandServiceAction()->getId();
-        }
-
-        $json = json_encode($jsonarr);
-        return new Response(
-                $json, 200, array('Content-Type' => 'application/json')
-        );
-    }
-
-
 
 
     /**
@@ -190,62 +153,6 @@ class BrandVinController extends Main {
         ));
     }
 
-
-
-    /**
-     * @Route("/servicebook/brandvin/servicepart/view/{id}/{action}")
-     */
-    public function servicepartAction($id, $action = false) {
-        $this->repository = "ServicebookBundle:BrandServicePart";
-        $buttons = array();
-        $content = $this->getserviceparttabs($id);
-        //$content = $this->getoffcanvases($id);
-        $pagename = "Part";
-        $breadcrumb = array();
-
-        if ($id > 0) {
-            $entity = $this->getDoctrine()
-                    ->getRepository($this->repository)
-                    ->find($id);
-            $action = $entity->getBrandServiceAction()->getId();
-            $pagename = "Part (" . $entity->getBrand()->getBrand() . "  " . $entity->getPart() . " " . $entity->getCode() . ")";
-
-            //$pagename = 'Action: (' . $entity->getAction() . ')';
-            $vinpagenane = "Vin (" . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getVin() . ")";
-            $servicepagenane = "Service: (" . $entity->getBrandServiceAction()->getBrandService()->getService() . ")";
-            $serviceactionpagename = 'Action: (' . $entity->getBrandServiceAction()->getAction() . ')';
-            $breadcrumb = array();
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/view/' . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getId() . '">' . $vinpagenane . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/service/view/' . $entity->getBrandServiceAction()->getBrandService()->getId() . '/' . $entity->getBrandServiceAction()->getBrandService()->getBrandVin()->getId() . '">' . $servicepagenane . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/serviceaction/view/' . $entity->getBrandServiceAction()->getId() . '/' . $entity->getBrandServiceAction()->getBrandService()->getId() . '">' . $serviceactionpagename . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/servicepart/view/' . $id . '/' . $action . '">' . $pagename . '</a>';
-        } else {
-            $entity = $this->getDoctrine()
-                    ->getRepository("ServicebookBundle:BrandServiceAction")
-                    ->find($action);
-            $service = $entity->getBrandService()->getId();
-
-            $serviceactionpagename = 'Action: (' . $entity->getAction() . ')';
-            $vinpagenane = "Vin (" . $entity->getBrandService()->getBrandVin()->getVin() . ")";
-            $servicepagenane = "Service: (" . $entity->getBrandService()->getService() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/view/' . $entity->getBrandService()->getBrandVin()->getId() . '">' . $vinpagenane . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/service/view/' . $entity->getBrandService()->getId() . '/' . $entity->getBrandService()->getBrandVin()->getId() . '">' . $servicepagenane . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/serviceaction/view/' . $action . '/' . $service . '">' . $serviceactionpagename . '</a>';
-            $breadcrumb[] = "New Part";
-            $pagename = 'New Part';
-        }
-        $content = $this->content();
-        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
-                    'pagename' => $pagename,
-                    'breadcrumb' => implode(" / ", $breadcrumb),
-                    'url' => '/servicebook/brandvin/servicepart/save/' . $action,
-                    'buttons' => $buttons,
-                    'ctrl' => $this->generateRandomString(),
-                    'app' => $this->generateRandomString(),
-                    'content' => $content,
-                    'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
-        ));
-    }
 
     public function gettabs($id) {
 
@@ -388,61 +295,7 @@ class BrandVinController extends Main {
     }
 
 
-    /**
-     * @Route("/servicebook/brandvin/getserviceactions/{id}")
-     */
-    public function getserviceactionsAction($id) {
-        $session = new Session();
-        foreach ($session->get('params_gettabs_' . $id) as $param) {
-            $this->addField($param);
-        }
-        $this->repository = 'ServicebookBundle:BrandServiceAction';
-        $this->q_and[] = $this->prefix . ".brandService = '" . $id . "'";
-        $json = $this->datatable();
 
-        $datatable = json_decode($json);
-        $datatable->data = (array) $datatable->data;
-        foreach ((array) $datatable->data as $key => $table) {
-            $table = (array) $table;
-            $table1 = array();
-            foreach ($table as $f => $val) {
-                $table1[$f] = $val;
-            }
-            $datatable->data[$key] = $table1;
-        }
-        $json = json_encode($datatable);
-        return new Response(
-                $json, 200, array('Content-Type' => 'application/json')
-        );
-    }
-
-    /**
-     * @Route("/servicebook/brandvin/getserviceparts/{id}")
-     */
-    public function getservicepartsAction($id) {
-        $session = new Session();
-        foreach ($session->get('params_gettabs_' . $id) as $param) {
-            $this->addField($param);
-        }
-        $this->repository = 'ServicebookBundle:BrandServicePart';
-        $this->q_and[] = $this->prefix . ".brandServiceAction = '" . $id . "'";
-        $json = $this->datatable();
-
-        $datatable = json_decode($json);
-        $datatable->data = (array) $datatable->data;
-        foreach ((array) $datatable->data as $key => $table) {
-            $table = (array) $table;
-            $table1 = array();
-            foreach ($table as $f => $val) {
-                $table1[$f] = $val;
-            }
-            $datatable->data[$key] = $table1;
-        }
-        $json = json_encode($datatable);
-        return new Response(
-                $json, 200, array('Content-Type' => 'application/json')
-        );
-    }
 
 
     /**
