@@ -290,9 +290,7 @@ class Main extends Controller {
                                 FROM ' . $bundle[0] . ':' . $object . ' ' . $this->prefix . '
                                 ORDER BY ' . $this->prefix . '.' . $field_order[1]
                 );
-                echo 'SELECT  ' . $this->prefix . '.id, ' . $this->prefix . '.' . $field_order[1] . '
-                                FROM ' . $bundle[0] . ':' . $object . ' ' . $this->prefix . '
-                                ORDER BY ' . $this->prefix . '.' . $field_order[1];
+
                 $results = $query->getResult();
                 $field["content"] = '<select class="style-primary-bright form-control search_init">';
                 $field["content"] .= '<option value="">'.$this->getTranslation("Select").'</option>';
