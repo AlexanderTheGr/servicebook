@@ -30,9 +30,9 @@ class WorkshopPartController extends Main {
     }
 
     /**
-     * @Route("/servicebook/workshopPart/view/{id}")
+     * @Route("/servicebook/workshopPart/view/{id}/{workshop}")
      */
-    public function viewAction($id) {
+    public function viewAction($id,$workshop=false) {
         $buttons = array();
         $content = $this->gettabs($id);
         //$content = $this->getoffcanvases($id);
