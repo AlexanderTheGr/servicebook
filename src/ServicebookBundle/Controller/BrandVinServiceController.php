@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class BrandVinServiceController extends Main {
 
+    var $repository = "ServicebookBundle:BrandService";
     /**
      * @Route("/servicebook/brandvin/service/save/{vin}")
      */
