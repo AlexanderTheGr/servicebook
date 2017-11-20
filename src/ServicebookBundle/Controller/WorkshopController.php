@@ -30,9 +30,21 @@ class WorkshopController extends Main {
      * @Route("/servicebook/workshop/view/{id}")
      */
     public function viewAction($id) {
-
+        $buttons = array();
         $content = $this->gettabs($id);
+        //$content = $this->getoffcanvases($id);
         $content = $this->content();
+        $pagename = "Vin";
+        $breadcrumb = array();
+        if ($id > 0) {
+            $entity = $this->getDoctrine()
+                    ->getRepository($this->repository)
+                    ->find($id);
+            $pagename = "Vin: (" . $entity->getVin() . ")";
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/view/' . $id . '">' . $pagename . '</a>';
+        }
+        $content = $this->gettabs($id);
+        //$content = $this->content();
         return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
                     'pagename' => $this->getTranslation('Workshop'),
                     'url' => '/servicebook/workshop/save',
