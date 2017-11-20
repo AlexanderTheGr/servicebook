@@ -29,6 +29,7 @@ class WorkshopPartController extends Main {
         ));
     }
 
+    
     /**
      * @Route("/servicebook/workshopPart/view/{id}/{workshop}")
      */
