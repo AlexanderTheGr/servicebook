@@ -71,9 +71,8 @@ class WorkshopPartController extends Main {
     /**
      * @Route("/servicebook/workshopPart/gettab")
      */
+
     public function gettabs($id) {
-
-
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->find($id);
@@ -81,30 +80,50 @@ class WorkshopPartController extends Main {
             $entity = new \ServicebookBundle\Entity\WorkshopPart;
             $this->newentity[$this->repository] = $entity;
         }
-        $fields["code"] = array("label" => $this->getTranslation("Code"));
-        $fields["name"] = array("label" => $this->getTranslation("WorkshopPart Name"));
+        
+        $dataarray[] = array("value" => "0", "name" => "Oxi");
+        $dataarray[] = array("value" => "1", "name" => "Ναι");
+
+        $fields["part"] = array("label" => "Part", 'required' => true);
+        //$fields["brand"] = array("label" => "Brand", 'required' => true);
+        $fields["brand"] = array("label" => "Brand", "disabled" => false, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+
+        $fields["code"] = array("label" => "Code", 'required' => true);
 
         $forms = $this->getFormLyFields($entity, $fields);
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
-        
+
         $json = $this->tabs();
+        //echo json_encode($json);
         return $json;
-    }
-
+    }    
+    
     /**
-     * @Route("/servicebook/workshopPart/getdatatable")
+     * @Route("/servicebook/brandvin/getserviceparts/{id}")
      */
-    public function getdatatableAction(Request $request) {
+    public function getservicepartsAction($id) {
+        $session = new Session();
+        foreach ($session->get('params_gettabs_' . $id) as $param) {
+            $this->addField($param);
+        }
         $this->repository = 'ServicebookBundle:WorkshopPart';
-
-        $this->addField(array("name" => "ID", "index" => 'id', "active" => "active"))
-                ->addField(array("name" => $this->getTranslation("Code"), "index" => 'code'))
-                ->addField(array("name" => $this->getTranslation("Name"), "index" => 'name'));
+        $this->q_and[] = $this->prefix . ".workshop = '" . $id . "'";
         $json = $this->datatable();
+
+        $datatable = json_decode($json);
+        $datatable->data = (array) $datatable->data;
+        foreach ((array) $datatable->data as $key => $table) {
+            $table = (array) $table;
+            $table1 = array();
+            foreach ($table as $f => $val) {
+                $table1[$f] = $val;
+            }
+            $datatable->data[$key] = $table1;
+        }
+        $json = json_encode($datatable);
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
-
 }
