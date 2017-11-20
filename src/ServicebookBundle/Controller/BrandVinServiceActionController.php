@@ -54,7 +54,7 @@ class BrandVinServiceActionController extends Main {
     public function viewAction($id, $service = false) {
         $this->repository = "ServicebookBundle:BrandServiceAction";
         $buttons = array();
-        $content = $this->getserviceactiontabs($id);
+        $content = $this->gettabs($id);
         //$content = $this->getoffcanvases($id);
         $pagename = 'Actions';
         $breadcrumb = array();
@@ -96,7 +96,7 @@ class BrandVinServiceActionController extends Main {
         ));
     }
 
-    public function getserviceactiontabs($id) {
+    public function gettabs($id) {
         $this->repository = "ServicebookBundle:BrandServiceAction";
         $entity = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:BrandServiceAction")
@@ -148,6 +148,34 @@ class BrandVinServiceActionController extends Main {
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
+    }
+
+    /**
+     * @Route("/servicebook/brandvin/getserviceactions/{id}")
+     */
+    public function getserviceactionsAction($id) {
+        $session = new Session();
+        foreach ($session->get('params_gettabs_' . $id) as $param) {
+            $this->addField($param);
+        }
+        $this->repository = 'ServicebookBundle:BrandServiceAction';
+        $this->q_and[] = $this->prefix . ".brandService = '" . $id . "'";
+        $json = $this->datatable();
+
+        $datatable = json_decode($json);
+        $datatable->data = (array) $datatable->data;
+        foreach ((array) $datatable->data as $key => $table) {
+            $table = (array) $table;
+            $table1 = array();
+            foreach ($table as $f => $val) {
+                $table1[$f] = $val;
+            }
+            $datatable->data[$key] = $table1;
+        }
+        $json = json_encode($datatable);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );
     }
 
 }
