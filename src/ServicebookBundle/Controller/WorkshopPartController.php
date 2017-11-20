@@ -3,9 +3,12 @@
 namespace ServicebookBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\Main as Main;
+use ServicebookBundle\Entity\WorkshopPart as WorkshopPart;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class WorkshopPartController extends Main {
 
