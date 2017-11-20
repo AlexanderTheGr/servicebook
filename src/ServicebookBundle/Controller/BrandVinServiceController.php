@@ -1,13 +1,16 @@
 <?php
 
-namespace ServicebookBundle\Entity;
+namespace ServicebookBundle\Controller;
 
-use AppBundle\Entity\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Controller\Main as Main;
+use ServicebookBundle\Entity\BrandVin as BrandVin;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-/**
- * WorkshopServiceAction
- */
-class BrandVinServiceController extends Entity {
+class BrandVinServiceController extends Main {
 
     /**
      * @Route("/servicebook/brandvin/service/save/{vin}")
