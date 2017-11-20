@@ -49,7 +49,7 @@ class WorkshopPartController extends Main {
         }
         //$content = $this->gettabs($id);
         //$content = $this->content();
-        return $this->render('ServicebookBundle:WorkshopPart:view.html.twig', array(
+        return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
                     'pagename' => $this->getTranslation('WorkshopPart'),
                     'url' => '/servicebook/workshopPart/save',
                     'supplierid' => $id,
