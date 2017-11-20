@@ -102,7 +102,7 @@ class WorkshopController extends Main {
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/workshopPart/getparts/' . $id;
             $params['view'] = '/servicebook/workshopPart/view';
-            $params['viewnew'] = '/servicebook/workshopPart/servicepart/view/new/' . $id;
+            $params['viewnew'] = '/servicebook/workshopPart/view/new/' . $id;
 
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
