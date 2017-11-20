@@ -17,7 +17,7 @@ class WorkshopController extends Main {
     public function indexAction() {
 
         return $this->render('ServicebookBundle:Workshop:index.html.twig', array(
-                    'pagename' => $this->getTranslation('Προμηθευτές'),
+                    'pagename' => $this->getTranslation('Workshop'),
                     'url' => '/servicebook/workshop/getdatatable',
                     'view' => '/servicebook/workshop/view',
                     'ctrl' => $this->generateRandomString(),
