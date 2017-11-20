@@ -97,7 +97,7 @@ class WorkshopController extends Main {
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
-            $params['url'] = '/servicebook/workshopPart/getserviceparts/' . $id;
+            $params['url'] = '/servicebook/workshopPart/getparts/' . $id;
             $params['view'] = '/servicebook/workshopPart/view';
             $params['viewnew'] = '/servicebook/workshopPart/servicepart/view/new/' . $id;
 
