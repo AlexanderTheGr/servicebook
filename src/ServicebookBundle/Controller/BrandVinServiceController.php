@@ -15,7 +15,7 @@ class BrandVinServiceController extends Main {
     /**
      * @Route("/servicebook/brandvin/service/save/{vin}")
      */
-    public function servicesaveAction($vin = false) {
+    public function saveAction($vin = false) {
         $this->repository = "ServicebookBundle:BrandService";
         $dt = new \DateTime("now");
         $entity = new \ServicebookBundle\Entity\BrandService;
@@ -51,10 +51,10 @@ class BrandVinServiceController extends Main {
     /**
      * @Route("/servicebook/brandvin/service/view/{id}/{vin}")
      */
-    public function serviceAction($id, $vin = false) {
+    public function viewAction($id, $vin = false) {
         $this->repository = "ServicebookBundle:BrandService";
         $buttons = array();
-        $content = $this->getservicetabs($id);
+        $content = $this->gettabs($id);
         //$content = $this->getoffcanvases($id);
         $pagename = "Service";
         if ($id > 0) {
@@ -118,7 +118,7 @@ class BrandVinServiceController extends Main {
         );
     }
 
-    public function getservicetabs($id) {
+    public function gettabs($id) {
         $this->repository = "ServicebookBundle:BrandService";
         $entity = $this->getDoctrine()
                 ->getRepository("ServicebookBundle:BrandService")
