@@ -40,7 +40,7 @@ class WorkshopController extends Main {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
-            $pagename = "Worshop: (" . $entity->getName() . ")";
+            $pagename = "Workshop: (" . $entity->getName() . ")";
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $id . '">' . $pagename . '</a>';
         }
         //$content = $this->gettabs($id);
@@ -88,6 +88,30 @@ class WorkshopController extends Main {
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
         
+        if ($id > 0 AND count($entity) > 0) {
+            $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams[] = array("name" => "Title", "index" => 'part');
+            $dtparams[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');
+            ;
+            $dtparams[] = array("name" => "Code", "index" => 'code');
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params['dtparams'] = $dtparams;
+            $params['id'] = $dtparams;
+            $params['url'] = '/servicebook/workshopPart/getserviceparts/' . $id;
+            $params['view'] = '/servicebook/workshopPart/view';
+            $params['viewnew'] = '/servicebook/workshopPart/servicepart/view/new/' . $id;
+
+            $params['key'] = 'gettabs_' . $id;
+            $params["ctrl"] = 'ctrlgettabs';
+            $params["app"] = 'appgettabs';
+            $datatables[] = $this->contentDatatable($params);
+        }
+        if ($id > 0 AND count($entity) > 0) {
+            $tabs[] = array("title" => $this->getTranslation("Parts"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+        }
+        foreach ((array) $tabs as $tab) {
+            $this->addTab($tab);
+        }        
         $json = $this->tabs();
         return $json;
     }
