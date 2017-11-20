@@ -8,10 +8,8 @@ use AppBundle\Entity\Entity;
  * WorkshopServiceAction
  */
 class BrandVinServiceController extends Entity {
-    
-    
-    
-        /**
+
+    /**
      * @Route("/servicebook/brandvin/service/save/{vin}")
      */
     public function servicesaveAction($vin = false) {
@@ -46,6 +44,7 @@ class BrandVinServiceController extends Entity {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
+
 }
 
 /*
