@@ -43,7 +43,7 @@ class WorkshopController extends Main {
             $pagename = "Worshop: (" . $entity->getName() . ")";
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $id . '">' . $pagename . '</a>';
         }
-        $content = $this->gettabs($id);
+        //$content = $this->gettabs($id);
         //$content = $this->content();
         return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
                     'pagename' => $this->getTranslation('Workshop'),
