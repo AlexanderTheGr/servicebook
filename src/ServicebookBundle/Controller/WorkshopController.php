@@ -77,7 +77,10 @@ class WorkshopController extends Main {
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->find($id);
-
+        if ($id == 0 AND @ $entity->id == 0) {
+            $entity = new \ServicebookBundle\Entity\Workshop;
+            $this->newentity[$this->repository] = $entity;
+        }
         $fields["code"] = array("label" => $this->getTranslation("Code"));
         $fields["name"] = array("label" => $this->getTranslation("Workshop Name"));
 
