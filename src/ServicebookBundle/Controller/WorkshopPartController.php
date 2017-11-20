@@ -100,7 +100,7 @@ class WorkshopPartController extends Main {
     }    
     
     /**
-     * @Route("/servicebook/brandvin/getserviceparts/{id}")
+     * @Route("/servicebook/workshopPart/getparts/{id}")
      */
     public function getservicepartsAction($id) {
         $session = new Session();
