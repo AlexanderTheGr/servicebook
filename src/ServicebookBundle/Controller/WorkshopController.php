@@ -87,6 +87,8 @@ class WorkshopController extends Main {
         $forms = $this->getFormLyFields($entity, $fields);
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
+        
+        
         $json = $this->tabs();
         return $json;
     }
