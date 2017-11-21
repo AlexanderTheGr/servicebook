@@ -22,7 +22,7 @@ class BrandVin extends Entity {
         $this->created = $dt;
         $this->repositories['brand'] = 'ServicebookBundle:Brand';
         $this->repositories['user'] = 'ServicebookBundle:User';
-        
+
         $this->user = new \ServicebookBundle\Entity\User;
         $this->brand = new \ServicebookBundle\Entity\Brand;
         $this->services = new \Doctrine\Common\Collections\ArrayCollection();
@@ -567,6 +567,6 @@ class BrandVin extends Entity {
      */
     public function getServices() {
         return $this->services;
-    }    
-    
+    }
+
 }
