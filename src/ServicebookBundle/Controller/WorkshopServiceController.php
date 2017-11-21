@@ -103,11 +103,10 @@ class WorkshopServiceController extends Main {
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
-        $fields["part"] = array("label" => "Part", 'required' => true);
-        //$fields["brand"] = array("label" => "Brand", 'required' => true);
-        $fields["brand"] = array("label" => "Brand", "disabled" => false, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+        $fields["service"] = array("label" => "Service", 'required' => true);
+        $fields["km"] = array("label" => "Km", 'required' => true);
+        $fields["details"] = array("label" => "Details", "type" => "textarea");
 
-        $fields["code"] = array("label" => "Code", 'required' => true);
 
         $forms = $this->getFormLyFields($entity, $fields);
 
