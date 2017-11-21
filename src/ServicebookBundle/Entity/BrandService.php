@@ -22,7 +22,7 @@ class BrandService extends Entity {
         $this->repositories['brandVin'] = 'ServicebookBundle:BrandVin';
         $this->brandVin = new \ServicebookBundle\Entity\BrandVin;
         //$this->items = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->parts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->actions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
@@ -311,37 +311,37 @@ class BrandService extends Entity {
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $parts;
+    private $actions;
 
     /**
-     * Add part
+     * Add action
      *
-     * @param \SoftoneBundle\Entity\BrandServicePart $service
+     * @param \SoftoneBundle\Entity\BrandServiceAction $service
      *
      * @return BrandService
      */
-    public function addPart(\ServicebookBundle\Entity\BrandServicePart $part) {
-        $this->parts[] = $part;
+    public function addAction(\ServicebookBundle\Entity\BrandServiceAction $action) {
+        $this->actions[] = $action;
 
         return $this;
     }
 
     /**
-     * Remove part
+     * Remove action
      *
-     * @param \SoftoneBundle\Entity\BrandServicePart $part
+     * @param \SoftoneBundle\Entity\BrandServiceAction $action
      */
-    public function removePart(\ServicebookBundle\Entity\BrandServicePart $part) {
-        $this->services->removeElement($part);
+    public function removeAction(\ServicebookBundle\Entity\BrandServiceAction $action) {
+        $this->services->removeElement($action);
     }
 
     /**
-     * Get parts
+     * Get actions
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getParts() {
-        return $this->parts;
+    public function getActions() {
+        return $this->actions;
     }
 
 }
