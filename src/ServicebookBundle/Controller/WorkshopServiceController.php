@@ -84,7 +84,7 @@ class WorkshopServiceController extends Main {
             $entity = new \ServicebookBundle\Entity\WorkshopService;
             $this->newentity[$this->repository] = $entity;
         }
-        
+        echo $entity->getId();
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
