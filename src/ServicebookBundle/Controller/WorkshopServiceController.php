@@ -98,6 +98,10 @@ class WorkshopServiceController extends Main {
             $entity->setTs($dt);
             $entity->setModified($dt);
             $this->flushpersist($entity);
+            
+            
+            
+            
             $this->newentity[$this->repository] = $entity;
         }
         $dataarray[] = array("value" => "0", "name" => "Oxi");
