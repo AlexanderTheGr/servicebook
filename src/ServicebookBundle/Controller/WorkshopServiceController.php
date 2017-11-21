@@ -37,7 +37,7 @@ class WorkshopServiceController extends Main {
         $buttons = array();
         $content = $this->gettabs($id);
         //$content = $this->getoffcanvases($id);
-        $content = $this->content();
+        //$content = $this->content();
         $pagename = "Vin";
         $breadcrumb = array();
         if ($id > 0) {
