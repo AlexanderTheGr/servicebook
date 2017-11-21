@@ -83,6 +83,10 @@ class WorkshopServiceController extends Main {
                         ->getRepository('ServicebookBundle:BrandService')->find($service);
         $workshop = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:Workshop')->find($workshop);
+        
+        
+        echo count($service->getActions());
+        
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->findOneBy(array('workshop' => $workshop, 'brandService' => $service));
