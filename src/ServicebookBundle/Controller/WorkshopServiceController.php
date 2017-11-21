@@ -85,7 +85,7 @@ class WorkshopServiceController extends Main {
                         ->getRepository('ServicebookBundle:Workshop')->find($workshop);
         
        
-        echo count($service->getActions());
+        //echo count($service->getActions());
         
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
@@ -99,13 +99,24 @@ class WorkshopServiceController extends Main {
             $entity->setService($service->getService());
             $entity->setModel($service->getModel());
             $entity->setKm($service->getKm());
+            $entity->setDetails($service->getDetails());
             $entity->setTs($dt);
             $entity->setModified($dt);
+            $entity->setCreated($dt);
             $this->flushpersist($entity);
             
-            
-            
-            
+            foreach($service->getActions() as $action) {
+                $workshopServiceAction = $entity = new \ServicebookBundle\Entity\WorkshopServiceAction;
+                $workshopServiceAction->setBrandServiceAction($action);
+                $workshopServiceAction->setWorkshopService($entity);
+                $workshopServiceAction->setAction($action->getAction());
+                $workshopServiceAction->setDetails($action->getDetails());
+                $workshopServiceAction->setManhour($action->getManhour());
+                $workshopServiceAction->setTs($dt);
+                $workshopServiceAction->setModified($dt);
+                $workshopServiceAction->setCreated($dt);
+                $this->flushpersist($workshopServiceAction);
+            }
             $this->newentity[$this->repository] = $entity;
         }
         $dataarray[] = array("value" => "0", "name" => "Oxi");
