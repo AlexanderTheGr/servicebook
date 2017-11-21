@@ -84,7 +84,7 @@ class WorkshopServiceController extends Main {
         $workshop = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:Workshop')->find($workshop);
         
-        
+       
         echo count($service->getActions());
         
         $entity = $this->getDoctrine()
