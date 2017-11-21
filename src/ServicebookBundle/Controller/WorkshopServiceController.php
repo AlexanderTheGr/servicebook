@@ -85,8 +85,10 @@ class WorkshopServiceController extends Main {
                         ->getRepository('ServicebookBundle:Workshop')->find($workshop);
         
        
-        //echo count($service->getActions());
-        
+        echo count($service->getActions()).",";
+        foreach($service->getActions() as $action) {
+            echo count($action->getParts().",");
+        }
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->findOneBy(array('workshop' => $workshop, 'brandService' => $service));
@@ -104,7 +106,6 @@ class WorkshopServiceController extends Main {
             $entity->setModified($dt);
             $entity->setCreated($dt);
             $this->flushpersist($entity);
-            
             foreach($service->getActions() as $action) {
                 $workshopServiceAction = new \ServicebookBundle\Entity\WorkshopServiceAction;
                 $workshopServiceAction->setBrandServiceAction($action);
@@ -116,9 +117,11 @@ class WorkshopServiceController extends Main {
                 $workshopServiceAction->setModified($dt);
                 $workshopServiceAction->setCreated($dt);
                 $this->flushpersist($workshopServiceAction);
+                
             }
             $this->newentity[$this->repository] = $entity;
         }
+        
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
