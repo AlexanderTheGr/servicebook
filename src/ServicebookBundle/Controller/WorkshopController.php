@@ -108,9 +108,28 @@ class WorkshopController extends Main {
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
+            
+            $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams2[] = array("name" => "Title", "index" => 'service');
+            $dtparams2[] = array("name" => "KM", "index" => 'km');
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params2['dtparams'] = $dtparams;
+            $params2['id'] = $dtparams;
+            $params2['url'] = '/servicebook/brandvin/getservices/' . $id;
+            $params2['view'] = '/servicebook/brandvin/service/view';
+            //$params2['viewnew'] = '/servicebook/brandvin/service/view/new/' . $id;
+
+            $params2['key'] = 'gettabs2_' . $id;
+            $params2["ctrl"] = 'ctrlgettabs2';
+            $params2["app"] = 'appgettabs2';
+            $datatables2[] = $this->contentDatatable($params2);            
+            
+            
+            
         }
         if ($id > 0 AND count($entity) > 0) {
             $tabs[] = array("title" => $this->getTranslation("Parts"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+            $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);       
         }
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
