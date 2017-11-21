@@ -78,7 +78,7 @@ class WorkshopServiceController extends Main {
     /**
      * @Route("/servicebook/workshopservice/gettab")
      */
-    public function gettabs($service, $workshop) {
+    public function gettabs($workshop,$service) {
         $service = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:BrandService')->find($service);
         $workshop = $this->getDoctrine()
