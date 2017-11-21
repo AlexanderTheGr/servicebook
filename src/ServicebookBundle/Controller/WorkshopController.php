@@ -92,44 +92,47 @@ class WorkshopController extends Main {
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
         
         if ($id > 0 AND count($entity) > 0) {
-            $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
-            $dtparams[] = array("name" => "Title", "index" => 'part');
-            $dtparams[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');
-            ;
-            $dtparams[] = array("name" => "Code", "index" => 'code');
-            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
-            $params['dtparams'] = $dtparams;
-            $params['id'] = $dtparams;
-            $params['url'] = '/servicebook/workshopPart/getparts/' . $id;
-            $params['view'] = '/servicebook/workshopPart/view';
-            $params['viewnew'] = '/servicebook/workshopPart/view/new/' . $id;
-
-            $params['key'] = 'gettabs_' . $id;
-            $params["ctrl"] = 'ctrlgettabs';
-            $params["app"] = 'appgettabs';
-            $datatables[] = $this->contentDatatable($params);
+            
             
             $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
-            $dtparams2[] = array("name" => "Title", "index" => 'service');
-            $dtparams2[] = array("name" => "KM", "index" => 'km');
+            $dtparams2[] = array("name" => "Title", "index" => 'part');
+            $dtparams2[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');
+            ;
+            $dtparams2[] = array("name" => "Code", "index" => 'code');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params2['dtparams'] = $dtparams;
             $params2['id'] = $dtparams;
-            $params2['url'] = '/servicebook/brandvin/getservices/' . $id;
-            $params2['view'] = '/servicebook/brandvin/service/view';
-            //$params2['viewnew'] = '/servicebook/brandvin/service/view/new/' . $id;
+            $params2['url'] = '/servicebook/workshopPart/getparts/' . $id;
+            $params2['view'] = '/servicebook/workshopPart/view';
+            $params2['viewnew'] = '/servicebook/workshopPart/view/new/' . $id;
 
             $params2['key'] = 'gettabs2_' . $id;
             $params2["ctrl"] = 'ctrlgettabs2';
             $params2["app"] = 'appgettabs2';
-            $datatables2[] = $this->contentDatatable($params2);            
+            $datatables2[] = $this->contentDatatable($params2);
+            
+            $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams[] = array("name" => "Title", "index" => 'service');
+            $dtparams[] = array("name" => "KM", "index" => 'km');
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params['dtparams'] = $dtparams;
+            $params['id'] = $dtparams;
+            $params['url'] = '/servicebook/brandvin/getservices/' . $id;
+            $params['view'] = '/servicebook/brandvin/service/view';
+            $params['viewnew'] = '/servicebook/brandvin/service/view/new/' . $id;
+
+            $params['key'] = 'gettabs_' . $id;
+            $params["ctrl"] = 'ctrlgettabs';
+            $params["app"] = 'appgettabs';
+            $datatables[] = $this->contentDatatable($params);            
             
             
             
         }
         if ($id > 0 AND count($entity) > 0) {
-            $tabs[] = array("title" => $this->getTranslation("Parts"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
-            $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables2, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);       
+            $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+            $tabs[] = array("title" => $this->getTranslation("Parts"), "datatables" => $datatables2, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+            
         }
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
