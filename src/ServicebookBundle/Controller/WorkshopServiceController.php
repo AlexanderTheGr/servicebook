@@ -39,12 +39,16 @@ class WorkshopServiceController extends Main {
         //$content = $this->content();
         $pagename = "Vin";
         $breadcrumb = array();
+        
         if ($id > 0) {
+            /*
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
             $pagename = "Worshop: (" . $entity->getName() . ")";
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopservice/view/' . $id . '">' . $pagename . '</a>';
+             * 
+             */
         }
         //$content = $this->gettabs($id);
         //$content = $this->content();
