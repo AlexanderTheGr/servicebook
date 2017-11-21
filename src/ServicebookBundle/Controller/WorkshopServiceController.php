@@ -87,14 +87,14 @@ class WorkshopServiceController extends Main {
        
         echo count($service->getActions()).",";
         foreach($service->getActions() as $action) {
-            $action->load();
+            //$action->load();
             //echo 'ss';
-            //echo count($action->getParts().",");
+            echo count($action->getParts().",");
         }
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->findOneBy(array('workshop' => $workshop, 'brandService' => $service));
-
+        exit;
         if (!$entity) {
             $dt = new \DateTime("now");
             $entity = new \ServicebookBundle\Entity\WorkshopService;
