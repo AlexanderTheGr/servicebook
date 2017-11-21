@@ -59,7 +59,7 @@ class WorkshopServiceController extends Main {
                     'content' => $content,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
-                    'tabs' => $this->gettabs($id),
+                    'tabs' => $this->gettabs($id,$workshop),
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
