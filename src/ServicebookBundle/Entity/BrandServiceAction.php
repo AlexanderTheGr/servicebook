@@ -266,7 +266,6 @@ class BrandServiceAction extends Entity {
      */
     private $parts;
 
-
     /**
      * Add part
      *
@@ -274,8 +273,7 @@ class BrandServiceAction extends Entity {
      *
      * @return BrandServiceAction
      */
-    public function addPart(\ServicebookBundle\Entity\BrandServicePart $part)
-    {
+    public function addPart(\ServicebookBundle\Entity\BrandServicePart $part) {
         $this->parts[] = $part;
 
         return $this;
@@ -286,8 +284,7 @@ class BrandServiceAction extends Entity {
      *
      * @param \ServicebookBundle\Entity\BrandServicePart $part
      */
-    public function removePart(\ServicebookBundle\Entity\BrandServicePart $part)
-    {
+    public function removePart(\ServicebookBundle\Entity\BrandServicePart $part) {
         $this->parts->removeElement($part);
     }
 
@@ -296,8 +293,8 @@ class BrandServiceAction extends Entity {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getParts()
-    {
+    public function getParts() {
         return $this->parts;
     }
+
 }
