@@ -89,6 +89,9 @@ class WorkshopServiceController extends Main {
         foreach($service->getActions() as $action) {
             //$action->load();
             //echo 'ss';
+            $action = $this->getDoctrine()
+                        ->getRepository('ServicebookBundle:BrandServiceAction')->find($action->getId());
+            
             echo count($action->getParts().",");
         }
         $entity = $this->getDoctrine()
