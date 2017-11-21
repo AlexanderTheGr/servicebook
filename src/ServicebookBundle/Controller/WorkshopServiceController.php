@@ -103,9 +103,9 @@ class WorkshopServiceController extends Main {
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
-        $fields["service"] = array("label" => "Service", 'required' => true);
-        $fields["km"] = array("label" => "Km", 'required' => true);
-        $fields["details"] = array("label" => "Details", "type" => "textarea");
+        $fields["service"] = array("label" => "Service", "disabled"=>true, 'required' => true);
+        $fields["km"] = array("label" => "Km", "disabled"=>true, 'required' => true);
+        $fields["details"] = array("label" => "Details", "disabled"=>true, "type" => "textarea");
 
 
         $forms = $this->getFormLyFields($entity, $fields);
