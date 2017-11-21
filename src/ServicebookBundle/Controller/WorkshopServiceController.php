@@ -106,7 +106,7 @@ class WorkshopServiceController extends Main {
             $this->flushpersist($entity);
             
             foreach($service->getActions() as $action) {
-                $workshopServiceAction = $entity = new \ServicebookBundle\Entity\WorkshopServiceAction;
+                $workshopServiceAction = new \ServicebookBundle\Entity\WorkshopServiceAction;
                 $workshopServiceAction->setBrandServiceAction($action);
                 $workshopServiceAction->setWorkshopService($entity);
                 $workshopServiceAction->setAction($action->getAction());
