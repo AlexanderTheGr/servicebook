@@ -83,6 +83,7 @@ class WorkshopServiceController extends Main {
         if ($id == 0 AND @ $entity->id == 0) {
             $entity = new \ServicebookBundle\Entity\WorkshopService;
             $this->newentity[$this->repository] = $entity;
+            exit;
         }
         echo $entity->getId();
         $dataarray[] = array("value" => "0", "name" => "Oxi");
