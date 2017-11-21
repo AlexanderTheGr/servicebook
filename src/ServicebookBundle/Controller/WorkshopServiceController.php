@@ -15,14 +15,14 @@ class WorkshopServiceController extends Main {
     var $repository = 'ServicebookBundle:WorkshopService';
 
     /**
-     * @Route("/servicebook/workshopPart/servicebook/workshopPart")
+     * @Route("/servicebook/workshopservice/servicebook/workshopservice")
      */
     public function indexAction() {
 
         return $this->render('ServicebookBundle:Workshop:index.html.twig', array(
                     'pagename' => $this->getTranslation('WorkshopService'),
-                    'url' => '/servicebook/workshopPart/getdatatable',
-                    'view' => '/servicebook/workshopPart/view',
+                    'url' => '/servicebook/workshopservice/getdatatable',
+                    'view' => '/servicebook/workshopservice/view',
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
@@ -31,7 +31,7 @@ class WorkshopServiceController extends Main {
 
     
     /**
-     * @Route("/servicebook/workshopPart/view/{id}/{workshop}")
+     * @Route("/servicebook/workshopservice/view/{id}/{workshop}")
      */
     public function viewAction($id,$workshop=false) {
         $buttons = array();
@@ -45,13 +45,13 @@ class WorkshopServiceController extends Main {
                     ->getRepository($this->repository)
                     ->find($id);
             $pagename = "Worshop: (" . $entity->getName() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopPart/view/' . $id . '">' . $pagename . '</a>';
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopservice/view/' . $id . '">' . $pagename . '</a>';
         }
         //$content = $this->gettabs($id);
         //$content = $this->content();
         return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
                     'pagename' => $this->getTranslation('WorkshopService'),
-                    'url' => '/servicebook/workshopPart/save',
+                    'url' => '/servicebook/workshopservice/save',
                     'supplierid' => $id,
                     'content' => $content,
                     'ctrl' => $this->generateRandomString(),
@@ -62,7 +62,7 @@ class WorkshopServiceController extends Main {
     }
 
     /**
-     * @Route("/servicebook/workshopPart/save")
+     * @Route("/servicebook/workshopservice/save")
      */
     public function savection() {
         $this->save();
@@ -73,7 +73,7 @@ class WorkshopServiceController extends Main {
     }
 
     /**
-     * @Route("/servicebook/workshopPart/gettab")
+     * @Route("/servicebook/workshopservice/gettab")
      */
 
     public function gettabs($id) {
@@ -104,7 +104,7 @@ class WorkshopServiceController extends Main {
     }    
     
     /**
-     * @Route("/servicebook/workshopPart/getparts/{id}")
+     * @Route("/servicebook/workshopservice/getparts/{id}")
      */
     public function getservicepartsAction($id) {
         $session = new Session();
