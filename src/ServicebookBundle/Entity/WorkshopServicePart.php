@@ -346,4 +346,3 @@ class WorkshopServicePart extends Entity {
     }
 
 }
-

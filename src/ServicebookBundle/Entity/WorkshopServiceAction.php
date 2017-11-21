@@ -290,4 +290,3 @@ class WorkshopServiceAction extends Entity {
     }
 
 }
-
