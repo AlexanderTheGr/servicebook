@@ -120,7 +120,7 @@ class WorkshopController extends Main {
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/brandvin/getservicesforworkshop/' . $id;
-            $params['view'] = '/servicebook/workshop/service/view';
+            $params['view'] = '/servicebook/workshop/service/view/'.$id;
             //$params['viewnew'] = '/servicebook/brandvin/service/view/new/' . $id;
 
             $params['key'] = 'gettabs_' . $id;

@@ -29,13 +29,12 @@ class WorkshopServiceController extends Main {
         ));
     }
 
-    
     /**
      * @Route("/servicebook/workshop/service/view/{id}/{workshop}")
      */
-    public function viewAction($id,$workshop=false) {
+    public function viewAction($id, $workshop = false) {
         $buttons = array();
-        $content = $this->gettabs($id);
+        $content = $this->gettabs($id,$workshop);
         //$content = $this->getoffcanvases($id);
         //$content = $this->content();
         $pagename = "Vin";
@@ -75,17 +74,19 @@ class WorkshopServiceController extends Main {
     /**
      * @Route("/servicebook/workshopservice/gettab")
      */
-
-    public function gettabs($id) {
+    public function gettabs($service,$workshop) {
+        $service = $this->getDoctrine()
+                ->getRepository('ServicebookBundle:BrandService')->find($service);
+        $workshop = $this->getDoctrine()
+                ->getRepository('ServicebookBundle:Workshop')->find($workshop);        
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
-                ->find($id);
+                ->findOneBy(array('workshop' => $workshop, 'service' => $service));
+
         if ($id == 0 AND @ $entity->id == 0) {
             $entity = new \ServicebookBundle\Entity\WorkshopService;
             $this->newentity[$this->repository] = $entity;
-            exit;
         }
-        echo $entity->getId();
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
@@ -102,8 +103,8 @@ class WorkshopServiceController extends Main {
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
-    }    
-    
+    }
+
     /**
      * @Route("/servicebook/workshopservice/getparts/{id}")
      */
@@ -131,4 +132,5 @@ class WorkshopServiceController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
+
 }
