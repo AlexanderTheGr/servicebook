@@ -129,7 +129,7 @@ class WorkshopController extends Main {
         }
         if ($id > 0 AND count($entity) > 0) {
             $tabs[] = array("title" => $this->getTranslation("Parts"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
-            $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);       
+            $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables2, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);       
         }
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
