@@ -15,7 +15,7 @@ class WorkshopController extends Main {
     var $repository = 'ServicebookBundle:Workshop';
 
     /**
-     * @Route("/servicebook/workshop/servicebook/workshop")
+     * @Route("/servicebook/workshop")
      */
     public function indexAction() {
 
