@@ -31,7 +31,7 @@ class WorkshopServiceController extends Main {
 
     
     /**
-     * @Route("/servicebook/workshopservice/view/{id}/{workshop}")
+     * @Route("/servicebook/workshop/service/view/{id}/{workshop}")
      */
     public function viewAction($id,$workshop=false) {
         $buttons = array();
