@@ -113,7 +113,7 @@ class WorkshopController extends Main {
             
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams[] = array("name" => "Title", "index" => 'service');
-            //$dtparams[] = array("name" => "Brand", "index" => 'brandVin:brand:brand:brand');
+            $dtparams[] = array("name" => "Brand", "index" => 'brandVin:brand:brand');
             $dtparams[] = array("name" => "Model", "index" => 'brandVin:brand:model');
             $dtparams[] = array("name" => "KM", "index" => 'km');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
