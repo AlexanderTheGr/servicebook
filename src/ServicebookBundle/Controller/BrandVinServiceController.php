@@ -118,6 +118,33 @@ class BrandVinServiceController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
+    /**
+     * @Route("/servicebook/brandvin/getservicesforworkshop/{id}")
+     */
+    public function getservicesforworkshop($id) {
+        $session = new Session();
+        foreach ($session->get('params_gettabs_' . $id) as $param) {
+            $this->addField($param);
+        }
+        $this->repository = 'ServicebookBundle:BrandService';
+        //$this->q_and[] = $this->prefix . ".brandVin = '" . $id . "'";
+        $json = $this->datatable();
+
+        $datatable = json_decode($json);
+        $datatable->data = (array) $datatable->data;
+        foreach ($datatable->data as $key => $table) {
+            $table = (array) $table;
+            $table1 = array();
+            foreach ($table as $f => $val) {
+                $table1[$f] = $val;
+            }
+            $datatable->data[$key] = $table1;
+        }
+        $json = json_encode($datatable);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );
+    }    
 
     public function gettabs($id) {
         $this->repository = "ServicebookBundle:BrandService";

@@ -117,9 +117,9 @@ class WorkshopController extends Main {
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
-            $params['url'] = '/servicebook/brandvin/getservices/' . $id;
+            $params['url'] = '/servicebook/brandvin/getservicesforworkshop/' . $id;
             $params['view'] = '/servicebook/brandvin/service/view';
-            $params['viewnew'] = '/servicebook/brandvin/service/view/new/' . $id;
+            //$params['viewnew'] = '/servicebook/brandvin/service/view/new/' . $id;
 
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
