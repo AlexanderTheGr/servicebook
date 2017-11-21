@@ -34,19 +34,19 @@ class WorkshopServiceController extends Main {
      */
     public function viewAction($id, $workshop = false) {
         $buttons = array();
-        $content = $this->gettabs($id,$workshop);
+        $content = $this->gettabs($id, $workshop);
         //$content = $this->getoffcanvases($id);
         //$content = $this->content();
         $pagename = "Vin";
         $breadcrumb = array();
-        
+
         if ($id > 0) {
             /*
-            $entity = $this->getDoctrine()
-                    ->getRepository($this->repository)
-                    ->find($id);
-            $pagename = "Worshop: (" . $entity->getName() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopservice/view/' . $id . '">' . $pagename . '</a>';
+              $entity = $this->getDoctrine()
+              ->getRepository($this->repository)
+              ->find($id);
+              $pagename = "Worshop: (" . $entity->getName() . ")";
+              $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopservice/view/' . $id . '">' . $pagename . '</a>';
              * 
              */
         }
@@ -59,7 +59,7 @@ class WorkshopServiceController extends Main {
                     'content' => $content,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
-                    'tabs' => $this->gettabs($id,$workshop),
+                    'tabs' => $this->gettabs($id, $workshop),
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
@@ -78,17 +78,26 @@ class WorkshopServiceController extends Main {
     /**
      * @Route("/servicebook/workshopservice/gettab")
      */
-    public function gettabs($service,$workshop) {
+    public function gettabs($service, $workshop) {
         $service = $this->getDoctrine()
-                ->getRepository('ServicebookBundle:BrandService')->find($service);
+                        ->getRepository('ServicebookBundle:BrandService')->find($service);
         $workshop = $this->getDoctrine()
-                ->getRepository('ServicebookBundle:Workshop')->find($workshop);        
+                        ->getRepository('ServicebookBundle:Workshop')->find($workshop);
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
-                ->findOneBy(array('workshop' => $workshop, 'service' => $service));
+                ->findOneBy(array('workshop' => $workshop, 'brandService' => $service));
 
-        if ($id == 0 AND @ $entity->id == 0) {
+        if (!$entity) {
+            $dt = new \DateTime("now");
             $entity = new \ServicebookBundle\Entity\WorkshopService;
+            $entity->setBrandService($service);
+            $entity->setWorkshop($workshop);
+            $entity->setService($service->getService());
+            $entity->setModel($service->getModel());
+            $entity->setKm($service->getKm());
+            $entity->setTs($dt);
+            $entity->setModified($dt);
+            $this->flushpersist($entity);
             $this->newentity[$this->repository] = $entity;
         }
         $dataarray[] = array("value" => "0", "name" => "Oxi");
