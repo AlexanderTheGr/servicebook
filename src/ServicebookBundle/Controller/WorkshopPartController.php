@@ -19,7 +19,7 @@ class WorkshopPartController extends Main {
      */
     public function indexAction() {
 
-        return $this->render('ServicebookBundle:WorkshopPart:index.html.twig', array(
+        return $this->render('ServicebookBundle:Workshop:index.html.twig', array(
                     'pagename' => $this->getTranslation('WorkshopPart'),
                     'url' => '/servicebook/workshopPart/getdatatable',
                     'view' => '/servicebook/workshopPart/view',
