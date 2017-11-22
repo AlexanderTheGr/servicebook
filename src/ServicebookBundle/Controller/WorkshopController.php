@@ -97,9 +97,8 @@ class WorkshopController extends Main {
             $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams2[] = array("name" => "Title", "index" => 'part');
             $dtparams2[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');
-            $dtparams2[] = array("name" => "Price", "index" => 'price');
-            ;
             $dtparams2[] = array("name" => "Code", "index" => 'code');
+            $dtparams2[] = array("name" => "Price", "index" => 'price');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params2['dtparams'] = $dtparams2;
             $params2['id'] = $dtparams2;
