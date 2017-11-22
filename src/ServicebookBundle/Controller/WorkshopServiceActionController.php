@@ -125,10 +125,9 @@ class WorkshopServiceActionController extends Main {
         if ($id > 0 AND count($entity) > 0) {
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams[] = array("name" => "Title", "index" => 'part');
-            $dtparams[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');
-            $dtparams[] = array("name" => "Price", "index" => 'price');
-            ;
+            $dtparams[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');         
             $dtparams[] = array("name" => "Code", "index" => 'code');
+            $dtparams[] = array("name" => "Price", "index" => 'price');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
