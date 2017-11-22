@@ -308,13 +308,10 @@ class BrandService extends Entity {
         return $this->brandVin;
     }
 
-
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $actions;
-
 
     /**
      * Add action
@@ -323,8 +320,7 @@ class BrandService extends Entity {
      *
      * @return BrandService
      */
-    public function addAction(\ServicebookBundle\Entity\BrandServiceAction $action)
-    {
+    public function addAction(\ServicebookBundle\Entity\BrandServiceAction $action) {
         $this->actions[] = $action;
 
         return $this;
@@ -335,8 +331,7 @@ class BrandService extends Entity {
      *
      * @param \ServicebookBundle\Entity\BrandServiceAction $action
      */
-    public function removeAction(\ServicebookBundle\Entity\BrandServiceAction $action)
-    {
+    public function removeAction(\ServicebookBundle\Entity\BrandServiceAction $action) {
         $this->actions->removeElement($action);
     }
 
@@ -345,8 +340,8 @@ class BrandService extends Entity {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getActions()
-    {
+    public function getActions() {
         return $this->actions;
     }
+
 }

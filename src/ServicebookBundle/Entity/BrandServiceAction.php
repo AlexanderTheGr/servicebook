@@ -21,7 +21,7 @@ class BrandServiceAction extends Entity {
         $this->created = $dt;
         $this->repositories['brandService'] = 'ServicebookBundle:BrandService';
         $this->brandService = new \ServicebookBundle\Entity\BrandService;
-        $this->serviceparts = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->serviceparts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
@@ -266,7 +266,6 @@ class BrandServiceAction extends Entity {
      */
     private $serviceparts;
 
-
     /**
      * Add servicepart
      *
@@ -274,8 +273,7 @@ class BrandServiceAction extends Entity {
      *
      * @return BrandServiceAction
      */
-    public function addServicepart(\ServicebookBundle\Entity\BrandServicePart $servicepart)
-    {
+    public function addServicepart(\ServicebookBundle\Entity\BrandServicePart $servicepart) {
         $this->serviceparts[] = $servicepart;
 
         return $this;
@@ -286,8 +284,7 @@ class BrandServiceAction extends Entity {
      *
      * @param \ServicebookBundle\Entity\BrandServicePart $servicepart
      */
-    public function removeServicepart(\ServicebookBundle\Entity\BrandServicePart $servicepart)
-    {
+    public function removeServicepart(\ServicebookBundle\Entity\BrandServicePart $servicepart) {
         $this->serviceparts->removeElement($servicepart);
     }
 
@@ -296,8 +293,8 @@ class BrandServiceAction extends Entity {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getServiceparts()
-    {
+    public function getServiceparts() {
         return $this->serviceparts;
     }
+
 }
