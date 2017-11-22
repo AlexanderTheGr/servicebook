@@ -45,7 +45,7 @@
             target-entity="ServicebookBundle\Entity\BrandServiceAction"
             inversed-by="BrandServiceAction"
             join-column="brand_service_action">
-            <join-column name="brand_service_action" referenced-column-name="id" />
+            <join-column name="brand_service_action" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one>        
     </entity>
 </doctrine-mapping>
