@@ -21,7 +21,7 @@ class BrandServiceAction extends Entity {
         $this->created = $dt;
         $this->repositories['brandService'] = 'ServicebookBundle:BrandService';
         $this->brandService = new \ServicebookBundle\Entity\BrandService;
-        //$this->serviceparts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->serviceparts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
