@@ -294,6 +294,6 @@ class BrandServiceAction extends Entity {
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getParts() {
-        return (array)$this->parts;
+        return $this->parts;
     }
 }
