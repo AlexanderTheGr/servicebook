@@ -35,21 +35,29 @@ class WorkshopServiceController extends Main {
      */
     public function viewAction($workshop, $service = false) {
         $buttons = array();
-        $content = $this->gettabs($workshop, $service);
+        $entity = $this->entity($workshop, $service);
+        $content = $this->gettabs($entity);
         //$content = $this->getoffcanvases($id);
         //$content = $this->content();
         $pagename = "Vin";
         $breadcrumb = array();
 
         if ($id > 0) {
-            /*
-              $entity = $this->getDoctrine()
-              ->getRepository($this->repository)
-              ->find($id);
-              $pagename = "Worshop: (" . $entity->getName() . ")";
-              $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopservice/view/' . $id . '">' . $pagename . '</a>';
-             * 
-             */
+            $vin = $entity->getBrandVin()->getId();
+
+            $pagename = "Service: (" . $entity->getService() . ")";
+            $vinpagenane = "Vin: (" . $entity->getBrandVin()->getVin() . ")";
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/service/view/' . $id . '/' . $vin . '">' . $pagename . '</a>';
+        } else {
+
+            $entity = $this->getDoctrine()
+                    ->getRepository('ServicebookBundle:BrandVin')
+                    ->find($vin);
+            $vinpagenane = "Vin: (" . $entity->getVin() . ")";
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
+            $breadcrumb[] = 'New Service';
+            $pagename = 'New Service';
         }
         //$content = $this->gettabs($id);
         //$content = $this->content();
@@ -76,24 +84,12 @@ class WorkshopServiceController extends Main {
         );
     }
 
-    /**
-     * @Route("/servicebook/workshopservice/gettab")
-     */
-    public function gettabs($workshop, $service) {
+    
+    function entity($workshop, $service) {
         $service = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:BrandService')->find($service);
         $workshop = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:Workshop')->find($workshop);
-
-        /*
-          echo count($service->getActions()) . ",";
-          foreach ($service->getActions() as $action) {
-          echo "[".count($action->getParts())."]";
-          foreach ($action->getParts() as $brandServicePart) {
-          echo "{[".$brandServicePart->getId()."]}";
-          }
-          }
-         */
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->findOneBy(array('workshop' => $workshop, 'brandService' => $service));
@@ -151,8 +147,16 @@ class WorkshopServiceController extends Main {
                 }
             }
             $this->newentity[$this->repository] = $entity;
-        }
+        } 
+        return $entity;
+    }
+    
+    /**
+     * @Route("/servicebook/workshopservice/gettab")
+     */
+    public function gettabs($entity) {
 
+        
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
