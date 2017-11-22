@@ -30,7 +30,13 @@
                 <option name="default"></option>
             </options>
         </field>
-
+        <field name="comments" type="text" column="comments" length="65535" nullable="false">
+            <options>
+                <option name="fixed"/>
+                <option name="default"></option>
+            </options>
+        </field>          
+        <field name="price" type="decimal" column="price" precision="10" scale="2" nullable="false"/>
         
         <field name="ts" type="datetime" column="ts" nullable="true"/>
         <field name="created" type="datetime" column="created" nullable="true"/>

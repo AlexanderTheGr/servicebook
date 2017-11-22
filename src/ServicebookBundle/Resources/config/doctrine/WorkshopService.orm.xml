@@ -36,7 +36,12 @@
                 <option name="default"></option>
             </options>
         </field>
-        
+        <field name="comments" type="text" column="comments" length="65535" nullable="false">
+            <options>
+                <option name="fixed"/>
+                <option name="default"></option>
+            </options>
+        </field>          
         <field name="status" type="boolean" column="status" nullable="false">
             <options>
                 <option name="default">0</option>
