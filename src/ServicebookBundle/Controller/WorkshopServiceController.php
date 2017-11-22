@@ -173,7 +173,7 @@ class WorkshopServiceController extends Main {
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/workshop/getserviceactions/' . $entity->getId();
             $params['view'] = '/servicebook/workshop/serviceaction/view';
-            $params['viewnew'] = '/servicebook/workshop/serviceaction/view/new/' . $entity->getId();
+            //$params['viewnew'] = '/servicebook/workshop/serviceaction/view/new/' . $entity->getId();
 
             $params['key'] = 'gettabs_' . $entity->getId();
             $params["ctrl"] = 'ctrlgettabs';
