@@ -8,7 +8,7 @@ use AppBundle\Entity\Entity;
  */
 class WorkshopServicePart extends Entity {
 
-    private $repository = 'ServicebookBundle:BrandServicePart';
+    private $repository = 'ServicebookBundle:WorkshopServicePart';
     private $types = array();
     var $repositories = array();
     var $uniques = array();
