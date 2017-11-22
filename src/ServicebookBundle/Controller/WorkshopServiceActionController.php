@@ -67,19 +67,19 @@ class WorkshopServiceActionController extends Main {
             $service = $entity->getWorkshopService()->getId();
 
             $pagename = 'Action: (' . $entity->getAction() . ')';
-            $vinpagenane = "Vin (" . $entity->getWorkshopService()->getBrandVin()->getVin() . ")";
+            $vinpagenane = "Vin (" . $entity->getWorkshopService()->getWorkshop()->getName() . ")";
             $servicepagenane = "Service: (" . $entity->getWorkshopService()->getService() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $entity->getWorkshopService()->getBrandVin()->getId() . '">' . $vinpagenane . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $entity->getWorkshopService()->getId() . '/' . $entity->getWorkshopService()->getBrandVin()->getId() . '">' . $servicepagenane . '</a>';
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $entity->getWorkshopService()->getWorkshop()->getId() . '">' . $vinpagenane . '</a>';
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $entity->getWorkshopService()->getId() . '/' . $entity->getWorkshopService()->getWorkshop()->getId() . '">' . $servicepagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/serviceaction/view/' . $id . '/' . $service . '">' . $pagename . '</a>';
         } else {
             $entity = $this->getDoctrine()
                     ->getRepository("ServicebookBundle:WorkshopService")
                     ->find($service);
-            $vin = $entity->getBrandVin()->getId();
+            $vin = $entity->getWorkshop()->getId();
 
             $servicepagenane = "Service: (" . $entity->getService() . ")";
-            $vinpagenane = "Vin: (" . $entity->getBrandVin()->getVin() . ")";
+            $vinpagenane = "Vin: (" . $entity->getWorkshop()->getName() . ")";
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $vin . '">' . $vinpagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $service . '/' . $vin . '">' . $servicepagenane . '</a>';
             $breadcrumb[] = 'New Action';
