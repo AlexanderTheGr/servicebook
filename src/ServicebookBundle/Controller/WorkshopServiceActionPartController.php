@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\Main as Main;
-use ServicebookBundle\Entity\BrandWorkshop as BrandWorkshop;
+use ServicebookBundle\Entity\Workshop as Workshop;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class WorkshopServiceActionPartController extends Main {
@@ -92,7 +92,7 @@ class WorkshopServiceActionPartController extends Main {
             $pagename = 'New Part';
         }
         $content = $this->content();
-        return $this->render('ServicebookBundle:BrandWorkshop:view.html.twig', array(
+        return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
                     'pagename' => $pagename,
                     'breadcrumb' => implode(" / ", $breadcrumb),
                     'url' => '/servicebook/workshop/servicepart/save/' . $action,
@@ -126,7 +126,7 @@ class WorkshopServiceActionPartController extends Main {
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
         //$fields["brandWorkshop:id"] = array("label" => "Name");
-        //$fields["brandWorkshop"] = array("label" => "Brand Workshop", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:BrandWorkshop', 'name' => 'workshop', 'value' => 'id'));
+        //$fields["brandWorkshop"] = array("label" => "Brand Workshop", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Workshop', 'name' => 'workshop', 'value' => 'id'));
 
         $forms = $this->getFormLyFields($entity, $fields);
 
