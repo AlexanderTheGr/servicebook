@@ -39,9 +39,9 @@ class WorkshopServiceController extends Main {
         $content = $this->gettabs($entity);
         //$content = $this->getoffcanvases($id);
         //$content = $this->content();
-        $pagename = "Vin";
+        $pagename = "Service";
         $breadcrumb = array();
-
+        
         if ($id > 0) {
             $vin = $entity->getBrandVin()->getId();
 
@@ -49,15 +49,6 @@ class WorkshopServiceController extends Main {
             $vinpagenane = "Vin: (" . $entity->getBrandVin()->getVin() . ")";
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/service/view/' . $id . '/' . $vin . '">' . $pagename . '</a>';
-        } else {
-
-            $entity = $this->getDoctrine()
-                    ->getRepository('ServicebookBundle:BrandVin')
-                    ->find($vin);
-            $vinpagenane = "Vin: (" . $entity->getVin() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/brandvin/view/' . $vin . '">' . $vinpagenane . '</a>';
-            $breadcrumb[] = 'New Service';
-            $pagename = 'New Service';
         }
         //$content = $this->gettabs($id);
         //$content = $this->content();
