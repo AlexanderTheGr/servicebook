@@ -52,7 +52,7 @@
             target-entity="ServicebookBundle\Entity\BrandService"
             inversed-by="BrandService"
             join-column="brand_service">
-            <join-column name="brand_service" referenced-column-name="id" />
+            <join-column name="brand_service" referenced-column-name="id"  on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one> 
         
         <many-to-one
@@ -60,7 +60,7 @@
             target-entity="ServicebookBundle\Entity\Workshop"
             inversed-by="Workshop"
             join-column="workshop">
-            <join-column name="workshop" referenced-column-name="id" />
+            <join-column name="workshop" referenced-column-name="id"  on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one> 
         
     </entity>
