@@ -29,11 +29,10 @@ class WorkshopPartController extends Main {
         ));
     }
 
-    
     /**
      * @Route("/servicebook/workshopPart/view/{id}/{workshop}")
      */
-    public function viewAction($id,$workshop=false) {
+    public function viewAction($id, $workshop = false) {
         $buttons = array();
         $content = $this->gettabs($id);
         //$content = $this->getoffcanvases($id);
@@ -46,13 +45,21 @@ class WorkshopPartController extends Main {
                     ->find($id);
             //$pagename = "Worshop: (" . $entity->getWorkshop()->getName() . ")";
             $pagename = "Part (" . $entity->getBrand()->getBrand() . "  " . $entity->getPart() . " " . $entity->getCode() . ")";
-            $workshop = $entity->getWorkshop()->getId(); 
+            $workshop = $entity->getWorkshop()->getId();
             $workshoppagenane = "Workshop: (" . $entity->getWorkshop()->getName() . ")";
-            
+
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $workshop . '">' . $workshoppagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopPart/view/' . $id . '">' . $pagename . '</a>';
             //$breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $workshop . '/' . $service . '">' . $pagename . '</a>';            
-            
+        } else {
+            $entity = $this->getDoctrine()
+                    ->getRepository('ServicebookBundle:Workshop')
+                    ->find($workshop);
+
+            $workshoppagenane = "Workshop: (" . $entity->getName() . ")";
+            //$workshop = $workshop->getId();
+            $breadcrumb[] = 'New Part';
+            $pagename = 'New Part';
         }
         //$content = $this->gettabs($id);
         //$content = $this->content();
@@ -83,7 +90,6 @@ class WorkshopPartController extends Main {
     /**
      * @Route("/servicebook/workshopPart/gettab")
      */
-
     public function gettabs($id) {
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
@@ -92,7 +98,7 @@ class WorkshopPartController extends Main {
             $entity = new \ServicebookBundle\Entity\WorkshopPart;
             $this->newentity[$this->repository] = $entity;
         }
-        
+
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
@@ -103,8 +109,8 @@ class WorkshopPartController extends Main {
         $fields["code"] = array("label" => "Code", 'required' => true);
 
         $fields["price"] = array("label" => "Price", 'required' => true);
-        $fields["comments"] = array("label" => "Comments",  "type" => "textarea");
-        
+        $fields["comments"] = array("label" => "Comments", "type" => "textarea");
+
         $forms = $this->getFormLyFields($entity, $fields);
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
@@ -112,8 +118,8 @@ class WorkshopPartController extends Main {
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
-    }    
-    
+    }
+
     /**
      * @Route("/servicebook/workshopPart/getparts/{id}")
      */
@@ -141,4 +147,5 @@ class WorkshopPartController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
+
 }
