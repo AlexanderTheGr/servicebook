@@ -10,5 +10,6 @@
 {% block javascripts %}
 <script>
     $(".{{ctrl}}").alexTabs("{{app}}", "{{ctrl}}", "{{url}}","{{content|json_encode()}}");
+    $(".btn_newc_ctrlgettabs").hide();
 </script>
 {% endblock %}
