@@ -347,4 +347,62 @@ class WorkshopServicePart extends Entity {
         return $this->brand;
     }
 
+    /**
+     * @var string
+     */
+    private $comments = '';
+
+    /**
+     * @var string
+     */
+    private $price;
+
+
+    /**
+     * Set comments
+     *
+     * @param string $comments
+     *
+     * @return WorkshopServicePart
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return string
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return WorkshopServicePart
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
 }
