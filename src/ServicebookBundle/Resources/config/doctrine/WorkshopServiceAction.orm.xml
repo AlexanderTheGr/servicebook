@@ -38,7 +38,7 @@
             target-entity="ServicebookBundle\Entity\WorkshopService"
             inversed-by="WorkshopService"
             join-column="workshop_service">
-            <join-column name="workshop_service" referenced-column-name="id" />
+            <join-column name="workshop_service" referenced-column-name="id"  on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one>    
         <many-to-one
             field="brandServiceAction"
