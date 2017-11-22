@@ -41,14 +41,14 @@
             target-entity="ServicebookBundle\Entity\WorkshopServiceAction"
             inversed-by="WorkshopServiceAction"
             join-column="workshop_service_action">
-            <join-column name="workshop_service_action" referenced-column-name="id" />
+            <join-column name="workshop_service_action" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one>  
         <many-to-one
             field="brandServicePart"
             target-entity="ServicebookBundle\Entity\BrandServicePart"
             inversed-by="BrandServicePart"
             join-column="brand_service_part">
-            <join-column name="brand_service_part" referenced-column-name="id" />
+            <join-column name="brand_service_part" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one> 
         <many-to-one
             field="workshopServicePart"
