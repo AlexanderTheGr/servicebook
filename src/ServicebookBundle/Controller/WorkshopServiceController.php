@@ -131,9 +131,9 @@ class WorkshopServiceController extends Main {
                         $workshopPart->setBrand($brandServicePart->getBrand());
                         $workshopPart->setCode($brandServicePart->getCode());
                         $workshopPart->setPart($brandServicePart->getPart());
-                        $workshopServicePart->setTs($dt);
-                        $workshopServicePart->setModified($dt);
-                        $workshopServicePart->setCreated($dt);
+                        $workshopPart->setTs($dt);
+                        $workshopPart->setModified($dt);
+                        $workshopPart->setCreated($dt);
                         $this->flushpersist($workshopPart);
                     }
                     $workshopServicePart = new WorkshopServicePart;
