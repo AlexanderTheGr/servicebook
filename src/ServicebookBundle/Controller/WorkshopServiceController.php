@@ -46,7 +46,7 @@ class WorkshopServiceController extends Main {
             $workshop = $entity->getWorkshop()->getId();
 
             $pagename = "Service: (" . $entity->getService() . ")";
-            $workshoppagenane = "Vin: (" . $entity->getWorkshop()->getVin() . ")";
+            $workshoppagenane = "Workshop: (" . $entity->getWorkshop()->getName() . ")";
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $workshop . '">' . $workshoppagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $workshop . '/' . $service . '">' . $pagename . '</a>';
         }
