@@ -84,7 +84,7 @@ class WorkshopServiceController extends Main {
         $workshop = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:Workshop')->find($workshop);
 
-
+        /*
         echo count($service->getActions()) . ",";
         foreach ($service->getActions() as $action) {
             echo "[".count($action->getParts())."]";
@@ -92,10 +92,11 @@ class WorkshopServiceController extends Main {
                 echo "{[".$brandServicePart->getId()."]}";
             }
         }
+        */
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->findOneBy(array('workshop' => $workshop, 'brandService' => $service));
-        exit;
+        //exit;
         if (!$entity) {
             $dt = new \DateTime("now");
             $entity = new \ServicebookBundle\Entity\WorkshopService;
