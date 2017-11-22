@@ -53,7 +53,8 @@ class WorkshopServiceController extends Main {
         //$content = $this->gettabs($id);
         //$content = $this->content();
         return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
-                    'pagename' => $this->getTranslation('WorkshopService'),
+                    'pagename' => $pagename,
+                    'breadcrumb' => implode(" / ", $breadcrumb),
                     'url' => '/servicebook/workshopservice/save',
                     'supplierid' => $id,
                     'content' => $content,
