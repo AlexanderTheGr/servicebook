@@ -123,7 +123,6 @@ class WorkshopServiceController extends Main {
                 $workshopServiceAction->setCreated($dt);
                 $this->flushpersist($workshopServiceAction);
                 foreach ($action->getParts() as $brandServicePart) {
-
                     $workshopPart = $this->getDoctrine()
                             ->getRepository('ServicebookBundle:WorkshopPart')
                             ->findOneBy(array('brand' => $brandServicePart->getBrand(), 'code' => $brandServicePart->getCode()));
