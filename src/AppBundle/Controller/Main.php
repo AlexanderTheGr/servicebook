@@ -627,12 +627,12 @@ class Main extends Controller {
                   }
                  * 
                  */
-                @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), 'defaultValue' => $defaultValue, "type" => "select", "templateOptions" => array("type" => '', 'options' => $seloptions, 'defaultOptions' => array("value" => $defaultValue), "label" => $this->getTranslation($options["label"]), "required" => $options["required"]));
+                @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), 'defaultValue' => $defaultValue, "type" => "select", "templateOptions" => array("type" => '', 'disabled'=>$options["disabled"], 'options' => $seloptions, 'defaultOptions' => array("value" => $defaultValue), "label" => $this->getTranslation($options["label"]), "required" => $options["required"]));
             } elseif ($options["type"] == 'datetime') {
                 //$val = new \DateTime($val);
                 //$entities[$df[0] . ":" . $df[1]]->setField($df[2], $val);
                 $defaultValue = $entity->getId() > 0 ? $entity->getField($field)->format('Y-m-d') : '';
-                @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), "defaultValue" => $defaultValue, "type" => "input", "templateOptions" => array("type" => '', 'class' => '', "label" => $this->getTranslation($options["label"]), "required" => $options["required"]));
+                @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), "defaultValue" => $defaultValue, "type" => "input", "templateOptions" => array("type" => '', 'disabled'=>$options["disabled"], 'class' => '', "label" => $this->getTranslation($options["label"]), "required" => $options["required"]));
             } else {
 
                 //echo "A".@$options["required"]."<BR>";
