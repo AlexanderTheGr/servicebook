@@ -163,7 +163,36 @@ class WorkshopServiceController extends Main {
 
         $forms = $this->getFormLyFields($entity, $fields);
 
+        if ($entity) {
+            $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams[] = array("name" => "Title", "index" => 'action');
+            $dtparams[] = array("name" => "Manhour", "index" => 'manhour');
+            //$dtparams[] = array("name" => "Code", "index" => 'code');
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params['dtparams'] = $dtparams;
+            $params['id'] = $dtparams;
+            $params['url'] = '/servicebook/workshop/getserviceactions/' . $id;
+            $params['view'] = '/servicebook/workshop/serviceaction/view';
+            $params['viewnew'] = '/servicebook/workshop/serviceaction/view/new/' . $id;
+
+            $params['key'] = 'gettabs_' . $id;
+            $params["ctrl"] = 'ctrlgettabs';
+            $params["app"] = 'appgettabs';
+            $datatables[] = $this->contentDatatable($params);
+        }
+
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
+
+        if ($id > 0 AND count($entity) > 0) {
+            $tabs[] = array("title" => $this->getTranslation("Actions"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+        }
+        foreach ((array) $tabs as $tab) {
+            $this->addTab($tab);
+        }
+
+
+
+
 
         $json = $this->tabs();
         //echo json_encode($json);
