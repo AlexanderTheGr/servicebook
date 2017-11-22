@@ -42,12 +42,12 @@ class WorkshopServiceController extends Main {
         $pagename = "Service";
         $breadcrumb = array();
         
-        if ($id > 0) {
-            $vin = $entity->getBrandVin()->getId();
+        if ($entity) {
+            $workshop = $entity->getWorkshop()->getId();
 
             $pagename = "Service: (" . $entity->getService() . ")";
-            $vinpagenane = "Vin: (" . $entity->getBrandVin()->getVin() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $vin . '">' . $vinpagenane . '</a>';
+            $workshoppagenane = "Vin: (" . $entity->getWorkshop()->getVin() . ")";
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $workshop . '">' . $workshoppagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $workshop . '/' . $service . '">' . $pagename . '</a>';
         }
         //$content = $this->gettabs($id);
