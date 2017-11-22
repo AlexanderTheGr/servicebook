@@ -602,19 +602,11 @@ class Main extends Controller {
                     $datasource = $options["datasource"];
                     $results = $em->getRepository($datasource["repository"])->findAll();
                     $seloptions = array();
-                    $defaultValue = $entity->getField($field) ? $entity->getField($field)->getId() : NULL;
-                    $options["disabled"] = 1;
                     foreach (@(array) $results as $data) {
                         $suffix = $datasource['suffix'] ? " (" . $data->getField($datasource['suffix']) . ")" : "";
-                        if ($options["disabled"]) {
-                           if ($defaultValue == $data->getField($datasource['value'])) 
-                           $seloptions[] = array("name" => $data->getField($datasource['name']) . $suffix, "value" => $data->getField($datasource['value']));
-                        } else {
-                            $seloptions[] = array("name" => $data->getField($datasource['name']) . $suffix, "value" => $data->getField($datasource['value']));
-                        }
-                        
+                        $seloptions[] = array("name" => $data->getField($datasource['name']) . $suffix, "value" => $data->getField($datasource['value']));
                     }
-                    
+                    $defaultValue = $entity->getField($field) ? $entity->getField($field)->getId() : NULL;
                 }
                 if ($options["dataarray"]) {
                     $seloptions = array();
