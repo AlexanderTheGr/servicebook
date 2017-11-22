@@ -78,16 +78,19 @@ class WorkshopServiceController extends Main {
     /**
      * @Route("/servicebook/workshopservice/gettab")
      */
-    public function gettabs($workshop,$service) {
+    public function gettabs($workshop, $service) {
         $service = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:BrandService')->find($service);
         $workshop = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:Workshop')->find($workshop);
-        
-       
-        echo count($service->getActions()).",";
-        foreach($service->getActions() as $action) {
-            echo count($action->getParts().",");
+
+
+        echo count($service->getActions()) . ",";
+        foreach ($service->getActions() as $action) {
+            echo count($action->getParts() . ",");
+            foreach ($action->getParts() as $brandServicePart) {
+                echo "[".$brandServicePart->getId()."]";
+            }
         }
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
@@ -106,7 +109,7 @@ class WorkshopServiceController extends Main {
             $entity->setModified($dt);
             $entity->setCreated($dt);
             $this->flushpersist($entity);
-            foreach($service->getActions() as $action) {
+            foreach ($service->getActions() as $action) {
                 $workshopServiceAction = new \ServicebookBundle\Entity\WorkshopServiceAction;
                 $workshopServiceAction->setBrandServiceAction($action);
                 $workshopServiceAction->setWorkshopService($entity);
@@ -117,17 +120,28 @@ class WorkshopServiceController extends Main {
                 $workshopServiceAction->setModified($dt);
                 $workshopServiceAction->setCreated($dt);
                 $this->flushpersist($workshopServiceAction);
-                
+                foreach ($action->getParts() as $brandServicePart) {
+                    $workshopServicePart = new \ServicebookBundle\Entity\WorkshopServicePart;
+                    $workshopServicePart->setBrandServicePart($brandServicePart);
+                    $workshopServicePart->setWorkshopServiceAction($workshopServiceAction);
+                    $workshopServicePart->setBrand($brandServicePart->getBrand());
+                    $workshopServicePart->setCode($brandServicePart->getCode());
+                    $workshopServicePart->setPart($brandServicePart->getPart());
+                    $workshopServicePart->setTs($dt);
+                    $workshopServicePart->setModified($dt);
+                    $workshopServicePart->setCreated($dt);
+                    $this->flushpersist($workshopServicePart);
+                }
             }
             $this->newentity[$this->repository] = $entity;
         }
-        
+
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
-        $fields["service"] = array("label" => "Service", "disabled"=>true, 'required' => true);
-        $fields["km"] = array("label" => "Km", "disabled"=>true, 'required' => true);
-        $fields["details"] = array("label" => "Details", "disabled"=>true, "type" => "textarea");
+        $fields["service"] = array("label" => "Service", "disabled" => true, 'required' => true);
+        $fields["km"] = array("label" => "Km", "disabled" => true, 'required' => true);
+        $fields["details"] = array("label" => "Details", "disabled" => true, "type" => "textarea");
 
 
         $forms = $this->getFormLyFields($entity, $fields);
