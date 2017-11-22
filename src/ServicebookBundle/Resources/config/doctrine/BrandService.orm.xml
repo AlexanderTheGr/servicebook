@@ -53,7 +53,7 @@
             target-entity="ServicebookBundle\Entity\BrandVin"
             inversed-by="BrandVin"
             join-column="brand_vin">
-            <join-column name="brand_vin" referenced-column-name="id" />
+            <join-column name="brand_vin" referenced-column-name="id"  on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one>    
     </entity>
 </doctrine-mapping>
