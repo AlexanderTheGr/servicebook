@@ -51,11 +51,11 @@
             <join-column name="brand_service_part" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one> 
         <many-to-one
-            field="workshopServicePart"
-            target-entity="ServicebookBundle\Entity\WorkshopServicePart"
-            inversed-by="WorkshopServicePart"
-            join-column="workshop_service_part">
-            <join-column name="workshop_service_part" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
+            field="workshopPart"
+            target-entity="ServicebookBundle\Entity\WorkshopPart"
+            inversed-by="WorkshopPart"
+            join-column="workshop_part">
+            <join-column name="workshop_part" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one>                                                         
         <many-to-one
             field="brand"
