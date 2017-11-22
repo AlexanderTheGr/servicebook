@@ -119,7 +119,7 @@ class WorkshopServiceActionPartController extends Main {
 
         $fields["part"] = array("label" => "Part","disabled" => true, 'required' => true);
         //$fields["brand"] = array("label" => "Brand", 'required' => true);
-        $fields["brand"] = array("label" => "Brand","disabled" => true, "disabled" => false, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+        $fields["brand"] = array("label" => "Brand","disabled" => true, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
 
         $fields["code"] = array("label" => "Code","disabled" => true, 'required' => true);
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
