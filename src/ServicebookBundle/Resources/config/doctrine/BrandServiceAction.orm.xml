@@ -32,9 +32,7 @@
         <field name="ts" type="datetime" column="ts" nullable="true"/>
         <field name="created" type="datetime" column="created" nullable="true"/>
         <field name="modified" type="datetime" column="modified" nullable="true"/>        
-        
-        <one-to-many field="serviceparts" target-entity="BrandServicePart" mapped-by="brandServiceAction1" />
-        
+        <one-to-many field="parts" target-entity="BrandServicePart" mapped-by="brandServiceAction" />
         <many-to-one
             field="brandService"
             target-entity="ServicebookBundle\Entity\BrandService"
