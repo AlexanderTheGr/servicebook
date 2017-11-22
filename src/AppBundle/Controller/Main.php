@@ -602,12 +602,18 @@ class Main extends Controller {
                     $datasource = $options["datasource"];
                     $results = $em->getRepository($datasource["repository"])->findAll();
                     $seloptions = array();
-
+                    $defaultValue = $entity->getField($field) ? $entity->getField($field)->getId() : NULL;
                     foreach (@(array) $results as $data) {
                         $suffix = $datasource['suffix'] ? " (" . $data->getField($datasource['suffix']) . ")" : "";
-                        $seloptions[] = array("name" => $data->getField($datasource['name']) . $suffix, "value" => $data->getField($datasource['value']));
+                        if ($options["disabled"]) {
+                           if ($defaultValue == $data->getField($datasource['value'])) 
+                           $seloptions[] = array("name" => $data->getField($datasource['name']) . $suffix, "value" => $data->getField($datasource['value']));
+                        } else {
+                            $seloptions[] = array("name" => $data->getField($datasource['name']) . $suffix, "value" => $data->getField($datasource['value']));
+                        }
+                        
                     }
-                    $defaultValue = $entity->getField($field) ? $entity->getField($field)->getId() : NULL;
+                    
                 }
                 if ($options["dataarray"]) {
                     $seloptions = array();
@@ -627,6 +633,7 @@ class Main extends Controller {
                   }
                  * 
                  */
+                
                 @$forms["fields"][] = array("key" => $field, "className" => (string) $options["className"], "id" => $this->repository . ":" . $field . ":" . $entity->getId(), 'defaultValue' => $defaultValue, "type" => "select", "templateOptions" => array("type" => '', 'disabled'=>$options["disabled"], 'options' => $seloptions, 'defaultOptions' => array("value" => $defaultValue), "label" => $this->getTranslation($options["label"]), "required" => $options["required"]));
             } elseif ($options["type"] == 'datetime') {
                 //$val = new \DateTime($val);
