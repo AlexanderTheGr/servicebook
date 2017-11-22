@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\Main as Main;
 use ServicebookBundle\Entity\WorkshopService as WorkshopService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use ServicebookBundle\Entity\WorkshopServicePart as WorkshopServicePart;
 
 class WorkshopServiceController extends Main {
 
@@ -122,7 +123,7 @@ class WorkshopServiceController extends Main {
                 $workshopServiceAction->setCreated($dt);
                 $this->flushpersist($workshopServiceAction);
                 foreach ($action->getParts() as $brandServicePart) {
-                    $workshopServicePart = new \ServicebookBundle\Entity\WorkshopServicePart;
+                    $workshopServicePart = new WorkshopServicePart;
                     $workshopServicePart->setBrandServicePart($brandServicePart);
                     $workshopServicePart->setWorkshopServiceAction($workshopServiceAction);
                     $workshopServicePart->setBrand($brandServicePart->getBrand());
