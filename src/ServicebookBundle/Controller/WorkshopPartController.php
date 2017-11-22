@@ -58,6 +58,7 @@ class WorkshopPartController extends Main {
 
             $workshoppagenane = "Workshop: (" . $entity->getName() . ")";
             //$workshop = $workshop->getId();
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $workshop . '">' . $workshoppagenane . '</a>';
             $breadcrumb[] = 'New Part';
             $pagename = 'New Part';
         }
