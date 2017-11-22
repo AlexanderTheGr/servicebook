@@ -73,7 +73,7 @@ class WorkshopServiceActionPartController extends Main {
             $serviceactionpagename = 'Action: (' . $entity->getWorkshopServiceAction()->getAction() . ')';
             $breadcrumb = array();
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $entity->getWorkshopServiceAction()->getWorkshopService()->getWorkshop()->getId() . '">' . $workshoppagenane . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $entity->getWorkshopServiceAction()->getWorkshopService()->getId() . '/' . $entity->getWorkshopServiceAction()->getWorkshopService()->getWorkshop()->getId() . '">' . $servicepagenane . '</a>';
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $entity->getWorkshopServiceAction()->getWorkshopService()->getWorkshop()->getId() . '/' . $entity->getWorkshopServiceAction()->getWorkshopService()->getBrandService()->getId() . '">' . $servicepagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/serviceaction/view/' . $entity->getWorkshopServiceAction()->getId() . '/' . $entity->getWorkshopServiceAction()->getWorkshopService()->getId() . '">' . $serviceactionpagename . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/servicepart/view/' . $id . '/' . $action . '">' . $pagename . '</a>';
         } else {

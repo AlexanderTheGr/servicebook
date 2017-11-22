@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\Main as Main;
-use ServicebookBundle\Entity\BrandVin as BrandVin;
+use ServicebookBundle\Entity\Workshop as Workshop;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class WorkshopServiceActionController extends Main {
@@ -67,26 +67,26 @@ class WorkshopServiceActionController extends Main {
             $service = $entity->getWorkshopService()->getId();
 
             $pagename = 'Action: (' . $entity->getAction() . ')';
-            $vinpagenane = "Vin (" . $entity->getWorkshopService()->getWorkshop()->getName() . ")";
+            $workshoppagenane = "Workshop (" . $entity->getWorkshopService()->getWorkshop()->getName() . ")";
             $servicepagenane = "Service: (" . $entity->getWorkshopService()->getService() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $entity->getWorkshopService()->getWorkshop()->getId() . '">' . $vinpagenane . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $entity->getWorkshopService()->getId() . '/' . $entity->getWorkshopService()->getWorkshop()->getId() . '">' . $servicepagenane . '</a>';
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $entity->getWorkshopService()->getWorkshop()->getId() . '">' . $workshoppagenane . '</a>';
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $entity->getWorkshopService()->getWorkshop()->getId() . '/' . $entity->getWorkshopService()->getBrandService()->getId() . '">' . $servicepagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/serviceaction/view/' . $id . '/' . $service . '">' . $pagename . '</a>';
         } else {
             $entity = $this->getDoctrine()
                     ->getRepository("ServicebookBundle:WorkshopService")
                     ->find($service);
-            $vin = $entity->getWorkshop()->getId();
+            $workshop = $entity->getWorkshop()->getId();
 
             $servicepagenane = "Service: (" . $entity->getService() . ")";
-            $vinpagenane = "Vin: (" . $entity->getWorkshop()->getName() . ")";
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $vin . '">' . $vinpagenane . '</a>';
-            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $service . '/' . $vin . '">' . $servicepagenane . '</a>';
+            $workshoppagenane = "Workshop: (" . $entity->getWorkshop()->getName() . ")";
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $workshop . '">' . $workshoppagenane . '</a>';
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $service . '/' . $workshop . '">' . $servicepagenane . '</a>';
             $breadcrumb[] = 'New Action';
             $pagename = 'New Action';
         }
         $content = $this->content();
-        return $this->render('ServicebookBundle:BrandVin:view.html.twig', array(
+        return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
                     'pagename' => $pagename,
                     'breadcrumb' => implode(" / ", $breadcrumb),
                     'url' => '/servicebook/workshop/serviceaction/save/' . $service,
@@ -117,8 +117,8 @@ class WorkshopServiceActionController extends Main {
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
-        //$fields["brandVin:id"] = array("label" => "Name");
-        //$fields["brandVin"] = array("label" => "Brand Vin", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:BrandVin', 'name' => 'vin', 'value' => 'id'));
+        //$fields["brandWorkshop:id"] = array("label" => "Name");
+        //$fields["brandWorkshop"] = array("label" => "Brand Workshop", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Workshop', 'name' => 'workshop', 'value' => 'id'));
 
         $forms = $this->getFormLyFields($entity, $fields);
         if ($id > 0 AND count($entity) > 0) {

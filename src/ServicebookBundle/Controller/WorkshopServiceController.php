@@ -31,28 +31,16 @@ class WorkshopServiceController extends Main {
     }
 
     /**
-     * @Route("/servicebook/workshop/service/view/{id}/{workshop}")
+     * @Route("/servicebook/workshop/service/view/{workshop}/{service}")
      */
-    public function viewAction($id, $workshop = false) {
+    public function viewAction($workshop, $service = false) {
         $buttons = array();
-        $content = $this->gettabs($id, $workshop);
-        //$content = $this->getoffcanvases($id);
-        //$content = $this->content();
         $pagename = "Vin";
         $breadcrumb = array();
 
         if ($id > 0) {
-            /*
-              $entity = $this->getDoctrine()
-              ->getRepository($this->repository)
-              ->find($id);
-              $pagename = "Worshop: (" . $entity->getName() . ")";
-              $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopservice/view/' . $id . '">' . $pagename . '</a>';
-             * 
-             */
+
         }
-        //$content = $this->gettabs($id);
-        //$content = $this->content();
         return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
                     'pagename' => $this->getTranslation('WorkshopService'),
                     'url' => '/servicebook/workshopservice/save',
@@ -60,7 +48,7 @@ class WorkshopServiceController extends Main {
                     'content' => $content,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
-                    'tabs' => $this->gettabs($id, $workshop),
+                    'tabs' => $this->gettabs($workshop, $service),
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
@@ -79,21 +67,11 @@ class WorkshopServiceController extends Main {
     /**
      * @Route("/servicebook/workshopservice/gettab")
      */
-    public function gettabs($workshop, $service) {
+    public function gettabs($workshop, $service, $entity=false) {
         $service = $this->getDoctrine()
                         ->getRepository('ServicebookBundle:BrandService')->find($service);
         $workshop = $this->getDoctrine()
-                        ->getRepository('ServicebookBundle:Workshop')->find($workshop);
-
-        /*
-          echo count($service->getActions()) . ",";
-          foreach ($service->getActions() as $action) {
-          echo "[".count($action->getParts())."]";
-          foreach ($action->getParts() as $brandServicePart) {
-          echo "{[".$brandServicePart->getId()."]}";
-          }
-          }
-         */
+                        ->getRepository('ServicebookBundle:Workshop')->find($workshop);  
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->findOneBy(array('workshop' => $workshop, 'brandService' => $service));
