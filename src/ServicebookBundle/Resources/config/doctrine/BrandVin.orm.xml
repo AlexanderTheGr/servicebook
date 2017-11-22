@@ -105,14 +105,14 @@
             target-entity="ServicebookBundle\Entity\User"
             inversed-by="User"
             join-column="user">
-            <join-column name="user" referenced-column-name="id" />
+            <join-column name="user" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one>     
         <many-to-one
             field="brand"
             target-entity="ServicebookBundle\Entity\Brand"
             inversed-by="Brand"
             join-column="brand">
-            <join-column name="brand" referenced-column-name="id"   on-delete="CASCADE" on-update="CASCADE" />
+            <join-column name="brand" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one>     
     </entity>
 </doctrine-mapping>
