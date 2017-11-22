@@ -126,6 +126,7 @@ class WorkshopServiceActionController extends Main {
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams[] = array("name" => "Title", "index" => 'part');
             $dtparams[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');
+            $dtparams[] = array("name" => "Price", "index" => 'price');
             ;
             $dtparams[] = array("name" => "Code", "index" => 'code');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
