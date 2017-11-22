@@ -87,9 +87,9 @@ class WorkshopServiceController extends Main {
 
         echo count($service->getActions()) . ",";
         foreach ($service->getActions() as $action) {
-            echo count($action->getParts() . ",");
+            echo "[".count($action->getParts() . "],");
             foreach ($action->getParts() as $brandServicePart) {
-                echo "[".$brandServicePart->getId()."]";
+                //echo "[".$brandServicePart->getId()."]";
             }
         }
         $entity = $this->getDoctrine()
