@@ -125,12 +125,13 @@ class WorkshopServiceController extends Main {
                 foreach ($action->getParts() as $brandServicePart) {
                     $workshopPart = $this->getDoctrine()
                             ->getRepository('ServicebookBundle:WorkshopPart')
-                            ->findOneBy(array('brand' => $brandServicePart->getBrand(), 'code' => $brandServicePart->getCode()));
+                            ->findOneBy(array('workshop' => $workshop, 'brand' => $brandServicePart->getBrand(), 'code' => $brandServicePart->getCode()));
                     if (!$workshopPart) {
                         $workshopPart = new \ServicebookBundle\Entity\WorkshopPart;
                         $workshopPart->setBrand($brandServicePart->getBrand());
                         $workshopPart->setCode($brandServicePart->getCode());
                         $workshopPart->setPart($brandServicePart->getPart());
+                        $workshopPart->setWorkshop($workshop);
                         $workshopPart->setTs($dt);
                         $workshopPart->setModified($dt);
                         $workshopPart->setCreated($dt);
