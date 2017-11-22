@@ -44,7 +44,8 @@ class WorkshopPartController extends Main {
             $entity = $this->getDoctrine()
                     ->getRepository($this->repository)
                     ->find($id);
-            $pagename = "Worshop: (" . $entity->getName() . ")";
+            //$pagename = "Worshop: (" . $entity->getWorkshop()->getName() . ")";
+            $pagename = "Part (" . $entity->getBrand()->getBrand() . "  " . $entity->getPart() . " " . $entity->getCode() . ")";
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopPart/view/' . $id . '">' . $pagename . '</a>';
         }
         //$content = $this->gettabs($id);
