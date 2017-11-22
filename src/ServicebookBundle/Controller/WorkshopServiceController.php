@@ -86,14 +86,14 @@ class WorkshopServiceController extends Main {
                         ->getRepository('ServicebookBundle:Workshop')->find($workshop);
 
         /*
-        echo count($service->getActions()) . ",";
-        foreach ($service->getActions() as $action) {
-            echo "[".count($action->getParts())."]";
-            foreach ($action->getParts() as $brandServicePart) {
-                echo "{[".$brandServicePart->getId()."]}";
-            }
-        }
-        */
+          echo count($service->getActions()) . ",";
+          foreach ($service->getActions() as $action) {
+          echo "[".count($action->getParts())."]";
+          foreach ($action->getParts() as $brandServicePart) {
+          echo "{[".$brandServicePart->getId()."]}";
+          }
+          }
+         */
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
                 ->findOneBy(array('workshop' => $workshop, 'brandService' => $service));
@@ -123,12 +123,27 @@ class WorkshopServiceController extends Main {
                 $workshopServiceAction->setCreated($dt);
                 $this->flushpersist($workshopServiceAction);
                 foreach ($action->getParts() as $brandServicePart) {
+
+                    $workshopPart = $this->getDoctrine()
+                            ->getRepository('ServicebookBundle:WorkshopPart')
+                            ->findOneBy(array('brand' => $brandServicePart->getBrand(), 'code' => $brandServicePart->getCode()));
+                    if (!$workshopPart) {
+                        $workshopPart = new \ServicebookBundle\Entity\WorkshopPart;
+                        $workshopPart->setBrand($brandServicePart->getBrand());
+                        $workshopPart->setCode($brandServicePart->getCode());
+                        $workshopPart->setPart($brandServicePart->getPart());
+                        $workshopServicePart->setTs($dt);
+                        $workshopServicePart->setModified($dt);
+                        $workshopServicePart->setCreated($dt);
+                        $this->flushpersist($workshopPart);
+                    }
                     $workshopServicePart = new WorkshopServicePart;
                     $workshopServicePart->setBrandServicePart($brandServicePart);
                     $workshopServicePart->setWorkshopServiceAction($workshopServiceAction);
                     $workshopServicePart->setBrand($brandServicePart->getBrand());
                     $workshopServicePart->setCode($brandServicePart->getCode());
                     $workshopServicePart->setPart($brandServicePart->getPart());
+                    $workshopServicePart->setWorkshopServicePart($workshopPart);
                     $workshopServicePart->setTs($dt);
                     $workshopServicePart->setModified($dt);
                     $workshopServicePart->setCreated($dt);
