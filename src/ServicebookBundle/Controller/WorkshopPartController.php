@@ -46,12 +46,19 @@ class WorkshopPartController extends Main {
                     ->find($id);
             //$pagename = "Worshop: (" . $entity->getWorkshop()->getName() . ")";
             $pagename = "Part (" . $entity->getBrand()->getBrand() . "  " . $entity->getPart() . " " . $entity->getCode() . ")";
+            $workshop = $entity->getWorkshop()->getId(); 
+            $workshoppagenane = "Workshop: (" . $entity->getWorkshop()->getName() . ")";
+            
+            $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/view/' . $workshop . '">' . $workshoppagenane . '</a>';
             $breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshopPart/view/' . $id . '">' . $pagename . '</a>';
+            //$breadcrumb[] = '<a class="breadcrumb" href="/servicebook/workshop/service/view/' . $workshop . '/' . $service . '">' . $pagename . '</a>';            
+            
         }
         //$content = $this->gettabs($id);
         //$content = $this->content();
         return $this->render('ServicebookBundle:Workshop:view.html.twig', array(
-                    'pagename' => $this->getTranslation('WorkshopPart'),
+                    'pagename' => $pagename,
+                    'breadcrumb' => implode(" / ", $breadcrumb),
                     'url' => '/servicebook/workshopPart/save',
                     'supplierid' => $id,
                     'content' => $content,
