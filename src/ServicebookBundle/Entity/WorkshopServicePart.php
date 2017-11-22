@@ -6,7 +6,7 @@ use AppBundle\Entity\Entity;
 /**
  * WorkshopPart
  */
-class WorkshopPart extends Entity {
+class WorkshopServicePart extends Entity {
 
     private $repository = 'ServicebookBundle:BrandServicePart';
     private $types = array();
