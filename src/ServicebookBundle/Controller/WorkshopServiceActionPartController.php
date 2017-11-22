@@ -37,7 +37,11 @@ class WorkshopServiceActionPartController extends Main {
         $entity->setTs($dt);
         $entity->setModified($dt);
         $this->flushpersist($entity);
-
+        
+        $workshopPart = $entity->getWorkshopPart();
+        $workshopPart->setPrice($entity->getPrice());
+        $this->flushpersist($workshopPart);
+        
         $jsonarr = array();
         if ($entity->getId()) {
             $jsonarr["returnurl"] = "/servicebook/workshop/serviceaction/view/" . $entity->getWorkshopServiceAction()->getId();
