@@ -94,6 +94,9 @@ class WorkshopPartController extends Main {
 
         $fields["code"] = array("label" => "Code", 'required' => true);
 
+        $fields["price"] = array("label" => "Price", 'required' => true);
+        $fields["comments"] = array("label" => "Comments",  "type" => "textarea");
+        
         $forms = $this->getFormLyFields($entity, $fields);
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));

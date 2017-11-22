@@ -114,6 +114,7 @@ class WorkshopServiceActionController extends Main {
         $fields["action"] = array("label" => "Action", "disabled" => true,'required' => true);
         $fields["manhour"] = array("label" => "Manhours","disabled" => true, 'required' => true);
         $fields["details"] = array("label" => "Details", "disabled" => true, 'required' => true, "type" => "textarea");
+        $fields["comments"] = array("label" => "Comments",  "type" => "textarea");
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
