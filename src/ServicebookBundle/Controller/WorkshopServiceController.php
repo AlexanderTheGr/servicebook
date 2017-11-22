@@ -31,11 +31,11 @@ class WorkshopServiceController extends Main {
     }
 
     /**
-     * @Route("/servicebook/workshop/service/view/{id}/{workshop}")
+     * @Route("/servicebook/workshop/service/view/{id}/{service}")
      */
-    public function viewAction($id, $workshop = false) {
+    public function viewAction($id, $service = false) {
         $buttons = array();
-        $content = $this->gettabs($id, $workshop);
+        $content = $this->gettabs($id, $service);
         //$content = $this->getoffcanvases($id);
         //$content = $this->content();
         $pagename = "Vin";
@@ -60,7 +60,7 @@ class WorkshopServiceController extends Main {
                     'content' => $content,
                     'ctrl' => $this->generateRandomString(),
                     'app' => $this->generateRandomString(),
-                    'tabs' => $this->gettabs($id, $workshop),
+                    'tabs' => $this->gettabs($id, $service),
                     'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
         ));
     }
