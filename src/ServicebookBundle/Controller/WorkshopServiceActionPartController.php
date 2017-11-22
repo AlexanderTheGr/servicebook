@@ -117,11 +117,11 @@ class WorkshopServiceActionPartController extends Main {
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
-        $fields["part"] = array("label" => "Part", 'required' => true);
+        $fields["part"] = array("label" => "Part","disabled" => true, 'required' => true);
         //$fields["brand"] = array("label" => "Brand", 'required' => true);
-        $fields["brand"] = array("label" => "Brand", "disabled" => false, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+        $fields["brand"] = array("label" => "Brand","disabled" => true, "disabled" => false, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
 
-        $fields["code"] = array("label" => "Code", 'required' => true);
+        $fields["code"] = array("label" => "Code","disabled" => true, 'required' => true);
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
