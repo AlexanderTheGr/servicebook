@@ -127,7 +127,9 @@ class WorkshopServiceActionPartController extends Main {
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
         //$fields["brandWorkshop:id"] = array("label" => "Name");
         //$fields["brandWorkshop"] = array("label" => "Brand Workshop", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Workshop', 'name' => 'workshop', 'value' => 'id'));
-
+        $fields["price"] = array("label" => "Price", 'required' => true);
+        $fields["comments"] = array("label" => "Comments",  "type" => "textarea");
+        
         $forms = $this->getFormLyFields($entity, $fields);
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
