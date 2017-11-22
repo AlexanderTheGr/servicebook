@@ -87,7 +87,7 @@ class WorkshopServiceController extends Main {
        
         echo count($service->getActions()).",";
         foreach($service->getActions() as $action) {
-            echo count($action->getParts().",");
+            echo count($action->getServiceparts().",");
         }
         $entity = $this->getDoctrine()
                 ->getRepository($this->repository)
