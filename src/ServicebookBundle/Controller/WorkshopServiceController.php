@@ -171,9 +171,9 @@ class WorkshopServiceController extends Main {
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
-            $params['url'] = '/servicebook/workshop/getserviceactions/' . $id;
+            $params['url'] = '/servicebook/workshop/getserviceactions/' . $entity->getId();
             $params['view'] = '/servicebook/workshop/serviceaction/view';
-            $params['viewnew'] = '/servicebook/workshop/serviceaction/view/new/' . $id;
+            $params['viewnew'] = '/servicebook/workshop/serviceaction/view/new/' . $entity->getId();
 
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
