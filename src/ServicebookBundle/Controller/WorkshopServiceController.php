@@ -179,6 +179,7 @@ class WorkshopServiceController extends Main {
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
+            echo "S";
         }
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
@@ -189,11 +190,6 @@ class WorkshopServiceController extends Main {
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
         }
-
-
-
-
-
         $json = $this->tabs();
         //echo json_encode($json);
         return $json;
