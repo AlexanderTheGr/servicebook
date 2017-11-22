@@ -4,7 +4,7 @@
         <indexes>
             <index name="workshop_service_action" columns="workshop_service_action"/>
             <index name="brand_service_part" columns="brand_service_part"/>
-            <index name="workshop_service_part" columns="workshop_service_part"/>
+            <index name="workshop_part" columns="workshop_part"/>
             <index name="brand" columns="brand"/>
         </indexes>     
         <id name="id" type="integer" column="id">
