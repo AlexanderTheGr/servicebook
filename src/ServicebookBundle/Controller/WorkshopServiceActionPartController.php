@@ -158,12 +158,16 @@ class WorkshopServiceActionPartController extends Main {
         } else {
             foreach ($session->get('params_gettabs2_' . $id) as $param) {
                 $this->addField($param);
-            } 
-            $this->q_and[] = $this->prefix . ".workshopServiceAction in (21,22)";
+            }
+            /*
+            $workshopService = $this->getDoctrine()
+                            ->getRepository('ServicebookBundle:WorkshopService')->find($id);
+             */
+            $this->q_and[] = $this->prefix . ".workshopServiceAction in (Select id from asd.ServicebookBundle:WorkshopServiceAction where asd.workshopService = '".$id."')";
         }
 
         $this->repository = 'ServicebookBundle:WorkshopServicePart';
-        
+
         $json = $this->datatable();
 
         $datatable = json_decode($json);
