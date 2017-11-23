@@ -61,7 +61,7 @@ class WorkshopServiceActionPartController extends Main {
         $id = $request->request->get("id");
         $price = $request->request->get("price");
         $entity = $this->getDoctrine()
-                ->getRepository($this->repository)
+                ->getRepository('ServicebookBundle:WorkshopServicePart')
                 ->find($id);
         $entity->setPrice($price);
         $this->flushpersist($entity);
