@@ -190,7 +190,8 @@ class WorkshopServiceController extends Main {
             $params2['id'] = $dtparams;
             $params2['url'] = '/servicebook/workshop/getserviceparts/0/'.$id;
             //$params2['view'] = '/servicebook/workshop/servicepart/view';
-            //$params2['viewnew'] = '/servicebook/workshop/servicepart/view/new/' . $id;        
+            //$params2['viewnew'] = '/servicebook/workshop/servicepart/view/new/' . $id;  
+            $datatables2[] = $this->contentDatatable($params2);
             
             
         }
