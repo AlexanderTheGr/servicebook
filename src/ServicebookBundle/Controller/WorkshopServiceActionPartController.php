@@ -150,12 +150,12 @@ class WorkshopServiceActionPartController extends Main {
     public function getservicepartsAction($id, $service = false) {
         $session = new Session();
 
-        if ($id > 0) {
+        if (!$service) {
             foreach ($session->get('params_gettabs_' . $id) as $param) {
                 $this->addField($param);
             }
         } else {
-            foreach ($session->get('params_gettabs2_' . $service) as $param) {
+            foreach ($session->get('params_gettabs2_' . $id) as $param) {
                 $this->addField($param);
             }            
         }
