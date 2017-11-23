@@ -179,12 +179,28 @@ class WorkshopServiceController extends Main {
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
             
+            $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams2[] = array("name" => "Title", "index" => 'part');
+            $dtparams2[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');         
+            $dtparams2[] = array("name" => "Code", "index" => 'code');
+            $dtparams2[] = array("name" => "Price", "index" => 'price',"input" => "text");
+            
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params2['dtparams'] = $dtparams;
+            $params2['id'] = $dtparams;
+            $params2['url'] = '/servicebook/workshop/getserviceparts/0/'.$id;
+            //$params2['view'] = '/servicebook/workshop/servicepart/view';
+            //$params2['viewnew'] = '/servicebook/workshop/servicepart/view/new/' . $id;        
+            
+            
         }
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
 
         if ($entity) {
             $tabs[] = array("title" => $this->getTranslation("Actions"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+            $tabs[] = array("title" => $this->getTranslation("Parts"), "datatables" => $datatables2, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+            
         }
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
