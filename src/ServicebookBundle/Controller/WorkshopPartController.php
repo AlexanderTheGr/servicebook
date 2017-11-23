@@ -77,6 +77,16 @@ class WorkshopPartController extends Main {
         ));
     }
 
+    
+    /**
+     * @Route("/servicebook/workshop/servicepart/setprice")
+     */
+    public function setprice() {
+        $json = json_encode(array("ok"));
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );        
+    }    
     /**
      * @Route("/servicebook/workshopPart/save")
      */
