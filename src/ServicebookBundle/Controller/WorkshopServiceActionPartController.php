@@ -163,7 +163,7 @@ class WorkshopServiceActionPartController extends Main {
             $workshopService = $this->getDoctrine()
                             ->getRepository('ServicebookBundle:WorkshopService')->find($id);
              */
-            $this->q_and[] = $this->prefix . ".workshopServiceAction in (Select id from asd.ServicebookBundle:WorkshopServiceAction where asd.workshopService = '".$id."')";
+            $this->q_and[] = $this->prefix . ".workshopServiceAction in (Select asd.id from ServicebookBundle:WorkshopServiceAction asd where asd.workshopService = '".$id."')";
         }
 
         $this->repository = 'ServicebookBundle:WorkshopServicePart';
