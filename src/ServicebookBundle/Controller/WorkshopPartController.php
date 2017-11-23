@@ -78,6 +78,7 @@ class WorkshopPartController extends Main {
     }
 
     
+    
     /**
      * @Route("/servicebook/workshop/workshoppart/setprice")
      */
