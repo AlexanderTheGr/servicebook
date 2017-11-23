@@ -12,8 +12,20 @@
     $(".{{ctrl}}").alexTabs("{{app}}", "{{ctrl}}", "{{url}}", "{{content|json_encode()}}");
     $(".ServicebookBundleWorkshopServicePartPrice").live("keyup", function(e) {
         if (e.keyCode == 13) {
-            alert($(this).val());
+            var data = {}
+            data.id = jQuery(this).attr('data-id');
+            data.price = jQuery(this).val();
+            $.post("/servicebook/workshop/servicepart/setprice", data, function(result) {
+                $("#loaderer").hide();
+                var json = angular.fromJson(result);
+                if (json.error) {
+                    toastr.error(json.message, "Error");
+                }
+                var table = dt_tables["ctrlgettabs"];
+                //$(".offcanvas-search").click();
+                table.fnFilter();
+            })
         }
     });
-</script>
+    </script>
 {% endblock %}
