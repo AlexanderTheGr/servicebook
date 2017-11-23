@@ -79,7 +79,7 @@ class WorkshopPartController extends Main {
 
     
     /**
-     * @Route("/servicebook/workshop/servicepart/setprice")
+     * @Route("/servicebook/workshop/workshoppart/setprice")
      */
     public function setprice(Request $request) {
         $id = $request->request->get("id");
