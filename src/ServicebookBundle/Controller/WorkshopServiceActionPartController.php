@@ -53,7 +53,22 @@ class WorkshopServiceActionPartController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
-
+    /**
+     * @Route("/servicebook/workshop/servicepart/setprice")
+     */
+    public function setprice(Request $request) {
+        $id = $request->request->get("id");
+        $price = $request->request->get("price");
+        $entity = $this->getDoctrine()
+                ->getRepository($this->repository)
+                ->find($id);
+        $entity->setPrice($price);
+        $this->flushpersist($entity);
+        $json = json_encode(array("ok"));
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );        
+    } 
     /**
      * @Route("/servicebook/workshop/servicepart/view/{id}/{action}")
      */
