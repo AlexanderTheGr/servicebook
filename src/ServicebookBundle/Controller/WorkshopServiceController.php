@@ -180,7 +180,7 @@ class WorkshopServiceController extends Main {
             $datatables[] = $this->contentDatatable($params);
             
             $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
-            $dtparams2[] = array("name" => "Title", "index" => 'brandServiceAction:action');
+            $dtparams2[] = array("name" => "Title", "index" => 'workshopServiceAction:action');
             $dtparams2[] = array("name" => "Title", "index" => 'part');
             $dtparams2[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');         
             $dtparams2[] = array("name" => "Code", "index" => 'code');
