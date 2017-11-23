@@ -144,9 +144,9 @@ class WorkshopServiceActionPartController extends Main {
     }
 
     /**
-     * @Route("/servicebook/workshop/getserviceparts/{id}")
+     * @Route("/servicebook/workshop/getserviceparts/{id}/{service}")
      */
-    public function getservicepartsAction($id) {
+    public function getservicepartsAction($id,$service=false) {
         $session = new Session();
         foreach ($session->get('params_gettabs_' . $id) as $param) {
             $this->addField($param);
@@ -170,7 +170,6 @@ class WorkshopServiceActionPartController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
-
 }
 
 /*
