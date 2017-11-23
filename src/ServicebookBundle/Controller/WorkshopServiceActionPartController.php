@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class WorkshopServiceActionPartController extends Main {
 
     var $repository = 'ServicebookBundle:WorkshopServicePart';
+
     /**
      * @Route("/servicebook/workshop/servicepart/save/{action}")
      */
@@ -37,11 +38,11 @@ class WorkshopServiceActionPartController extends Main {
         $entity->setTs($dt);
         $entity->setModified($dt);
         $this->flushpersist($entity);
-        
+
         $workshopPart = $entity->getWorkshopPart();
         $workshopPart->setPrice($entity->getPrice());
         $this->flushpersist($workshopPart);
-        
+
         $jsonarr = array();
         if ($entity->getId()) {
             $jsonarr["returnurl"] = "/servicebook/workshop/serviceaction/view/" . $entity->getWorkshopServiceAction()->getId();
@@ -121,19 +122,19 @@ class WorkshopServiceActionPartController extends Main {
         $dataarray[] = array("value" => "0", "name" => "Oxi");
         $dataarray[] = array("value" => "1", "name" => "Ναι");
 
-        $fields["part"] = array("label" => "Part","disabled" => true, 'required' => true);
+        $fields["part"] = array("label" => "Part", "disabled" => true, 'required' => true);
         //$fields["brand"] = array("label" => "Brand", 'required' => true);
-        $fields["brand"] = array("label" => "Brand","disabled" => true, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
+        $fields["brand"] = array("label" => "Brand", "disabled" => true, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
 
-        $fields["code"] = array("label" => "Code","disabled" => true, 'required' => true);
+        $fields["code"] = array("label" => "Code", "disabled" => true, 'required' => true);
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
         //$fields["user"] = array("label" => "User", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:User', 'name' => 'name', 'value' => 'id'));
         //$fields["brandWorkshop:id"] = array("label" => "Name");
         //$fields["brandWorkshop"] = array("label" => "Brand Workshop", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Workshop', 'name' => 'workshop', 'value' => 'id'));
         $fields["price"] = array("label" => "Price", 'required' => true);
-        $fields["comments"] = array("label" => "Comments",  "type" => "textarea");
-        
+        $fields["comments"] = array("label" => "Comments", "type" => "textarea");
+
         $forms = $this->getFormLyFields($entity, $fields);
 
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
@@ -146,11 +147,19 @@ class WorkshopServiceActionPartController extends Main {
     /**
      * @Route("/servicebook/workshop/getserviceparts/{id}/{service}")
      */
-    public function getservicepartsAction($id,$service=false) {
+    public function getservicepartsAction($id, $service = false) {
         $session = new Session();
-        foreach ($session->get('params_gettabs_' . $id) as $param) {
-            $this->addField($param);
+
+        if ($id > 0) {
+            foreach ($session->get('params_gettabs_' . $id) as $param) {
+                $this->addField($param);
+            }
+        } else {
+            foreach ($session->get('params_gettabs2_' . $service) as $param) {
+                $this->addField($param);
+            }            
         }
+
         $this->repository = 'ServicebookBundle:WorkshopServicePart';
         $this->q_and[] = $this->prefix . ".workshopServiceAction = '" . $id . "'";
         $json = $this->datatable();
@@ -170,6 +179,7 @@ class WorkshopServiceActionPartController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
+
 }
 
 /*
