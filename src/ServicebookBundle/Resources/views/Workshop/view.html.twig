@@ -11,9 +11,9 @@
 <script>
     $(".{{ctrl}}").alexTabs("{{app}}", "{{ctrl}}", "{{url}}", "{{content|json_encode()}}");
     $(".ServicebookBundleWorkshopServicePartPrice").live("keyup", function(e) {
-        //if (e.keyCode == 13) {
+        if (e.keyCode == 13) {
             alert($(this).val());
-        //}
+        }
     });
 </script>
 {% endblock %}
