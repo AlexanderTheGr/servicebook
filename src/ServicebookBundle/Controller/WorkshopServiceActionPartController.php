@@ -53,6 +53,7 @@ class WorkshopServiceActionPartController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );
     }
+    
     /**
      * @Route("/servicebook/workshop/servicepart/setprice")
      */
@@ -69,6 +70,7 @@ class WorkshopServiceActionPartController extends Main {
                 $json, 200, array('Content-Type' => 'application/json')
         );        
     } 
+    
     /**
      * @Route("/servicebook/workshop/servicepart/view/{id}/{action}")
      */
