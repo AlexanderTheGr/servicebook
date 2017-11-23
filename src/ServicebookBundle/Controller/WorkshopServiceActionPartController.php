@@ -65,6 +65,9 @@ class WorkshopServiceActionPartController extends Main {
                 ->find($id);
         $entity->setPrice($price);
         $this->flushpersist($entity);
+        $workshopPart = $entity->getWorkshopPart();
+        $workshopPart->setPrice($price);
+        $this->flushpersist($workshopPart);
         $json = json_encode(array("ok"));
         return new Response(
                 $json, 200, array('Content-Type' => 'application/json')
