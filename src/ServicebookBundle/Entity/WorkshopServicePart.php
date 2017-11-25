@@ -404,4 +404,62 @@ class WorkshopServicePart extends Entity {
         return $this->price;
     }
 
+    /**
+     * @var string
+     */
+    private $afremarketCode = '';
+
+    /**
+     * @var \ServicebookBundle\Entity\AftermarketBrand
+     */
+    private $afremarketBrand;
+
+
+    /**
+     * Set afremarketCode
+     *
+     * @param string $afremarketCode
+     *
+     * @return WorkshopServicePart
+     */
+    public function setAfremarketCode($afremarketCode)
+    {
+        $this->afremarketCode = $afremarketCode;
+
+        return $this;
+    }
+
+    /**
+     * Get afremarketCode
+     *
+     * @return string
+     */
+    public function getAfremarketCode()
+    {
+        return $this->afremarketCode;
+    }
+
+    /**
+     * Set afremarketBrand
+     *
+     * @param \ServicebookBundle\Entity\AftermarketBrand $afremarketBrand
+     *
+     * @return WorkshopServicePart
+     */
+    public function setAfremarketBrand(\ServicebookBundle\Entity\AftermarketBrand $afremarketBrand = null)
+    {
+        $this->afremarketBrand = $afremarketBrand;
+
+        return $this;
+    }
+
+    /**
+     * Get afremarketBrand
+     *
+     * @return \ServicebookBundle\Entity\AftermarketBrand
+     */
+    public function getAfremarketBrand()
+    {
+        return $this->afremarketBrand;
+    }
 }
