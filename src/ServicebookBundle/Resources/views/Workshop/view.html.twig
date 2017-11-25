@@ -43,6 +43,9 @@
                 table.fnFilter();
             })
         }
-    });    
+    });
+    setTimeout(function () {
+    jQuery("select.form-control").chosen({width: "100%"});
+    },100);
     </script>
 {% endblock %}
