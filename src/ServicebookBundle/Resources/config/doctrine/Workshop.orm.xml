@@ -64,7 +64,14 @@
         
             </options>
         </field>
-
+        <many-to-one
+            field="city"
+            target-entity="ServicebookBundle\Entity\RegionCity"
+            inversed-by="RegionCity"
+            join-column="city">
+            <join-column name="city" referenced-column-name="id" />
+        </many-to-one> 
+    
         <field name="created" type="datetime" column="created" nullable="false"/>
         <field name="modified" type="datetime" column="modified" nullable="false"/>
     </entity>
