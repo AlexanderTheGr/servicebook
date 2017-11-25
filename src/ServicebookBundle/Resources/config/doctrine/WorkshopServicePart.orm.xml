@@ -23,7 +23,14 @@
                 <option name="unsigned"/>
                 <option name="default"></option>
             </options>
-        </field>    
+        </field> 
+        
+        <field name="aftermarket_code" type="string" column="aftermarket_code" length="255" nullable="false">
+            <options>
+                <option name="unsigned"/>
+                <option name="default"></option>
+            </options>
+        </field>            
                 
         <field name="details" type="text" column="details" length="65535" nullable="false">
             <options>
