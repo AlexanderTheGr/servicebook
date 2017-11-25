@@ -194,4 +194,3 @@ class AftermarketBrand extends Entity {
     }
 
 }
-
