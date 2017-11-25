@@ -62,6 +62,11 @@
         
             </options>
         </field>
+        
+        
+        <one-to-many field="parts" target-entity="WorkshopPart" mapped-by="workshop" />
+        <one-to-many field="services" target-entity="WorkshopService" mapped-by="workshop" />
+        
         <many-to-one
             field="city"
             target-entity="ServicebookBundle\Entity\RegionCity"
