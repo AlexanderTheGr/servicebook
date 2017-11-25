@@ -1,7 +1,9 @@
 <?php
 
 namespace ServicebookBundle\Entity;
+
 use AppBundle\Entity\Entity;
+
 /**
  * Workshop
  */
@@ -11,6 +13,8 @@ class Workshop extends Entity {
         //$this->repositories['tecdocSupplierId'] = 'SoftoneBundle:SoftoneSupplier';
         //$this->types['tecdocSupplierId'] = 'object';
         //$this->tecdocSupplierId = new \SoftoneBundle\Entity\SoftoneSupplier;
+        $this->repositories['city'] = 'ServicebookBundle:RegionCity';
+        $this->city = new \ServicebookBundle\Entity\RegionCity;
     }
 
     public function getField($field) {
@@ -28,6 +32,7 @@ class Workshop extends Entity {
 
     public function getRepositories($repo) {
         //$this->repositories['tecdocSupplierId'] = 'SoftoneBundle:SoftoneSupplier';
+        $this->repositories['city'] = 'ServicebookBundle:RegionCity';
         return $this->repositories[$repo];
     }
 
@@ -72,10 +77,7 @@ class Workshop extends Entity {
      */
     private $zip;
 
-    /**
-     * @var string
-     */
-    private $city;
+
 
     /**
      * @var string
@@ -433,5 +435,11 @@ class Workshop extends Entity {
     public function getId() {
         return $this->id;
     }
+
+    /**
+     * @var \ServicebookBundle\Entity\RegionCity
+     */
+    private $city;
+
 
 }
