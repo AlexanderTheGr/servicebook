@@ -79,7 +79,7 @@
         </many-to-one> 
         
         <many-to-one
-            field="afremarketBrand"
+            field="aftermarketBrand"
             target-entity="ServicebookBundle\Entity\AftermarketBrand"
             inversed-by="AftermarketBrand"
             join-column="afremarket_brand">
