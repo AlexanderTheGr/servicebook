@@ -23,7 +23,7 @@ class WorkshopServiceAction extends Entity {
         $this->repositories['brandServiceAction'] = 'ServicebookBundle:BrandServiceAction';
         $this->workshopService = new \ServicebookBundle\Entity\WorkshopService;
         $this->brandServiceAction = new \ServicebookBundle\Entity\BrandServiceAction;
-        //$this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->parts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
@@ -346,5 +346,44 @@ class WorkshopServiceAction extends Entity {
     public function getPrice()
     {
         return $this->price;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $parts;
+
+
+    /**
+     * Add part
+     *
+     * @param \ServicebookBundle\Entity\WorkshopServicePart $part
+     *
+     * @return WorkshopServiceAction
+     */
+    public function addPart(\ServicebookBundle\Entity\WorkshopServicePart $part)
+    {
+        $this->parts[] = $part;
+
+        return $this;
+    }
+
+    /**
+     * Remove part
+     *
+     * @param \ServicebookBundle\Entity\WorkshopServicePart $part
+     */
+    public function removePart(\ServicebookBundle\Entity\WorkshopServicePart $part)
+    {
+        $this->parts->removeElement($part);
+    }
+
+    /**
+     * Get parts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParts()
+    {
+        return $this->parts;
     }
 }
