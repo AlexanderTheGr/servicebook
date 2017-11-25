@@ -15,6 +15,8 @@ class Workshop extends Entity {
         //$this->tecdocSupplierId = new \SoftoneBundle\Entity\SoftoneSupplier;
         $this->repositories['city'] = 'ServicebookBundle:RegionCity';
         $this->city = new \ServicebookBundle\Entity\RegionCity;
+        $this->parts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->services = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
@@ -442,4 +444,82 @@ class Workshop extends Entity {
     private $city;
 
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $parts;
+
+
+    /**
+     * Add part
+     *
+     * @param \ServicebookBundle\Entity\WorkshopPart $part
+     *
+     * @return Workshop
+     */
+    public function addPart(\ServicebookBundle\Entity\WorkshopPart $part)
+    {
+        $this->parts[] = $part;
+
+        return $this;
+    }
+
+    /**
+     * Remove part
+     *
+     * @param \ServicebookBundle\Entity\WorkshopPart $part
+     */
+    public function removePart(\ServicebookBundle\Entity\WorkshopPart $part)
+    {
+        $this->parts->removeElement($part);
+    }
+
+    /**
+     * Get parts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParts()
+    {
+        return $this->parts;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $services;
+
+
+    /**
+     * Add service
+     *
+     * @param \ServicebookBundle\Entity\WorkshopService $service
+     *
+     * @return Workshop
+     */
+    public function addService(\ServicebookBundle\Entity\WorkshopService $service)
+    {
+        $this->services[] = $service;
+
+        return $this;
+    }
+
+    /**
+     * Remove service
+     *
+     * @param \ServicebookBundle\Entity\WorkshopService $service
+     */
+    public function removeService(\ServicebookBundle\Entity\WorkshopService $service)
+    {
+        $this->services->removeElement($service);
+    }
+
+    /**
+     * Get services
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
 }
