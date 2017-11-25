@@ -24,13 +24,7 @@
                 <option name="default"></option>
             </options>
         </field> 
-        
-        <field name="aftermarketCode" type="string" column="aftermarket_code" length="255" nullable="false">
-            <options>
-                <option name="unsigned"/>
-                <option name="default"></option>
-            </options>
-        </field>            
+                 
                 
         <field name="details" type="text" column="details" length="65535" nullable="false">
             <options>
@@ -78,12 +72,6 @@
             join-column="brand">
             <join-column name="brand" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one> 
-        <many-to-one
-            field="aftermarketBrand"
-            target-entity="ServicebookBundle\Entity\AftermarketBrand"
-            inversed-by="AftermarketBrand"
-            join-column="aftermarket_brand">
-            <join-column name="aftermarket_brand" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
-        </many-to-one>              
+             
     </entity>
 </doctrine-mapping>
