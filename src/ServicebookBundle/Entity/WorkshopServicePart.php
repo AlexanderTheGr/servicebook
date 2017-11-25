@@ -25,6 +25,7 @@ class WorkshopServicePart extends Entity {
         $this->repositories['brand'] = 'ServicebookBundle:Brand';
         $this->repositories['aftermarketBrand'] = 'ServicebookBundle:AftermarketBrand';
         $this->brandServicePart = new \ServicebookBundle\Entity\BrandServicePart;
+        $this->aftermarketBrand = new \ServicebookBundle\Entity\AftermarketBrand;
         $this->workshopServiceAction = new \ServicebookBundle\Entity\WorkshopServiceAction;
         $this->brand = new \ServicebookBundle\Entity\Brand;
         //$this->items = new \Doctrine\Common\Collections\ArrayCollection();
