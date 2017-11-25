@@ -182,8 +182,11 @@ class WorkshopServiceController extends Main {
             $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams2[] = array("name" => "Action", "index" => 'workshopServiceAction:action');
             $dtparams2[] = array("name" => "Title", "index" => 'part');
-            $dtparams2[] = $fields["brand"] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand');         
+            $dtparams2[] = array("name" => "Brand", "index" => 'brand:brand', 'type' => 'select', 'object' => 'Brand'); 
             $dtparams2[] = array("name" => "Code", "index" => 'code');
+            
+            
+            
             $dtparams2[] = array("name" => "Price", "index" => 'price',"input" => "text");
             
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
