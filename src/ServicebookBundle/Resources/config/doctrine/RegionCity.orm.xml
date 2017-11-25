@@ -3,6 +3,7 @@
     <entity name="ServicebookBundle\Entity\RegionCity"  repository-class="ServicebookBundle\Entity\RegionCityRepository"  table="servicebook_region_city">
         <indexes>
             <index name="city" columns="city"/>
+            <index name="region" columns="region"/>
         </indexes>
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
