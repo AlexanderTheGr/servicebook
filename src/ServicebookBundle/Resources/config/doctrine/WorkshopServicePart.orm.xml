@@ -77,6 +77,7 @@
             join-column="brand">
             <join-column name="brand" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
         </many-to-one> 
+        
         <many-to-one
             field="afremarketBrand"
             target-entity="ServicebookBundle\Entity\AftermarketBrand"
