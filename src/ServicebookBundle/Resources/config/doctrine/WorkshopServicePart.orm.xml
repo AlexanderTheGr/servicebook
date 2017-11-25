@@ -6,6 +6,7 @@
             <index name="brand_service_part" columns="brand_service_part"/>
             <index name="workshop_part" columns="workshop_part"/>
             <index name="brand" columns="brand"/>
+            <index name="aftermarket_brand" columns="aftermarket_brand"/>
         </indexes>     
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
@@ -69,6 +70,13 @@
             inversed-by="Brand"
             join-column="brand">
             <join-column name="brand" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
-        </many-to-one>      
+        </many-to-one> 
+        <many-to-one
+            field="aftermarket_brand"
+            target-entity="ServicebookBundle\Entity\AftermarketBrand"
+            inversed-by="AftermarketBrand"
+            join-column="aftermarket_brand">
+            <join-column name="aftermarket_brand" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE" />
+        </many-to-one>              
     </entity>
 </doctrine-mapping>
