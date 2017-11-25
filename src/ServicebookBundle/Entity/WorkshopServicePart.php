@@ -407,7 +407,7 @@ class WorkshopServicePart extends Entity {
     /**
      * @var string
      */
-    private $afremarketCode = '';
+    private $aftermarketCode = '';
 
     /**
      * @var \ServicebookBundle\Entity\AftermarketBrand
@@ -416,27 +416,27 @@ class WorkshopServicePart extends Entity {
 
 
     /**
-     * Set afremarketCode
+     * Set aftermarketCode
      *
-     * @param string $afremarketCode
+     * @param string $aftermarketCode
      *
      * @return WorkshopServicePart
      */
-    public function setAfremarketCode($afremarketCode)
+    public function setAfremarketCode($aftermarketCode)
     {
-        $this->afremarketCode = $afremarketCode;
+        $this->aftermarketCode = $aftermarketCode;
 
         return $this;
     }
 
     /**
-     * Get afremarketCode
+     * Get aftermarketCode
      *
      * @return string
      */
     public function getAfremarketCode()
     {
-        return $this->afremarketCode;
+        return $this->aftermarketCode;
     }
 
     /**
