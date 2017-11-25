@@ -413,7 +413,7 @@ class WorkshopServicePart extends Entity {
     /**
      * @var \ServicebookBundle\Entity\AftermarketBrand
      */
-    private $afremarketBrand;
+    private $aftermarketBrand;
 
 
     /**
@@ -441,26 +441,26 @@ class WorkshopServicePart extends Entity {
     }
 
     /**
-     * Set afremarketBrand
+     * Set aftermarketBrand
      *
-     * @param \ServicebookBundle\Entity\AftermarketBrand $afremarketBrand
+     * @param \ServicebookBundle\Entity\AftermarketBrand $aftermarketBrand
      *
      * @return WorkshopServicePart
      */
-    public function setAfremarketBrand(\ServicebookBundle\Entity\AftermarketBrand $afremarketBrand = null)
+    public function setAfremarketBrand(\ServicebookBundle\Entity\AftermarketBrand $aftermarketBrand = null)
     {
-        $this->afremarketBrand = $afremarketBrand;
+        $this->aftermarketBrand = $aftermarketBrand;
 
         return $this;
     }
 
     /**
-     * Get afremarketBrand
+     * Get aftermarketBrand
      *
      * @return \ServicebookBundle\Entity\AftermarketBrand
      */
     public function getAfremarketBrand()
     {
-        return $this->afremarketBrand;
+        return $this->aftermarketBrand;
     }
 }
