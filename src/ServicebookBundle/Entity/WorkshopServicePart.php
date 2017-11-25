@@ -410,12 +410,12 @@ class WorkshopServicePart extends Entity {
     /**
      * @var string
      */
-    private $aftermarket_code = '';
+    private $aftermarketCode = '';
 
     /**
      * @var \ServicebookBundle\Entity\AftermarketBrand
      */
-    private $aftermarket_brand;
+    private $aftermarketBrand;
 
 
     /**
@@ -427,7 +427,7 @@ class WorkshopServicePart extends Entity {
      */
     public function setAftermarketCode($aftermarketCode)
     {
-        $this->aftermarket_code = $aftermarketCode;
+        $this->aftermarketCode = $aftermarketCode;
 
         return $this;
     }
@@ -439,7 +439,7 @@ class WorkshopServicePart extends Entity {
      */
     public function getAftermarketCode()
     {
-        return $this->aftermarket_code;
+        return $this->aftermarketCode;
     }
 
     /**
@@ -451,7 +451,7 @@ class WorkshopServicePart extends Entity {
      */
     public function setAftermarketBrand(\ServicebookBundle\Entity\AftermarketBrand $aftermarketBrand = null)
     {
-        $this->aftermarket_brand = $aftermarketBrand;
+        $this->aftermarketBrand = $aftermarketBrand;
 
         return $this;
     }
@@ -463,6 +463,9 @@ class WorkshopServicePart extends Entity {
      */
     public function getAftermarketBrand()
     {
-        return $this->aftermarket_brand;
+        return $this->aftermarketBrand;
     }
+
+
+
 }
