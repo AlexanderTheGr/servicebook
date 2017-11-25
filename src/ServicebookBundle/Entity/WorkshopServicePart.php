@@ -3,6 +3,7 @@
 namespace ServicebookBundle\Entity;
 
 use AppBundle\Entity\Entity;
+
 /**
  * WorkshopPart
  */
@@ -359,7 +360,6 @@ class WorkshopServicePart extends Entity {
      */
     private $price;
 
-
     /**
      * Set comments
      *
@@ -367,8 +367,7 @@ class WorkshopServicePart extends Entity {
      *
      * @return WorkshopServicePart
      */
-    public function setComments($comments)
-    {
+    public function setComments($comments) {
         $this->comments = $comments;
 
         return $this;
@@ -379,8 +378,7 @@ class WorkshopServicePart extends Entity {
      *
      * @return string
      */
-    public function getComments()
-    {
+    public function getComments() {
         return $this->comments;
     }
 
@@ -391,8 +389,7 @@ class WorkshopServicePart extends Entity {
      *
      * @return WorkshopServicePart
      */
-    public function setPrice($price)
-    {
+    public function setPrice($price) {
         $this->price = $price;
 
         return $this;
@@ -403,68 +400,8 @@ class WorkshopServicePart extends Entity {
      *
      * @return string
      */
-    public function getPrice()
-    {
+    public function getPrice() {
         return $this->price;
     }
 
-
-    /**
-     * @var string
-     */
-    private $aftermarketCode = '';
-
-    /**
-     * @var \ServicebookBundle\Entity\AftermarketBrand
-     */
-    private $aftermarketBrand;
-
-
-    /**
-     * Set aftermarketCode
-     *
-     * @param string $aftermarketCode
-     *
-     * @return WorkshopServicePart
-     */
-    public function setAftermarketCode($aftermarketCode)
-    {
-        $this->aftermarketCode = $aftermarketCode;
-
-        return $this;
-    }
-
-    /**
-     * Get aftermarketCode
-     *
-     * @return string
-     */
-    public function getAftermarketCode()
-    {
-        return $this->aftermarketCode;
-    }
-
-    /**
-     * Set aftermarketBrand
-     *
-     * @param \ServicebookBundle\Entity\AftermarketBrand $aftermarketBrand
-     *
-     * @return WorkshopServicePart
-     */
-    public function setAftermarketBrand(\ServicebookBundle\Entity\AftermarketBrand $aftermarketBrand = null)
-    {
-        $this->aftermarketBrand = $aftermarketBrand;
-
-        return $this;
-    }
-
-    /**
-     * Get aftermarketBrand
-     *
-     * @return \ServicebookBundle\Entity\AftermarketBrand
-     */
-    public function getAftermarketBrand()
-    {
-        return $this->aftermarketBrand;
-    }
 }
