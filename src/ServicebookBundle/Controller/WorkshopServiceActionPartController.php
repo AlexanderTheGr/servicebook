@@ -148,8 +148,8 @@ class WorkshopServiceActionPartController extends Main {
 
         $fields["code"] = array("label" => "Code", "disabled" => true, 'required' => true);
         
-        $fields["aftermarketBrand"] = array("label" => "Aftermarket Brand", "disabled" => true, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:AftermarketBrand', 'name' => 'name', 'value' => 'id'));
-        $fields["aftermarketCode"] = array("label" => "Aftermarket Code", "disabled" => true, 'required' => true);
+        $fields["aftermarketBrand"] = array("label" => "Aftermarket Brand", "disabled" => false, 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:AftermarketBrand', 'name' => 'name', 'value' => 'id'));
+        $fields["aftermarketCode"] = array("label" => "Aftermarket Code", "disabled" => false, 'required' => true);
         
         //$fields["details"] = array("label" => "Details", "type" => "textarea");
         //$fields["brand"] = array("label" => "Brand", "disabled" => true, "className" => "col-md-6", 'type' => "select", "required" => true, 'datasource' => array('repository' => 'ServicebookBundle:Brand', 'name' => 'brand', 'value' => 'id'));
