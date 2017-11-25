@@ -407,6 +407,8 @@ class WorkshopServicePart extends Entity {
     {
         return $this->price;
     }
+
+
     /**
      * @var string
      */
@@ -465,7 +467,4 @@ class WorkshopServicePart extends Entity {
     {
         return $this->aftermarketBrand;
     }
-
-
-
 }
