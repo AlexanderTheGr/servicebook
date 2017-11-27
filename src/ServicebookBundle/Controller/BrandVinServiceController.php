@@ -234,7 +234,7 @@ class BrandVinServiceController extends Main {
             $this->addField($param);
         }
         $this->repository = 'ServicebookBundle:WorkshopService';
-        $this->q_and[] = $this->prefix . ".workshop = '" . $id . "'";
+        $this->q_and[] = $this->prefix . ".brandService = '" . $id . "'";
         $json = $this->datatable();
 
         $datatable = json_decode($json);
