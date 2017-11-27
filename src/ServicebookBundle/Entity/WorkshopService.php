@@ -397,12 +397,14 @@ class WorkshopService extends Entity {
     }
 
     public function calculateTotalPrice() {
+        $price = 0;
         foreach($this->getActions() as $action) {
             $price += $action->getPrice();
             foreach($action->getParts() as $part) {
                 $price += $part->getPrice();
             }
         }
+        return $price;
     }
 
     /**
