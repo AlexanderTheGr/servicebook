@@ -395,16 +395,20 @@ class WorkshopService extends Entity {
     public function getPrice() {
         return $this->price;
     }
-    
-    public function calculatePrice() {
-        
+
+    public function calculateTotalPrice() {
+        foreach($this->getActions() as $action) {
+            $price += $action->getPrice();
+            foreach($action->getParts() as $part) {
+                $price += $part->getPrice();
+            }
+        }
     }
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $actions;
-
 
     /**
      * Add action
@@ -413,8 +417,7 @@ class WorkshopService extends Entity {
      *
      * @return WorkshopService
      */
-    public function addAction(\ServicebookBundle\Entity\WorkshopServiceAction $action)
-    {
+    public function addAction(\ServicebookBundle\Entity\WorkshopServiceAction $action) {
         $this->actions[] = $action;
 
         return $this;
@@ -425,8 +428,7 @@ class WorkshopService extends Entity {
      *
      * @param \ServicebookBundle\Entity\WorkshopServiceAction $action
      */
-    public function removeAction(\ServicebookBundle\Entity\WorkshopServiceAction $action)
-    {
+    public function removeAction(\ServicebookBundle\Entity\WorkshopServiceAction $action) {
         $this->actions->removeElement($action);
     }
 
@@ -435,8 +437,10 @@ class WorkshopService extends Entity {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getActions()
-    {
+    public function getActions() {
         return $this->actions;
     }
+    
+    
+
 }
