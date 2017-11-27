@@ -351,9 +351,7 @@ class BrandService extends Entity {
         }
         $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
 
-        $workshopService = $em->getDoctrine()
-                ->getRepository("ServicebookBundle:WorkshopService")
-                ->findOneBy(array('workshop' => $workshop, 'brandService' => $this));
+        $workshopService = $em->getRepository("ServicebookBundle:WorkshopService")->findOneBy(array('workshop' => $workshop, 'brandService' => $this));
 
         $price = 0;
         foreach ($workshopService->getActions() as $action) {
