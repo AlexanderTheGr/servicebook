@@ -343,15 +343,26 @@ class BrandService extends Entity {
     public function getActions() {
         return $this->actions;
     }
-    public function calculateTotalPrice($id) {
-        return $id;
+
+    public function calculateTotalPrice($workshop) {
+        global $kernel;
+        if ('AppCache' == get_class($kernel)) {
+            $kernel = $kernel->getKernel();
+        }
+        $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+
+        $workshopService = $em->getDoctrine()
+                ->getRepository("ServicebookBundle:WorkshopService")
+                ->findOneBy(array('workshop' => $workshop, 'brandService' => $this));
+
         $price = 0;
-        foreach($this->getActions() as $action) {
+        foreach ($workshopService->getActions() as $action) {
             $price += $action->getPrice();
-            foreach($action->getParts() as $part) {
+            foreach ($action->getParts() as $part) {
                 $price += $part->getPrice();
             }
         }
         return $price;
     }
+
 }
