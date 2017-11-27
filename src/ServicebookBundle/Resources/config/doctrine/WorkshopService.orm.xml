@@ -56,6 +56,8 @@
         <field name="created" type="datetime" column="created" nullable="true"/>
         <field name="modified" type="datetime" column="modified" nullable="true"/>        
         
+        <one-to-many field="actions" target-entity="WorkshopServiceAction" mapped-by="workshopService" />
+        
         <many-to-one
             field="brandService"
             target-entity="ServicebookBundle\Entity\BrandService"
