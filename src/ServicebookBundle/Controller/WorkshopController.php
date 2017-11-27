@@ -116,7 +116,7 @@ class WorkshopController extends Main {
             $dtparams[] = array("name" => "Brand", "index" => 'brandVin:brand:brand');
             $dtparams[] = array("name" => "Model", "index" => 'brandVin:model');
             $dtparams[] = array("name" => "KM", "index" => 'km');
-            $dtparams[] = array("name" => "Price", 'function' => 'calculateTotalPrice');
+            $dtparams[] = array("name" => "Price", 'function' => 'calculateTotalPrice(1)');
             $params['dtparams'] = $dtparams;
             $params['id'] = $dtparams;
             $params['url'] = '/servicebook/brandvin/getservicesforworkshop/' . $id;
