@@ -128,8 +128,6 @@ class WorkshopController extends Main {
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);            
             
-            
-            
         }
         if ($id > 0 AND count($entity) > 0) {
             $tabs[] = array("title" => $this->getTranslation("Services"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
