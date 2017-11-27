@@ -352,7 +352,8 @@ class BrandService extends Entity {
         $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
 
         $workshopService = $em->getRepository("ServicebookBundle:WorkshopService")->findOneBy(array('workshop' => $workshop, 'brandService' => $this));
-
+        return $workshopService->calculateTotalPrice();
+        /*
         $price = 0;
         foreach ($workshopService->getActions() as $action) {
             $price += $action->getPrice();
@@ -361,6 +362,8 @@ class BrandService extends Entity {
             }
         }
         return $price;
+         * 
+         */
     }
 
 }
