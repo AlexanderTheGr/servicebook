@@ -23,7 +23,7 @@ class WorkshopService extends Entity {
         $this->repositories['brandService'] = 'ServicebookBundle:BrandService';
         $this->workshop = new \ServicebookBundle\Entity\Workshop;
         $this->brandService = new \ServicebookBundle\Entity\BrandService;
-        //$this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->actions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getField($field) {
@@ -348,7 +348,6 @@ class WorkshopService extends Entity {
      */
     private $comments = '';
 
-
     /**
      * Set comments
      *
@@ -356,8 +355,7 @@ class WorkshopService extends Entity {
      *
      * @return WorkshopService
      */
-    public function setComments($comments)
-    {
+    public function setComments($comments) {
         $this->comments = $comments;
 
         return $this;
@@ -368,15 +366,14 @@ class WorkshopService extends Entity {
      *
      * @return string
      */
-    public function getComments()
-    {
+    public function getComments() {
         return $this->comments;
     }
+
     /**
      * @var string
      */
     private $price;
-
 
     /**
      * Set price
@@ -385,10 +382,8 @@ class WorkshopService extends Entity {
      *
      * @return WorkshopService
      */
-    public function setPrice($price)
-    {
+    public function setPrice($price) {
         $this->price = $price;
-
         return $this;
     }
 
@@ -397,8 +392,51 @@ class WorkshopService extends Entity {
      *
      * @return string
      */
-    public function getPrice()
-    {
+    public function getPrice() {
         return $this->price;
+    }
+    
+    public function calculatePrice() {
+        
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $actions;
+
+
+    /**
+     * Add action
+     *
+     * @param \ServicebookBundle\Entity\WorkshopServiceAction $action
+     *
+     * @return WorkshopService
+     */
+    public function addAction(\ServicebookBundle\Entity\WorkshopServiceAction $action)
+    {
+        $this->actions[] = $action;
+
+        return $this;
+    }
+
+    /**
+     * Remove action
+     *
+     * @param \ServicebookBundle\Entity\WorkshopServiceAction $action
+     */
+    public function removeAction(\ServicebookBundle\Entity\WorkshopServiceAction $action)
+    {
+        $this->actions->removeElement($action);
+    }
+
+    /**
+     * Get actions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActions()
+    {
+        return $this->actions;
     }
 }
