@@ -192,6 +192,7 @@ class BrandVinServiceController extends Main {
             
             $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams2[] = array("name" => "Workshop", "index" => 'workshop:name');
+            $dtparams2[] = array("name" => "Price", 'function' => 'calculateTotalPrice');
             //$dtparams2[] = array("name" => "Manhour", "index" => 'manhour');
             //$dtparams[] = array("name" => "Code", "index" => 'code');
             //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
