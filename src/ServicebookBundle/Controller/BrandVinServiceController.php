@@ -171,6 +171,8 @@ class BrandVinServiceController extends Main {
         $forms = $this->getFormLyFields($entity, $fields);
 
         if ($id > 0 AND count($entity) > 0) {
+            
+            
             $dtparams[] = array("name" => "ID", "index" => 'id', "active" => "active");
             $dtparams[] = array("name" => "Title", "index" => 'action');
             $dtparams[] = array("name" => "Manhour", "index" => 'manhour');
@@ -181,16 +183,39 @@ class BrandVinServiceController extends Main {
             $params['url'] = '/servicebook/brandvin/getserviceactions/' . $id;
             $params['view'] = '/servicebook/brandvin/serviceaction/view';
             $params['viewnew'] = '/servicebook/brandvin/serviceaction/view/new/' . $id;
-
+           
             $params['key'] = 'gettabs_' . $id;
             $params["ctrl"] = 'ctrlgettabs';
             $params["app"] = 'appgettabs';
             $datatables[] = $this->contentDatatable($params);
+   
+            
+            $dtparams2[] = array("name" => "ID", "index" => 'id', "active" => "active");
+            $dtparams2[] = array("name" => "Workshop", "index" => 'workshop:name');
+            //$dtparams2[] = array("name" => "Manhour", "index" => 'manhour');
+            //$dtparams[] = array("name" => "Code", "index" => 'code');
+            //$dtparams[] = array("name" => "Price", "index" => 'storeWholeSalePrice');
+            $params2['dtparams'] = $dtparams2;
+            $params2['id'] = $dtparams2;
+            $params2['url'] = '/servicebook/brandvin/getserviceworkshops/' . $id;
+            //$params['view'] = '/servicebook/brandvin/serviceaction/view';
+            //$params['viewnew'] = '/servicebook/brandvin/serviceaction/view/new/' . $id;
+           
+            $params2['key'] = 'gettabs2_' . $id;
+            $params2["ctrl"] = 'ctrlgettabs2';
+            $params2["app"] = 'appgettabs2';
+            $datatables2[] = $this->contentDatatable($params2);      
+            
+            
+            
         }
         $this->addTab(array("title" => "General", "form" => $forms, "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => true));
 
         if ($id > 0 AND count($entity) > 0) {
             $tabs[] = array("title" => $this->getTranslation("Actions"), "datatables" => $datatables, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+            $tabs[] = array("title" => $this->getTranslation("Workshop"), "datatables" => $datatables2, "form" => '', "content" => '', "index" => $this->generateRandomString(), 'search' => 'text', "active" => false);
+        
+            
         }
         foreach ((array) $tabs as $tab) {
             $this->addTab($tab);
@@ -200,7 +225,33 @@ class BrandVinServiceController extends Main {
         //echo json_encode($json);
         return $json;
     }
+    /**
+     * @Route("/servicebook/brandvin/getserviceworkshops/{id}")
+     */
+    public function getserviceworkshops($id) {
+        $session = new Session();
+        foreach ($session->get('params_gettabs2_' . $id) as $param) {
+            $this->addField($param);
+        }
+        $this->repository = 'ServicebookBundle:WorkshopService';
+        $this->q_and[] = $this->prefix . ".workshop = '" . $id . "'";
+        $json = $this->datatable();
 
+        $datatable = json_decode($json);
+        $datatable->data = (array) $datatable->data;
+        foreach ((array) $datatable->data as $key => $table) {
+            $table = (array) $table;
+            $table1 = array();
+            foreach ($table as $f => $val) {
+                $table1[$f] = $val;
+            }
+            $datatable->data[$key] = $table1;
+        }
+        $json = json_encode($datatable);
+        return new Response(
+                $json, 200, array('Content-Type' => 'application/json')
+        );
+    }
 }
 
 ?>
