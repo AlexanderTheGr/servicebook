@@ -126,7 +126,7 @@ class BrandVinServiceController extends Main {
         foreach ($session->get('params_gettabs_' . $id) as $param) {
             $this->addField($param);
         }
-        $this->repository = 'ServicebookBundle:BrandService';
+        $this->repository = 'ServicebookBundle:WorkshopService';
         //$this->q_and[] = $this->prefix . ".brandVin = '" . $id . "'";
         $json = $this->datatable();
 
