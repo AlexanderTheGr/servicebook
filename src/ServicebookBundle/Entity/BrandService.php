@@ -343,5 +343,15 @@ class BrandService extends Entity {
     public function getActions() {
         return $this->actions;
     }
-
+    public function calculateTotalPrice($id) {
+        return $id;
+        $price = 0;
+        foreach($this->getActions() as $action) {
+            $price += $action->getPrice();
+            foreach($action->getParts() as $part) {
+                $price += $part->getPrice();
+            }
+        }
+        return $price;
+    }
 }
