@@ -105,6 +105,8 @@ class UserController extends Main {
         foreach ($entities as $key => $entity) {
 
             $entity->setModified($dt);
+            $entity->setCreated($dt);
+            $entity->setTs($dt);
             $this->flushpersist($entity);
             $out[$key] = $entity->getId();
         }
