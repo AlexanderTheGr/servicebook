@@ -51,6 +51,15 @@
         <option name="default">active</option>
       </options>
     </field>
+    
+        <many-to-one
+            field="workshop"
+            target-entity="ServicebookBundle\Entity\Workshop"
+            inversed-by="Workshop"
+            join-column="workshop">
+            <join-column name="workshop" referenced-column-name="id" />
+        </many-to-one>     
+    
     <field name="actioneer" type="integer" column="actioneer" nullable="true">
       <options>
         <option name="unsigned"/>
