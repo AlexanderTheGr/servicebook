@@ -373,7 +373,7 @@ class WorkshopService extends Entity {
     /**
      * @var string
      */
-    private $price;
+    private $price = 0;
 
     /**
      * Set price
