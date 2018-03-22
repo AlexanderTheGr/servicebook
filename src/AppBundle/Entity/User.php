@@ -20,9 +20,14 @@ class User extends Entity implements UserInterface, \Serializable {
 
     public function __construct() {
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->repositories['workshop'] = 'ServicebookBundle:Workshop';
+        $this->workshop = new \ServicebookBundle\Entity\Workshop;
     }
 
     public function getField($field) {
+        if ($this->gettype($field) == 'boolean') {
+            return (int) $this->$field;
+        }
         return $this->$field;
     }
 
@@ -34,9 +39,11 @@ class User extends Entity implements UserInterface, \Serializable {
         return $this->repository;
     }
     public function getRepositories($repo) {
+        $this->repositories['workshop'] = 'ServicebookBundle:Workshop';
         return $this->repositories[$repo];
     }
     public function gettype($field) {
+        $this->types['confirmed'] = 'boolean';
         if (@$this->types[$field] != '') {
             return @$this->types[$field];
         }
@@ -447,6 +454,30 @@ class User extends Entity implements UserInterface, \Serializable {
                 // $this->salt
                 ) = unserialize($serialized);
     }
+    /**
+     * @var \ServicebookBundle\Entity\Workshop
+     */
+    private $workshop;    
+    /**
+     * Set workshop
+     *
+     * @param \ServicebookBundle\Entity\Workshop $workshop
+     *
+     * @return WorkshopPart
+     */
+    public function setWorkshop(\ServicebookBundle\Entity\Workshop $workshop = null) {
+        $this->workshop = $workshop;
 
+        return $this;
+    }
+
+    /**
+     * Get workshop
+     *
+     * @return \ServicebookBundle\Entity\Workshop
+     */
+    public function getWorkshop() {
+        return $this->workshop;
+    }
 
 }
